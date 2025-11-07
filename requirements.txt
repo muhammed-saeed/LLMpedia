@@ -1,0 +1,22 @@
+jinja2>=3.1.3
+openai>=1.40.0
+replicate>=0.26.0
+python-dotenv>=1.0.1
+pydantic>=2.7.0
+unsloth @ git+https://github.com/unslothai/unsloth.git
+pillow
+transformers>=4.44.0
+torch
+accelerate
+datasets 
+peft 
+numpy
+pandas
+unsloth_zoo
+evaluate 
+rouge-score 
+bleu 
+sacrebleu
+matplotlib 
+seaborn 
+plotly

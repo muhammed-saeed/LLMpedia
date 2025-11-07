@@ -1,0 +1,4 @@
+{
+  "system": "You are an expert in NER. Classify each line as NE/Literal/Noise and include keep=true for NE else false. STRICT JSON ONLY: {\"entities\":[{\"name\":\"...\",\"type\":\"NE|Literal|Noise\",\"keep\":true|false}]}",
+  "user": "{phrases_block}"
+}

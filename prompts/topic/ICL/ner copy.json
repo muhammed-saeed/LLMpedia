@@ -1,0 +1,4 @@
+{
+  "system": "I want you to perform named entity recognition (NER) on the topic of {root_subject}. Your task is to classify if each given phrase is a topic-relevant named entity (such as a person, organization, location, event, creative work, or artifact), or not. Non-entities include literals, generic terms, numbers, dates, categories, URLs, or verbose phrases. Each phrase is provided on a separate line. If a phrase is not directly or clearly related to the topic {root_subject}, return is_ne=false. Return STRICT JSON ONLY with the exact structure: {\"phrases\":[{\"phrase\":\"<line>\",\"is_ne\":true|false}]}. No prose, markdown, or explanations—JSON only.",
+  "user": "{phrases_block}"
+}

@@ -1,0 +1,4 @@
+{
+  "system": "You are an expert on named entity recognition (NER). Your task is to classify if given phrases are named entities (e.g., persons, organizations, works of art), or not (e.g., literals, dates, URLs, verbose phrases). Each phrase is given to you in a line.",
+    "user": "{phrases_block}"
+}

@@ -1,0 +1,80 @@
+SYSTEM: Return JSON only. No prose, no markdown, no code fences.
+
+You are a knowledge base construction expert.
+
+## Objective
+Construct factual (subject, predicate, object) triples **strictly related to the topic "{{ root_subject }}"** with both **high precision** and **high recall**.
+
+### Output format (STRICT)
+{
+  "facts": [
+    {"subject":"{{ subject_name }}","predicate":"<predicate>","object":"<object>"}
+  ]
+}
+- Output **only** valid JSON that matches the structure above.
+- If you are not confident, or the subject is fictional, ambiguous, speculative, or unrelated to "{{ root_subject }}", return exactly:
+{"facts":[]}
+
+## Quantity & Quality Rules
+- **Globally famous subjects:** produce **50–100+** concise triples.
+- **Moderately famous subjects:** produce **30–50**.
+- **Lesser-known but real subjects:** produce **10–30**.
+- **Unknown/ambiguous/fictional:** return **{"facts": []}**.
+- Include at least one `"instanceOf"` triple when applicable.
+- Keep **objects concise and canonical** (prefer 1–6 words).
+- **Atomic**: one fact per triple; split multi-facts.
+- **De-duplicate**; avoid contradictions and trivia that’s not widely attested.
+- **Topical restriction:** Every triple must directly connect to "{{ root_subject }}" or its well-established subdomains (works, characters, locations, events, organizations, people tightly tied to it).
+
+## Coverage & Bias Awareness
+- Cover diverse regions and disciplines; do not over-index on Western examples.
+- Always verify that both predicate and object are relevant to "{{ root_subject }}".
+
+## Positive exemplars (format you should imitate; do NOT copy to output)
+[
+  {"subject":"Albert Einstein","predicate":"instanceOf","object":"physicist"},
+  {"subject":"Albert Einstein","predicate":"won","object":"Nobel Prize in Physics"},
+  {"subject":"Barack Obama","predicate":"bornIn","object":"Honolulu"},
+  {"subject":"Leonardo da Vinci","predicate":"created","object":"Mona Lisa"},
+  {"subject":"Taylor Swift","predicate":"instanceOf","object":"singer-songwriter"},
+  {"subject":"Eiffel Tower","predicate":"locatedIn","object":"Paris"},
+  {"subject":"Great Pyramid of Giza","predicate":"locatedIn","object":"Egypt"},
+  {"subject":"Mount Everest","predicate":"locatedIn","object":"Himalayas"},
+  {"subject":"Amazon River","predicate":"flowsThrough","object":"Brazil"},
+  {"subject":"The Beatles","predicate":"originatedIn","object":"Liverpool"},
+  {"subject":"Mona Lisa","predicate":"displayedAt","object":"Louvre Museum"},
+  {"subject":"Cristiano Ronaldo","predicate":"playsFor","object":"Portugal national football team"},
+  {"subject":"Google","predicate":"foundedBy","object":"Larry Page"},
+  {"subject":"Harry Potter","predicate":"writtenBy","object":"J.K. Rowling"},
+  {"subject":"UNESCO","predicate":"headquarteredIn","object":"Paris"},
+  {"subject":"Taj Mahal","predicate":"locatedIn","object":"Agra"},
+  {"subject":"United Nations","predicate":"headquarteredIn","object":"New York City"}
+]
+
+## Hard/abstract exemplars (emit only when confident)
+[
+  {"subject":"Noether’s theorem","predicate":"relates","object":"symmetries to conservation laws"},
+  {"subject":"General relativity","predicate":"explains","object":"gravity as curvature of spacetime"},
+  {"subject":"CRISPR-Cas9","predicate":"enables","object":"gene editing"},
+  {"subject":"Quantum computing","predicate":"uses","object":"superposition and entanglement"}
+]
+
+## Abstain exemplars — return {"facts": []} for these patterns
+# Fictional / nonsense / speculative
+["Zorbaxian Empire","Blargonomicon of Zythra","Time Travel Bureau","Mars Base Alpha","Unicorn","Purple gravity","Atlantis Capital","Dragonfruit Phoenix Festival"]
+# Ambiguous / underspecified
+["John from the store","The color of happiness","My cousin Ravi","That big stadium"]
+# False premise / misinformation
+["Flat Earth proof","Aliens built the pyramids","Alexander the Great's son Zeus","Unknown date of death as fact"]
+# Geographic traps
+["Qwertonia","Great Sahara City","Old Bombay Presidency Today","Andes Tiger"]
+
+## Final instructions
+1) Output **only** a JSON object with a `"facts"` array of triples as specified.
+2) Ensure every triple is **relevant to "{{ root_subject }}"**.
+3) Use concise, canonical objects (1–6 words when possible).
+4) If unsure or off-topic, output **{"facts": []}**.
+
+Now, construct factual triples for this subject (scoped to the topic "{{ root_subject }}"):
+
+Subject: {{ subject_name }}
