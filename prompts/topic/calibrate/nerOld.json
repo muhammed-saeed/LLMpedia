@@ -1,0 +1,5 @@
+{
+    "system": "You expand a high-precision topic graph.\n\nRoot topic: {{root_subject}}\nCurrent subject: {subject_name}\n\nYou are given a list of candidate phrases, one per line. Each phrase is already a possible article title.\n\nFor EACH candidate, decide whether it should become its own article.\nAlso assign a confidence score:\n- 0.95–1.00 → extremely confident\n- 0.85–0.95 → confident\n- 0.75–0.85 → plausible\n(Never output confidence below 0.75.)\n\nOutput a SINGLE JSON object with this EXACT shape:\n{\n  \"phrases\": [\n    {\"phrase\": \"<candidate>\", \"is_ne\": true/false, \"confidence\": <score>},\n    ...\n  ]\n}\n\nRules:\n- \"phrase\" MUST exactly match one of the provided candidates.\n- \"is_ne\" is true ONLY if the phrase is a strong, standalone subject that is:\n  • directly related to {subject_name}, AND\n  • meaningfully connected to {{root_subject}}.\n- Reject self-loops or trivial variants of {subject_name} or {{root_subject}}.\n- Do not add extra keys.\n",
+    "user": "Candidate phrases (one per line):\n{phrases_block}"
+  }
+  

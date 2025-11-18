@@ -1,0 +1,83 @@
+{"subject": "The big Bang Theory TV SEries", "predicate": "is a", "object": "sitcom", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "The big Bang Theory TV SEries", "predicate": "premiered on", "object": "September 24, 2007", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "The big Bang Theory TV SEries", "predicate": "was created by", "object": "Chuck Lorre", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "The big Bang Theory TV SEries", "predicate": "features characters such as", "object": "Sheldon Cooper", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "The big Bang Theory TV SEries", "predicate": "is set in", "object": "Pasadena, California", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "The big Bang Theory TV SEries", "predicate": "ran for", "object": "12 seasons", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "The big Bang Theory TV SEries", "predicate": "is known for its focus on", "object": "scientific themes", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "The big Bang Theory TV SEries", "predicate": "has won", "object": "10 Primetime Emmy Awards", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "10 Primetime Emmy Awards", "predicate": "is a", "object": "award", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "10 Primetime Emmy Awards", "predicate": "are awarded for", "object": "excellence in television programming", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "10 Primetime Emmy Awards", "predicate": "includes the category", "object": "Outstanding Comedy Series", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "10 Primetime Emmy Awards", "predicate": "were awarded to", "object": "The Big Bang Theory", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "10 Primetime Emmy Awards", "predicate": "were awarded in the year", "object": "2010", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "10 Primetime Emmy Awards", "predicate": "were awarded in the year", "object": "2011", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "10 Primetime Emmy Awards", "predicate": "were awarded in the year", "object": "2013", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "10 Primetime Emmy Awards", "predicate": "were awarded in the year", "object": "2014", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Chuck Lorre", "predicate": "is a", "object": "television producer", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Chuck Lorre", "predicate": "created", "object": "The Big Bang Theory", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Chuck Lorre", "predicate": "is a", "object": "screenwriter", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Chuck Lorre", "predicate": "produced", "object": "The Big Bang Theory", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Chuck Lorre", "predicate": "is a", "object": "director", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Pasadena, California", "predicate": "is a", "object": "city", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Pasadena, California", "predicate": "is the setting for", "object": "The Big Bang Theory", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Pasadena, California", "predicate": "hosts the annual event", "object": "Rose Parade", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Pasadena, California", "predicate": "features the iconic landmark", "object": "Caltech", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Pasadena, California", "predicate": "is located in", "object": "Los Angeles County", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Outstanding Comedy Series", "predicate": "is a", "object": "Primetime Emmy Award category", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Outstanding Comedy Series", "predicate": "has been awarded to", "object": "The Big Bang Theory", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Outstanding Comedy Series", "predicate": "is awarded by", "object": "Academy of Television Arts & Sciences", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "The Big Bang Theory", "predicate": "instanceOf", "object": "television series", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "The Big Bang Theory", "predicate": "createdBy", "object": "Chuck Lorre", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "The Big Bang Theory", "predicate": "premieredOn", "object": "September 24, 2007", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "The Big Bang Theory", "predicate": "endedOn", "object": "May 16, 2019", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "The Big Bang Theory", "predicate": "numberOfSeasons", "object": "12", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "The Big Bang Theory", "predicate": "numberOfEpisodes", "object": "279", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "The Big Bang Theory", "predicate": "starring", "object": "Johnny Galecki", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "The Big Bang Theory", "predicate": "starring", "object": "Jim Parsons", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "The Big Bang Theory", "predicate": "starring", "object": "Kaley Cuoco", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Cooper", "predicate": "instanceOf", "object": "character", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Sheldon Cooper", "predicate": "portrayedBy", "object": "Jim Parsons", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Sheldon Cooper", "predicate": "firstAppearance", "object": "Pilot", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Sheldon Cooper", "predicate": "occupation", "object": "theoretical physicist", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Cooper", "predicate": "fullName", "object": "Sheldon Lee Cooper", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Cooper", "predicate": "dateOfBirth", "object": "1980-02-26", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Sheldon Cooper", "predicate": "notableTraits", "object": "social awkwardness", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Sheldon Cooper", "predicate": "relationshipWith", "object": "Amy Farrah Fowler", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Cooper", "predicate": "livesIn", "object": "Pasadena, California", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Rose Parade", "predicate": "instanceOf", "object": "event", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Rose Parade", "predicate": "isPartOf", "object": "Tournament of Roses", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Rose Parade", "predicate": "isBroadcastedOn", "object": "CBS", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Los Angeles County", "predicate": "instanceOf", "object": "County", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Los Angeles County", "predicate": "isPartOf", "object": "California", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Los Angeles County", "predicate": "hasPopulation", "object": "10039107", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Los Angeles County", "predicate": "isHomeTo", "object": "The Big Bang Theory", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Caltech", "predicate": "is a", "object": "research university", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Caltech", "predicate": "is located in", "object": "Pasadena, California", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Caltech", "predicate": "has a strong emphasis on", "object": "science and engineering", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Caltech", "predicate": "was founded in", "object": "1891", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Caltech", "predicate": "is known for its", "object": "Nobel laureates", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Caltech", "predicate": "has a student-teacher ratio of", "object": "3:1", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Caltech", "predicate": "offers a Bachelor of Science in", "object": "Physics", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Caltech", "predicate": "is affiliated with", "object": "the California Institute of Technology", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Pilot", "predicate": "instanceOf", "object": "episode", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Pilot", "predicate": "airDate", "object": "September 24, 2007", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Jim Parsons", "predicate": "is a", "object": "actor", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Jim Parsons", "predicate": "portrayed", "object": "Sheldon Cooper", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Jim Parsons", "predicate": "won", "object": "Primetime Emmy Award for Outstanding Lead Actor in a Comedy Series", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Jim Parsons", "predicate": "was nominated for", "object": "Golden Globe Award for Best Actor in a Television Series – Musical or Comedy", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "The Big Bang Theory", "predicate": "features", "object": "Jim Parsons as Sheldon Cooper", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Amy Farrah Fowler", "predicate": "instanceOf", "object": "character", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Amy Farrah Fowler", "predicate": "portrayedBy", "object": "Mayim Bialik", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Amy Farrah Fowler", "predicate": "firstAppearance", "object": "The Space Probe Disintegration", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Amy Farrah Fowler", "predicate": "relationshipWith", "object": "Sheldon Cooper", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Amy Farrah Fowler", "predicate": "occupation", "object": "neurobiologist", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Amy Farrah Fowler", "predicate": "hobbies", "object": "playing the harp", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Amy Farrah Fowler", "predicate": "hasPet", "object": "a dog named Sheldon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Amy Farrah Fowler", "predicate": "friendsWith", "object": "Penny Hofstadter", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Sheldon Lee Cooper", "predicate": "is a", "object": "character", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Lee Cooper", "predicate": "appears in", "object": "The Big Bang Theory", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Lee Cooper", "predicate": "is portrayed by", "object": "Jim Parsons", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Sheldon Lee Cooper", "predicate": "was introduced in", "object": "2007", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Sheldon Lee Cooper", "predicate": "has a PhD in", "object": "Theoretical Physics", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Sheldon Lee Cooper", "predicate": "has an IQ of", "object": "187", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}

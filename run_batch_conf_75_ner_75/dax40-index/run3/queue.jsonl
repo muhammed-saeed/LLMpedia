@@ -1,0 +1,12 @@
+{"subject": "DAX40 Index", "hop": 0, "event": "inserted"}
+{"subject": "40 major German companies", "hop": 1, "event": "inserted"}
+{"subject": "Deutsche Börse", "hop": 1, "event": "inserted"}
+{"subject": "the broader Xetra system", "hop": 1, "event": "inserted"}
+{"subject": "Deutsche Börse AG", "hop": 2, "event": "inserted"}
+{"subject": "Germany", "hop": 2, "event": "inserted"}
+{"subject": "Allianz SE", "hop": 2, "event": "inserted"}
+{"subject": "BMW AG", "hop": 2, "event": "inserted"}
+{"subject": "Daimler AG", "hop": 2, "event": "inserted"}
+{"subject": "Siemens AG", "hop": 2, "event": "inserted"}
+{"subject": "Volkswagen AG", "hop": 2, "event": "inserted"}
+{"subject": "Frankfurt, Germany", "hop": 2, "event": "inserted"}

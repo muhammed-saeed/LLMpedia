@@ -1,0 +1,485 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:22"
+  },
+  {
+    "subject": "American television sitcoms",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Bernadette Rostenkowski",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Primetime Emmy Awards",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Television series about scientists",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:10:45"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:02"
+  },
+  {
+    "subject": "Bernadette Rostenkowski-Wolowitz",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:02"
+  },
+  {
+    "subject": "Emily Sweeney",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:00"
+  },
+  {
+    "subject": "Fictional physicists",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:13"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:02"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:02"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:00"
+  },
+  {
+    "subject": "Lucy",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:00"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:02"
+  },
+  {
+    "subject": "Roseanne",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:05"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:02"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:05"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:05"
+  },
+  {
+    "subject": "Angus T. Jones",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "Annie Potts",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Ashton Kutcher",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "Charlie Sheen",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "Conchata Ferrell",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "Critics' Choice Television Awards",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:35"
+  },
+  {
+    "subject": "George Cooper Jr.",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "George Cooper Sr.",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Golden Globe Award",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:35"
+  },
+  {
+    "subject": "Iain Armitage",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:28"
+  },
+  {
+    "subject": "Jon Cryer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "Kate Micucci",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:28"
+  },
+  {
+    "subject": "Lance Barber",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Laura Spencer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:33"
+  },
+  {
+    "subject": "Lee Aronsohn",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "MADtv",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:34"
+  },
+  {
+    "subject": "Mary Cooper",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:31"
+  },
+  {
+    "subject": "Missy Cooper",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Montana Jordan",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "People's Choice Awards",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:35"
+  },
+  {
+    "subject": "Primetime Emmy Award",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:34"
+  },
+  {
+    "subject": "Raegan Revord",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Steven Molaro",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Warner Bros. Television",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:54"
+  },
+  {
+    "subject": "Zoe Perry",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:01"
+  },
+  {
+    "subject": "Beverly Hofstadter",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:40"
+  },
+  {
+    "subject": "Blossom",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:56"
+  },
+  {
+    "subject": "Designing Women",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:14:11"
+  },
+  {
+    "subject": "Garfunkel and Oates",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:58"
+  },
+  {
+    "subject": "Hollywood Walk of Fame",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:53"
+  },
+  {
+    "subject": "Laurie Metcalf",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:37"
+  },
+  {
+    "subject": "Mila Kunis",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:20"
+  },
+  {
+    "subject": "Primetime Emmy Award for Outstanding Supporting Actress in a Comedy Series",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:20"
+  },
+  {
+    "subject": "Primetime Emmy Award winners",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:53"
+  },
+  {
+    "subject": "Riki Lindhome",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:12:58"
+  },
+  {
+    "subject": "That '70s Show",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:20"
+  },
+  {
+    "subject": "The Normal Heart",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:11:53"
+  },
+  {
+    "subject": "Topher Grace",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:20"
+  },
+  {
+    "subject": "Writers Guild of America Awards",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:13:41"
+  },
+  {
+    "subject": "Best Comedy Series",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:14:38"
+  },
+  {
+    "subject": "Christine Baranski",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:14:36"
+  },
+  {
+    "subject": "Steppenwolf Theatre Company",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:14:38"
+  }
+]

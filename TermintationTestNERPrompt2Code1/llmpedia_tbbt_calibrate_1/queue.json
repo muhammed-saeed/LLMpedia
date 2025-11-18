@@ -1,0 +1,366 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:40"
+  },
+  {
+    "subject": "Bernadette Rostenkowski-Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Beverly Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:34:54"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:11"
+  },
+  {
+    "subject": "Annie Potts",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Anu",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:13"
+  },
+  {
+    "subject": "Bernadette Rostenkowski",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:06"
+  },
+  {
+    "subject": "CBS Television Studios",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Caltech",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:13"
+  },
+  {
+    "subject": "Christine Baranski",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:37"
+  },
+  {
+    "subject": "Emily Sweeney",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:13"
+  },
+  {
+    "subject": "Golden Globe Award",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:16"
+  },
+  {
+    "subject": "Iain Armitage",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Lance Barber",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Leslie Hofstadter",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:13"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:11"
+  },
+  {
+    "subject": "Montana Jordan",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "National Lampoon's Christmas Vacation",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:10"
+  },
+  {
+    "subject": "Penny (The Big Bang Theory)",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:11"
+  },
+  {
+    "subject": "Primetime Emmy Award winners",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:16"
+  },
+  {
+    "subject": "Primetime Emmy Awards",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:10"
+  },
+  {
+    "subject": "Raegan Revord",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Roseanne",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:10"
+  },
+  {
+    "subject": "Screen Actors Guild Award",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:35"
+  },
+  {
+    "subject": "Steven Molaro",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:10"
+  },
+  {
+    "subject": "Warner Bros. Television",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Zoe Perry",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:39"
+  },
+  {
+    "subject": "Designing Women",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:27"
+  },
+  {
+    "subject": "Frank Oppenheimer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:56"
+  },
+  {
+    "subject": "Ghostbusters",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:27"
+  },
+  {
+    "subject": "Ghostbusters II",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:27"
+  },
+  {
+    "subject": "Laura Spencer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:02"
+  },
+  {
+    "subject": "Laurie Metcalf",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:29"
+  },
+  {
+    "subject": "Lucy (The Big Bang Theory)",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:02"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:07"
+  },
+  {
+    "subject": "Richard Feynman",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:35:56"
+  },
+  {
+    "subject": "Blossom",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:52"
+  },
+  {
+    "subject": "Kate Micucci",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:36:49"
+  }
+]

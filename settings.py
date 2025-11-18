@@ -1,9 +1,10 @@
+# settings.py
 from __future__ import annotations
 from typing import Dict
 from pydantic import BaseModel
 from llm.config import ModelConfig
 
-# ---------- JSON Schemas ----------
+# ---------- JSON Schemas (triples/ner) ----------
 
 ELICIT_SCHEMA_BASE = {
   "type": "object",
@@ -89,50 +90,106 @@ NER_SCHEMA_CAL = {
   "required": ["phrases"]
 }
 
+# ---------- JSON Schemas (articles namespace) ----------
+
+# Article text + optional sources (links picked by model or web-context)
+# --- add below existing NER_SCHEMA_CAL ---
+
+ARTICLE_SCHEMA_BASE = {
+  "type": "object",
+  "additionalProperties": False,
+  "properties": {
+    "article": {
+      "type": "object",
+      "additionalProperties": False,
+      "properties": {
+        "subject":  {"type": "string"},
+        "wikitext": {"type": "string"},
+        "sources":  {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["subject", "wikitext"]
+    }
+  },
+  "required": ["article"]
+}
+
+ARTICLE_NER_SCHEMA_BASE = {
+  "type": "object",
+  "additionalProperties": False,
+  "properties": {
+    "phrases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": False,
+        "properties": {
+          "phrase": {"type": "string"},
+          "is_ne":  {"type": "boolean"}
+        },
+        "required": ["phrase", "is_ne"]
+      }
+    }
+  },
+  "required": ["phrases"]
+}
+
+
 # ---------- SQLite DDL ----------
 
+# settings.py  (only the relevant pieces)
+
+# DDL for the queue (you probably already have this)
 QUEUE_DDL = """
-CREATE TABLE IF NOT EXISTS queue(
-  subject        TEXT NOT NULL,
-  subject_norm   TEXT NOT NULL,
-  subject_canon  TEXT NOT NULL DEFAULT '',
-  hop            INT  NOT NULL DEFAULT 0,
-  status         TEXT NOT NULL DEFAULT 'pending',
-  retries        INT  NOT NULL DEFAULT 0,
-  created_at     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE IF NOT EXISTS queue (
+    subject        TEXT NOT NULL,
+    subject_norm   TEXT NOT NULL,
+    subject_canon  TEXT NOT NULL,
+    hop            INTEGER NOT NULL,
+    status         TEXT NOT NULL DEFAULT 'pending',  -- pending | working | done
+    retries        INTEGER NOT NULL DEFAULT 0,
+    created_at     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(subject_canon)
 );
 """
 
+# DDL for the facts (triples) database
 FACTS_DDL = """
-CREATE TABLE IF NOT EXISTS triples_accepted(
-  subject     TEXT, 
-  predicate   TEXT, 
-  object      TEXT,
-  hop         INT, 
-  model_name  TEXT, 
-  strategy    TEXT, 
-  confidence  REAL,
-  PRIMARY KEY(subject, predicate, object, hop)
+CREATE TABLE IF NOT EXISTS triples_accepted (
+    subject     TEXT NOT NULL,
+    predicate   TEXT NOT NULL,
+    object      TEXT NOT NULL,
+    hop         INTEGER NOT NULL,
+    model_name  TEXT,
+    strategy    TEXT,
+    confidence  REAL,
+    created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS triples_sink(
-  subject     TEXT, 
-  predicate   TEXT, 
-  object      TEXT,
-  hop         INT, 
-  model_name  TEXT, 
-  strategy    TEXT, 
-  confidence  REAL, 
-  reason      TEXT
+CREATE TABLE IF NOT EXISTS triples_sink (
+    subject     TEXT NOT NULL,
+    predicate   TEXT NOT NULL,
+    object      TEXT NOT NULL,
+    hop         INTEGER NOT NULL,
+    model_name  TEXT,
+    strategy    TEXT,
+    confidence  REAL,
+    reason      TEXT,
+    created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 """
+
+
+# ---------- Settings ----------
 
 # ---------- Settings ----------
 
 class Settings(BaseModel):
     CONCURRENCY: int = 8
     MAX_DEPTH: int = 2
-    NER_BATCH_SIZE: int = 50
+    NER_BATCH_SIZE: int = 5
     MAX_FACTS_HINT: int = 50
 
     MODELS: Dict[str, ModelConfig] = {
@@ -411,8 +468,12 @@ class Settings(BaseModel):
     }
 
     # defaults; override via CLI
+    # defaults; override via CLI
     ELICIT_MODEL_KEY: str = "gpt4o-mini"
     NER_MODEL_KEY: str = "gpt4o-mini"
+    ARTICLE_MODEL_KEY: str = "gpt4o-mini"        # NEW
+    ARTICLE_NER_MODEL_KEY: str = "gpt4o-mini"    # NEW
+
 
 settings = Settings()
 

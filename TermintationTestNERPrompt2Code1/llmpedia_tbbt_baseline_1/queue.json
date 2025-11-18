@@ -1,0 +1,443 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:13"
+  },
+  {
+    "subject": "Bernadette Rostenkowski-Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Primetime Emmy Awards",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:35"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:51"
+  },
+  {
+    "subject": "Bernadette Rostenkowski",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:51"
+  },
+  {
+    "subject": "Characters in American television series",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:59"
+  },
+  {
+    "subject": "Emily Sweeney",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:21"
+  },
+  {
+    "subject": "Fictional physicists",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:59"
+  },
+  {
+    "subject": "Golden Globe Award",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:49"
+  },
+  {
+    "subject": "Hollywood Walk of Fame",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:49"
+  },
+  {
+    "subject": "Lucy",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:21"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:59"
+  },
+  {
+    "subject": "People's Choice Award for Favorite TV Comedy Actress",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:52"
+  },
+  {
+    "subject": "Primetime Emmy Award winners",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:49"
+  },
+  {
+    "subject": "Roseanne",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:52"
+  },
+  {
+    "subject": "Steven Molaro",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:14"
+  },
+  {
+    "subject": "Television characters introduced in 2007",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:59"
+  },
+  {
+    "subject": "The Big Bang Theory characters",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:51"
+  },
+  {
+    "subject": "The Conners",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:52"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:59:55"
+  },
+  {
+    "subject": "Wallace Shawn",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:14"
+  },
+  {
+    "subject": "Zoe Perry",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:14"
+  },
+  {
+    "subject": "Angus T. Jones",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Anu",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:23"
+  },
+  {
+    "subject": "Ashton Kutcher",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Blossom",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:46"
+  },
+  {
+    "subject": "CBS",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Charlie Sheen",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Christine Baranski",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:54"
+  },
+  {
+    "subject": "Conchata Ferrell",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Holland Taylor",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Jennifer Taylor",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Jon Cryer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Kevin Sussman",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:54"
+  },
+  {
+    "subject": "Laura Spencer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:23"
+  },
+  {
+    "subject": "Laurie Metcalf",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:19"
+  },
+  {
+    "subject": "Lee Aronsohn",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Marin Hinkle",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:41"
+  },
+  {
+    "subject": "Sara Gilbert",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:00:54"
+  },
+  {
+    "subject": "The First Pitch Insufficiency",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:24"
+  },
+  {
+    "subject": "Mila Kunis",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:48"
+  },
+  {
+    "subject": "Roseanne Barr",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:46"
+  },
+  {
+    "subject": "Screen Actors Guild Award",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:21"
+  },
+  {
+    "subject": "That '70s Show",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:48"
+  },
+  {
+    "subject": "Writers Guild of America Award",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:01:21"
+  },
+  {
+    "subject": "Eric Kaplan",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:02:14"
+  },
+  {
+    "subject": "Screen Actors Guild Awards",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:02:16"
+  },
+  {
+    "subject": "Topher Grace",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:02:16"
+  },
+  {
+    "subject": "Danny Masterson",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 02:02:42"
+  }
+]

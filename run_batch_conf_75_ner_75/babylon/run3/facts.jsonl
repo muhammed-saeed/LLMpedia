@@ -1,0 +1,215 @@
+{"subject": "Aniceint city of babylon", "predicate": "instanceOf", "object": "ancient city", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Aniceint city of babylon", "predicate": "locatedIn", "object": "Iraq", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Aniceint city of babylon", "predicate": "foundedIn", "object": "1894 BC", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Aniceint city of babylon", "predicate": "notableFor", "object": "Hanging Gardens", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Aniceint city of babylon", "predicate": "wasPartOf", "object": "Babylonian Empire", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Aniceint city of babylon", "predicate": "hasPopulationIn", "object": "approximately 200,000", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Aniceint city of babylon", "predicate": "knownFor", "object": "Code of Hammurabi", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Aniceint city of babylon", "predicate": "establishedBy", "object": "King Hammurabi", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonian Empire", "predicate": "instanceOf", "object": "Ancient Empire", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonian Empire", "predicate": "wasFoundedIn", "object": "1894 BC", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonian Empire", "predicate": "wasLocatedIn", "object": "Mesopotamia", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonian Empire", "predicate": "wasKnownFor", "object": "Code of Hammurabi", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonian Empire", "predicate": "conqueredBy", "object": "Persian Empire", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonian Empire", "predicate": "hadCapital", "object": "Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Babylonian Empire", "predicate": "flourishedDuring", "object": "18th century BC", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Code of Hammurabi", "predicate": "is a", "object": "legal code", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Code of Hammurabi", "predicate": "originated in", "object": "ancient Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Code of Hammurabi", "predicate": "was created by", "object": "Hammurabi", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Code of Hammurabi", "predicate": "dates to", "object": "circa 1754 BCE", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Code of Hammurabi", "predicate": "consists of", "object": "282 laws", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Code of Hammurabi", "predicate": "influenced", "object": "legal systems", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Code of Hammurabi", "predicate": "was inscribed on", "object": "a stele", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Code of Hammurabi", "predicate": "reflects the values of", "object": "Babylonian society", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "1894 BC", "predicate": "is a year in the chronology of the Ancient Near East", "object": "Ancient Near East", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "1894 BC", "predicate": "is associated with the reign of", "object": "King Hammurabi", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "1894 BC", "predicate": "is part of the", "object": "Old Babylonian period", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "1894 BC", "predicate": "is characterized by", "object": "the development of law codes", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "1894 BC", "predicate": "is the approximate date of", "object": "the establishment of Babylon as a prominent city", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "1894 BC", "predicate": "is linked to the", "object": "construction of ziggurats", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.76}
+{"subject": "1894 BC", "predicate": "includes events related to the", "object": "expansion of trade routes", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.77}
+{"subject": "1894 BC", "predicate": "is within the timeline of", "object": "the Amorite dynasty", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.78}
+{"subject": "Hanging Gardens", "predicate": "instanceOf", "object": "Seven Wonders of the Ancient World", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Hanging Gardens", "predicate": "associatedWith", "object": "Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Hanging Gardens", "predicate": "describedBy", "object": "Ancient texts", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Hanging Gardens", "predicate": "famousFor", "object": "Terraced gardens", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "King Hammurabi", "predicate": "is a", "object": "Babylonian king", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "King Hammurabi", "predicate": "ruled in", "object": "ancient Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "King Hammurabi", "predicate": "is known for", "object": "the Code of Hammurabi", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "King Hammurabi", "predicate": "established", "object": "legal principles in Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "King Hammurabi", "predicate": "reigned from", "object": "1792 BC to 1750 BC", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "King Hammurabi", "predicate": "consolidated", "object": "the Babylonian Empire", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "King Hammurabi", "predicate": "built", "object": "public works in Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "King Hammurabi", "predicate": "influenced", "object": "law and governance", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Iraq", "predicate": "is located in", "object": "Middle East", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Iraq", "predicate": "contains the ancient city of", "object": "Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Iraq", "predicate": "was part of the ancient civilization of", "object": "Mesopotamia", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Iraq", "predicate": "is home to the ruins of", "object": "Hanging Gardens of Babylon", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Iraq", "predicate": "was historically known as", "object": "Babylonia", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Iraq", "predicate": "has a major river called", "object": "Euphrates", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Iraq", "predicate": "has a major river called", "object": "Tigris", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Iraq", "predicate": "is known for its rich history including the era of", "object": "Babylonian Empire", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Ancient Empire", "predicate": "instanceOf", "object": "Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient Empire", "predicate": "hasCapital", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Ancient Empire", "predicate": "knownFor", "object": "Law Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Ancient Empire", "predicate": "existedDuring", "object": "1792 BC to 1750 BC", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "18th century BC", "predicate": "instanceOf", "object": "historical period", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "18th century BC", "predicate": "includes", "object": "Old Babylonian period", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "18th century BC", "predicate": "isAssociatedWith", "object": "Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "18th century BC", "predicate": "isKnownFor", "object": "development of cuneiform writing", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "18th century BC", "predicate": "includes", "object": "Ziggurat of Ur", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "18th century BC", "predicate": "isPartOf", "object": "Mesopotamian civilization", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "18th century BC", "predicate": "isAssociatedWith", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylon", "predicate": "instanceOf", "object": "ancient city", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylon", "predicate": "locatedIn", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Babylon", "predicate": "founded", "object": "1894 BC", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylon", "predicate": "knownFor", "object": "Hanging Gardens", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylon", "predicate": "wasTheCapitalOf", "object": "Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylon", "predicate": "hasPopulationApproximately", "object": "200000", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylon", "predicate": "conqueredBy", "object": "Cyrus the Great", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylon", "predicate": "partOf", "object": "Mesopotamian civilization", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Persian Empire", "predicate": "instanceOf", "object": "Ancient Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Persian Empire", "predicate": "conquered", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Persian Empire", "predicate": "established", "object": "Achaemenid Dynasty", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Persian Empire", "predicate": "ruled", "object": "Babylonia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Persian Empire", "predicate": "included", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Babylonian society", "predicate": "instanceOf", "object": "ancient society", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonian society", "predicate": "developed_in", "object": "Ancient Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonian society", "predicate": "known_for", "object": "Hammurabi's Code", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonian society", "predicate": "was_part_of", "object": "Mesopotamian civilization", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonian society", "predicate": "practiced", "object": "polytheism", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonian society", "predicate": "used", "object": "cuneiform script", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonian society", "predicate": "emphasized", "object": "astronomy", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonian society", "predicate": "had", "object": "social hierarchy", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Mesopotamia", "predicate": "is a", "object": "cradle of civilization", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Mesopotamia", "predicate": "includes the ancient city of", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Mesopotamia", "predicate": "is located between the", "object": "Tigris and Euphrates Rivers", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Mesopotamia", "predicate": "was home to the", "object": "Sumerians", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Mesopotamia", "predicate": "was a center for", "object": "trade and culture", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Hammurabi", "predicate": "instanceOf", "object": "King of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Hammurabi", "predicate": "ruled", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Hammurabi", "predicate": "created", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Hammurabi", "predicate": "reignedFrom", "object": "1792 BCE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Hammurabi", "predicate": "reignedUntil", "object": "1750 BCE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Hammurabi", "predicate": "was succeeded by", "object": "Samsu-iluna", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Hammurabi", "predicate": "expanded", "object": "Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "ancient Babylon", "predicate": "instanceOf", "object": "ancient city", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "ancient Babylon", "predicate": "wasFoundedIn", "object": "1894 BC", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "ancient Babylon", "predicate": "wasLocatedIn", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "ancient Babylon", "predicate": "isFamousFor", "object": "Hanging Gardens", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "ancient Babylon", "predicate": "wasRuledBy", "object": "Nebuchadnezzar II", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "ancient Babylon", "predicate": "wasPartOf", "object": "Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "ancient Babylon", "predicate": "isKnownFor", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "ancient Babylon", "predicate": "wasAbandonedIn", "object": "539 BC", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "circa 1754 BCE", "predicate": "is a", "object": "historical period", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "circa 1754 BCE", "predicate": "witnessed the establishment of", "object": "the Old Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "circa 1754 BCE", "predicate": "is associated with the reign of", "object": "Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "circa 1754 BCE", "predicate": "saw the creation of", "object": "the Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "circa 1754 BCE", "predicate": "is characterized by advancements in", "object": "mathematics and astronomy", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "circa 1754 BCE", "predicate": "includes the development of", "object": "writing systems", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "circa 1754 BCE", "predicate": "is part of the early history of", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "circa 1754 BCE", "predicate": "is noted for the growth of", "object": "urban centers", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "the Amorite dynasty", "predicate": "instanceOf", "object": "dynasty", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the Amorite dynasty", "predicate": "ruled", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "the Amorite dynasty", "predicate": "established", "object": "the First Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "the Amorite dynasty", "predicate": "reigned during", "object": "c. 1894–1595 BCE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "the Amorite dynasty", "predicate": "included", "object": "Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the Amorite dynasty", "predicate": "expanded", "object": "territory of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "the Amorite dynasty", "predicate": "is known for", "object": "Codex Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Ancient Near East", "predicate": "is a", "object": "historical region", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient Near East", "predicate": "included", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Ancient Near East", "predicate": "included", "object": "Egypt", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient Near East", "predicate": "is known for", "object": "the development of writing", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Ancient Near East", "predicate": "is associated with", "object": "the rise of urban centers", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient Near East", "predicate": "is characterized by", "object": "complex societies", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Ancient Near East", "predicate": "included", "object": "the Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient Near East", "predicate": "was home to", "object": "the Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Old Babylonian period", "predicate": "is a", "object": "historical period", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Old Babylonian period", "predicate": "lasted from", "object": "c. 2000 BC to c. 1600 BC", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Old Babylonian period", "predicate": "is associated with", "object": "the city of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Old Babylonian period", "predicate": "saw the rise of", "object": "Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Old Babylonian period", "predicate": "is characterized by", "object": "the development of writing and law codes", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Old Babylonian period", "predicate": "featured the", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Old Babylonian period", "predicate": "was influenced by", "object": "Sumerian culture", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Old Babylonian period", "predicate": "was part of", "object": "the broader Mesopotamian civilization", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Terraced gardens", "predicate": "instanceOf", "object": "Garden design", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Terraced gardens", "predicate": "associatedWith", "object": "Hanging Gardens of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Terraced gardens", "predicate": "notableExamples", "object": "Hanging Gardens of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Terraced gardens", "predicate": "usedIn", "object": "Ancient Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Terraced gardens", "predicate": "characterizedBy", "object": "multi-level planting", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Ancient texts", "predicate": "instanceOf", "object": "literary works", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient texts", "predicate": "include", "object": "Epic of Gilgamesh", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Ancient texts", "predicate": "include", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Ancient texts", "predicate": "are often found in", "object": "cuneiform script", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Ancient texts", "predicate": "originated in", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient texts", "predicate": "include", "object": "Enuma Elish", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Ancient texts", "predicate": "documented", "object": "laws and governance", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Ancient texts", "predicate": "preserved knowledge of", "object": "religious beliefs", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Seven Wonders of the Ancient World", "predicate": "instanceOf", "object": "cultural heritage", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Seven Wonders of the Ancient World", "predicate": "includes", "object": "Hanging Gardens of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Hanging Gardens of Babylon", "predicate": "location", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Hanging Gardens of Babylon", "predicate": "mythical status", "object": "possibly legendary", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Seven Wonders of the Ancient World", "predicate": "historical significance", "object": "ancient architecture", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "1792 BC to 1750 BC", "predicate": "instanceOf", "object": "historical period", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "1792 BC to 1750 BC", "predicate": "isPartOf", "object": "Old Babylonian period", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "1792 BC to 1750 BC", "predicate": "associatedWith", "object": "Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "1792 BC to 1750 BC", "predicate": "sawDevelopmentOf", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "1792 BC to 1750 BC", "predicate": "isCharacterizedBy", "object": "extensive trade networks", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "1792 BC to 1750 BC", "predicate": "includes", "object": "construction of the Ishtar Gate", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "1792 BC to 1750 BC", "predicate": "features", "object": "advancements in mathematics and astronomy", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonian king", "predicate": "instanceOf", "object": "monarch", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonian king", "predicate": "ruled", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Babylonian king", "predicate": "knownFor", "object": "Hammurabi's Code", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonian king", "predicate": "wasNotedFor", "object": "the Hanging Gardens", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonian king", "predicate": "established", "object": "the Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "legal principles in Babylon", "predicate": "instanceOf", "object": "ancient legal systems", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "legal principles in Babylon", "predicate": "includes", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "legal principles in Babylon", "predicate": "emphasizes", "object": "justice and retribution", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "legal principles in Babylon", "predicate": "contains", "object": "principles of property rights", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "legal principles in Babylon", "predicate": "influenced", "object": "subsequent legal codes", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "legal principles in Babylon", "predicate": "includes", "object": "family law regulations", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "legal principles in Babylon", "predicate": "features", "object": "contracts and obligations", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "legal principles in Babylon", "predicate": "is characterized by", "object": "the principle of 'an eye for an eye'", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Euphrates", "predicate": "instanceOf", "object": "river", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Euphrates", "predicate": "flowsThrough", "object": "ancient city of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Euphrates", "predicate": "isLocatedIn", "object": "Iraq", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Euphrates", "predicate": "hasLength", "object": "2,800 km", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Euphrates", "predicate": "isPartOf", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonia", "predicate": "instanceOf", "object": "ancient region", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonia", "predicate": "wasLocatedIn", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonia", "predicate": "wasFoundedIn", "object": "1894 BC", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Babylonia", "predicate": "isKnownFor", "object": "Hanging Gardens of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Babylonia", "predicate": "wasTheCapitalOf", "object": "Babylonian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.88}
+{"subject": "Babylonia", "predicate": "wasConqueredBy", "object": "Persian Empire", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Babylonia", "predicate": "hadInfluenceOn", "object": "Judaism", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.82}
+{"subject": "Babylonia", "predicate": "isNotableFor", "object": "Code of Hammurabi", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "public works in Babylon", "predicate": "instanceOf", "object": "infrastructure", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "public works in Babylon", "predicate": "included", "object": "the Ishtar Gate", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "public works in Babylon", "predicate": "included", "object": "the Hanging Gardens", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "public works in Babylon", "predicate": "included", "object": "the Euphrates River canal system", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "public works in Babylon", "predicate": "included", "object": "the ziggurat of Etemenanki", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "public works in Babylon", "predicate": "included", "object": "the city walls of Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "public works in Babylon", "predicate": "were built during", "object": "the reign of Nebuchadnezzar II", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "public works in Babylon", "predicate": "were significant for", "object": "trade and defense", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Tigris", "predicate": "is a river", "object": "Tigris River", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Tigris", "predicate": "flows through", "object": "Ancient Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Tigris", "predicate": "is part of the", "object": "Mesopotamian river system", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Tigris", "predicate": "is one of the two major rivers of", "object": "Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Tigris", "predicate": "is approximately", "object": "1,850 kilometers long", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Tigris", "predicate": "was crucial for agriculture in", "object": "Ancient Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Tigris", "predicate": "has historically supported", "object": "civilization in Mesopotamia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Middle East", "predicate": "instanceOf", "object": "region", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Middle East", "predicate": "hasCapital", "object": "Cairo", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Middle East", "predicate": "contains", "object": "Iraq", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Middle East", "predicate": "contains", "object": "Iran", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Middle East", "predicate": "contains", "object": "Saudi Arabia", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Middle East", "predicate": "contains", "object": "Syria", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Middle East", "predicate": "contains", "object": "Jordan", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Middle East", "predicate": "isKnownFor", "object": "historical sites", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Hanging Gardens of Babylon", "predicate": "instanceOf", "object": "Wonder of the Ancient World", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Hanging Gardens of Babylon", "predicate": "locatedIn", "object": "Babylon", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Hanging Gardens of Babylon", "predicate": "constructedDuring", "object": "Reign of Nebuchadnezzar II", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Hanging Gardens of Babylon", "predicate": "constructedBy", "object": "Nebuchadnezzar II", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Hanging Gardens of Babylon", "predicate": "describedIn", "object": "Ancient Greek texts", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "Hanging Gardens of Babylon", "predicate": "associatedWith", "object": "Queen Amytis of Media", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Hanging Gardens of Babylon", "predicate": "notableFor", "object": "Terraced gardens", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}

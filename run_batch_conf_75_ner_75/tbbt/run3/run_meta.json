@@ -1,0 +1,79 @@
+{
+  "timestamp_utc": "2025-11-12T22:57:30Z",
+  "seed": "The big Bang Theory TV SEries",
+  "domain": "topic",
+  "elicitation_strategy": "calibrate",
+  "ner_strategy": "calibrate",
+  "max_depth": 2,
+  "max_subjects": 0,
+  "concurrency": {
+    "batch_size": 1,
+    "concurrency": 3,
+    "timeout_s": 90.0
+  },
+  "footer_mode": true,
+  "hints": {
+    "major_entities": 50,
+    "min_entities": 8,
+    "avg_tokens": 200,
+    "article_average_tokens": 2000
+  },
+  "models": {
+    "elicitation": {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "use_responses_api": false
+    },
+    "ner": {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "use_responses_api": false
+    }
+  },
+  "args_raw": {
+    "seed": "The big Bang Theory TV SEries",
+    "output_dir": "/Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/tbbt/run3",
+    "elicitation_strategy": "calibrate",
+    "ner_strategy": "calibrate",
+    "domain": "topic",
+    "max_depth": 2,
+    "max_subjects": 0,
+    "ner_batch_size": 5,
+    "max_facts_hint": "50",
+    "conf_threshold": 0.75,
+    "ner_conf_threshold": 0.75,
+    "min_sections": 5,
+    "max_sections": 9,
+    "elicit_model_key": "gpt4o-mini",
+    "ner_model_key": "gpt4o-mini",
+    "elicit_temperature": 0.7,
+    "ner_temperature": 0.3,
+    "elicit_top_p": null,
+    "ner_top_p": null,
+    "elicit_top_k": 40,
+    "ner_top_k": 1,
+    "elicit_max_tokens": 8096,
+    "ner_max_tokens": 2048,
+    "timeout": 90.0,
+    "elicit_request_timeout": 120.0,
+    "ner_request_timeout": 60.0,
+    "net_retries": 6,
+    "net_base_sleep": 0.5,
+    "net_jitter": 0.3,
+    "batch_size": 1,
+    "concurrency": 3,
+    "max_retries": 3,
+    "footer_mode": true,
+    "major_entities_hint": 50,
+    "min_entities_hint": 8,
+    "avg_tokens": 200,
+    "article_average_tokens": 2000,
+    "debug": false,
+    "progress_metrics": true,
+    "resume": false,
+    "reset_working": false,
+    "reasoning_effort": null,
+    "text_verbosity": null,
+    "prompts_root": "prompts"
+  }
+}

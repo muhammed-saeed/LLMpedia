@@ -1,0 +1,317 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:30:44"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:09"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:09"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:09"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:09"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:09"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:38"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:31"
+  },
+  {
+    "subject": "Caltech",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:31"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:31"
+  },
+  {
+    "subject": "Emily Sweeney",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:31"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:38"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:35"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:35"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:31"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:35"
+  },
+  {
+    "subject": "Lucy",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:31"
+  },
+  {
+    "subject": "Mary Cooper",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:38"
+  },
+  {
+    "subject": "Bernadette Rostenkowski-Wolowitz",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:29"
+  },
+  {
+    "subject": "Big Bang Theory cast members",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:01"
+  },
+  {
+    "subject": "Critics' Choice Television Award",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:57"
+  },
+  {
+    "subject": "Kate Micucci",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:57"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:29"
+  },
+  {
+    "subject": "Neil deGrasse Tyson",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:02"
+  },
+  {
+    "subject": "Penny (The Big Bang Theory)",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:57"
+  },
+  {
+    "subject": "Primetime Emmy Award winners",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:03"
+  },
+  {
+    "subject": "Primetime Emmy Awards",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:57"
+  },
+  {
+    "subject": "Roseanne",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:31:58"
+  },
+  {
+    "subject": "Stephen Hawking",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:02"
+  },
+  {
+    "subject": "The Flight Attendant",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:06"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:02"
+  },
+  {
+    "subject": "Blossom (TV series)",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:33:01"
+  },
+  {
+    "subject": "Emmy Award nominees",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:33:01"
+  },
+  {
+    "subject": "Garfunkel and Oates",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:28"
+  },
+  {
+    "subject": "Kevin Sussman",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:31"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:31"
+  },
+  {
+    "subject": "Primetime Emmy Award for Outstanding Supporting Actress in a Comedy Series",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:33:01"
+  },
+  {
+    "subject": "Primetime Emmy Award-winning television series",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:37"
+  },
+  {
+    "subject": "Riki Lindhome",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:28"
+  },
+  {
+    "subject": "Screen Actors Guild Award",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:33:01"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:31"
+  },
+  {
+    "subject": "Wil Wheaton",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:31"
+  },
+  {
+    "subject": "Beverly Hofstadter",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:32:59"
+  },
+  {
+    "subject": "Matthew LeBlanc",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:33:32"
+  },
+  {
+    "subject": "Christine Baranski",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:33:23"
+  }
+]

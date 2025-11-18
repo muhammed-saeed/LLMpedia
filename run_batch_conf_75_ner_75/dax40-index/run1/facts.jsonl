@@ -1,0 +1,79 @@
+{"subject": "DAX40 Index", "predicate": "is a", "object": "stock market index", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX40 Index", "predicate": "represents", "object": "40 of the largest companies in Germany", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX40 Index", "predicate": "is calculated by", "object": "Deutsche Börse", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "DAX40 Index", "predicate": "was introduced in", "object": "1988", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX40 Index", "predicate": "is based on", "object": "market capitalization and liquidity", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "DAX40 Index", "predicate": "includes companies like", "object": "Siemens AG", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX40 Index", "predicate": "is a benchmark for", "object": "German stock market performance", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX40 Index", "predicate": "is part of", "object": "the DAX indices family", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Deutsche Börse", "predicate": "is a", "object": "stock exchange", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Deutsche Börse", "predicate": "operates", "object": "DAX40 Index", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Deutsche Börse", "predicate": "provides", "object": "market data", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Deutsche Börse", "predicate": "is headquartered in", "object": "Frankfurt, Germany", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Deutsche Börse", "predicate": "was founded in", "object": "1585", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "German stock market performance", "predicate": "is a", "object": "financial market", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "German stock market performance", "predicate": "is represented by", "object": "DAX40 Index", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX40 Index", "predicate": "includes", "object": "40 major German companies", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "DAX40 Index", "predicate": "is calculated using", "object": "the performance of its constituents", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "German stock market performance", "predicate": "is influenced by", "object": "economic indicators", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "German stock market performance", "predicate": "is affected by", "object": "global market trends", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.78}
+{"subject": "DAX40 Index", "predicate": "represents", "object": "the health of the German economy", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Siemens AG", "predicate": "is a", "object": "publicly traded company", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Siemens AG", "predicate": "is listed on", "object": "DAX40 Index", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Siemens AG", "predicate": "has a market capitalization of", "object": "approximately 100 billion euros", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Siemens AG", "predicate": "is headquartered in", "object": "Munich, Germany", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Siemens AG", "predicate": "was founded in", "object": "1847", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Siemens AG", "predicate": "operates in the sector", "object": "technology", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Siemens AG", "predicate": "is involved in industries such as", "object": "automation, digitalization, and smart infrastructure", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Siemens AG", "predicate": "is a member of", "object": "DAX40 Index", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Frankfurt, Germany", "predicate": "is a part of", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Frankfurt, Germany", "predicate": "hosts", "object": "Frankfurt Stock Exchange", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Frankfurt, Germany", "predicate": "is known for its", "object": "financial sector", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Frankfurt, Germany", "predicate": "is home to", "object": "European Central Bank", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.89}
+{"subject": "Frankfurt, Germany", "predicate": "is characterized by", "object": "high-rise buildings", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.76}
+{"subject": "Frankfurt, Germany", "predicate": "has a population of", "object": "753,056", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.99}
+{"subject": "40 major German companies", "predicate": "is a type of", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "40 major German companies", "predicate": "includes", "object": "Volkswagen AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "40 major German companies", "predicate": "includes", "object": "Siemens AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "40 major German companies", "predicate": "includes", "object": "BASF SE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "40 major German companies", "predicate": "includes", "object": "Allianz SE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "40 major German companies", "predicate": "includes", "object": "BMW AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "40 major German companies", "predicate": "includes", "object": "Daimler AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "40 major German companies", "predicate": "includes", "object": "SAP SE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "the DAX indices family", "predicate": "is a type of", "object": "stock market index", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "the DAX indices family", "predicate": "includes", "object": "DAX 30", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the DAX indices family", "predicate": "includes", "object": "DAX 40", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the DAX indices family", "predicate": "is operated by", "object": "Deutsche Börse", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "the DAX indices family", "predicate": "is calculated based on", "object": "market capitalization", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "the DAX indices family", "predicate": "represents", "object": "blue-chip companies in Germany", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the DAX indices family", "predicate": "was launched in", "object": "1988", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "the DAX indices family", "predicate": "is used as a benchmark for", "object": "German equity performance", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Munich, Germany", "predicate": "is a", "object": "city", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Munich, Germany", "predicate": "is the capital of", "object": "Bavaria", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Munich, Germany", "predicate": "hosts the headquarters of", "object": "Siemens AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Munich, Germany", "predicate": "is home to", "object": "Allianz SE", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Munich, Germany", "predicate": "is a significant location for", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "DAX 30", "predicate": "is a subclass of", "object": "DAX 40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX 30", "predicate": "is composed of", "object": "30 major German companies", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX 30", "predicate": "is calculated based on", "object": "the market capitalization of its constituent companies", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "DAX 30", "predicate": "is used as a benchmark for", "object": "the German stock market performance", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "DAX 30", "predicate": "was established in", "object": "1988", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the health of the German economy", "predicate": "is an instance of", "object": "economic health", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "the health of the German economy", "predicate": "is influenced by", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "the health of the German economy", "predicate": "affects", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "the health of the German economy", "predicate": "is currently facing", "object": "recession risks", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "the health of the German economy", "predicate": "is affected by", "object": "inflation rates", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX 40", "predicate": "instanceOf", "object": "stock market index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX 40", "predicate": "isComposedOf", "object": "40 largest German companies", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX 40", "predicate": "isCalculatedBy", "object": "Deutsche Börse", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX 40", "predicate": "baseValue", "object": "1000", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "DAX 40", "predicate": "baseDate", "object": "1988-07-01", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "German equity performance", "predicate": "is a type of", "object": "equity performance", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "German equity performance", "predicate": "is represented by", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "German equity performance", "predicate": "has increased by", "object": "12%", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "German equity performance", "predicate": "is influenced by", "object": "economic indicators", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}
+{"subject": "blue-chip companies in Germany", "predicate": "isa", "object": "large-cap corporations", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "blue-chip companies in Germany", "predicate": "are included in", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX40 Index", "predicate": "contains", "object": "30 blue-chip companies", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "blue-chip companies in Germany", "predicate": "are known for", "object": "stability and reliable returns", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "blue-chip companies in Germany", "predicate": "represent", "object": "the largest and most liquid companies in the German market", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.75}

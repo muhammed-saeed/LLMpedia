@@ -1,0 +1,93 @@
+[
+  {
+    "subject": "DAX40 Index",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "Deutsche Börse",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:25"
+  },
+  {
+    "subject": "German stock market performance",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:25"
+  },
+  {
+    "subject": "Siemens AG",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:25"
+  },
+  {
+    "subject": "the DAX indices family",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:25"
+  },
+  {
+    "subject": "40 major German companies",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:43"
+  },
+  {
+    "subject": "DAX 30",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:59:03"
+  },
+  {
+    "subject": "DAX 40",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:59:03"
+  },
+  {
+    "subject": "Frankfurt, Germany",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:37"
+  },
+  {
+    "subject": "German equity performance",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:59:03"
+  },
+  {
+    "subject": "Munich, Germany",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:44"
+  },
+  {
+    "subject": "blue-chip companies in Germany",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:59:03"
+  },
+  {
+    "subject": "the health of the German economy",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:43"
+  }
+]

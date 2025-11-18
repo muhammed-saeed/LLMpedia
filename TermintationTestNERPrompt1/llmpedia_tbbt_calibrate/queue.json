@@ -1,0 +1,464 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 00:59:52"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:16"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:37"
+  },
+  {
+    "subject": "Characters from The Big Bang Theory",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:36"
+  },
+  {
+    "subject": "Critics' Choice Television Award for Best Supporting Actor in a Comedy Series",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:04"
+  },
+  {
+    "subject": "Iain Armitage",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:07"
+  },
+  {
+    "subject": "Karl Cook",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:41"
+  },
+  {
+    "subject": "Leslie Hofstadter",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:36"
+  },
+  {
+    "subject": "Mom",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:38"
+  },
+  {
+    "subject": "Roseanne",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:36"
+  },
+  {
+    "subject": "Ryan Sweeting",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:41"
+  },
+  {
+    "subject": "The Big Bang Theory characters",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:31"
+  },
+  {
+    "subject": "The Flight Attendant",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:41"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:00:38"
+  },
+  {
+    "subject": "Bernadette Rostenkowski",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:11"
+  },
+  {
+    "subject": "Beverly Hofstadter",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:11"
+  },
+  {
+    "subject": "Charlie Sheen",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:07"
+  },
+  {
+    "subject": "Christine Baranski",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:00"
+  },
+  {
+    "subject": "Critics' Choice Television Awards",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:30"
+  },
+  {
+    "subject": "John Goodman",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:10"
+  },
+  {
+    "subject": "Kevin Sussman",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:04"
+  },
+  {
+    "subject": "Lee Aronsohn",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:07"
+  },
+  {
+    "subject": "Matt Williams",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:10"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:00"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:04"
+  },
+  {
+    "subject": "Roseanne Barr",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:10"
+  },
+  {
+    "subject": "Sara Gilbert",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:10"
+  },
+  {
+    "subject": "Stuart Bloom",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:11"
+  },
+  {
+    "subject": "Television series created by Matt Williams",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:10"
+  },
+  {
+    "subject": "The Conners",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:10"
+  },
+  {
+    "subject": "American television producers",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:35"
+  },
+  {
+    "subject": "American television writers",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:35"
+  },
+  {
+    "subject": "Blossom",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:35"
+  },
+  {
+    "subject": "Penny (The Big Bang Theory)",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:12"
+  },
+  {
+    "subject": "Roseanne (TV series)",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:00"
+  },
+  {
+    "subject": "The Talk",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:09"
+  },
+  {
+    "subject": "Two and a Half Men (TV series)",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:01:35"
+  },
+  {
+    "subject": "Aisha Tyler",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:36"
+  },
+  {
+    "subject": "Ashton Kutcher",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:38"
+  },
+  {
+    "subject": "Jon Cryer",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:38"
+  },
+  {
+    "subject": "Julie Chen",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:36"
+  },
+  {
+    "subject": "Sharon Osbourne",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:36"
+  },
+  {
+    "subject": "Steve Molaro",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:02:35"
+  },
+  {
+    "subject": "American comedians",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:03"
+  },
+  {
+    "subject": "Big Brother (U.S.)",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:01"
+  },
+  {
+    "subject": "Big Brother (U.S.) hosts",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:01"
+  },
+  {
+    "subject": "Mila Kunis",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:07"
+  },
+  {
+    "subject": "Punk'd",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:07"
+  },
+  {
+    "subject": "That '70s Show",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:07"
+  },
+  {
+    "subject": "Dan Gheesling",
+    "hop": 7,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:26"
+  },
+  {
+    "subject": "Janelle Pierzina",
+    "hop": 7,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:28"
+  },
+  {
+    "subject": "Jordan Lloyd",
+    "hop": 7,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:26"
+  },
+  {
+    "subject": "Julie Chen Moonves",
+    "hop": 7,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:26"
+  },
+  {
+    "subject": "Big Brother (U.S.) contestants",
+    "hop": 8,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 01:03:55"
+  }
+]

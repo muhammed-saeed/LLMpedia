@@ -1,0 +1,30 @@
+$ /Users/muhammedsaeed/anaconda3/envs/KB/bin/python /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/crawler_runner_heuristics3.py --seed DAX40 Index --output-dir /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2 --elicitation-strategy calibrate --ner-strategy calibrate --domain topic --elicit-max-tokens 8096 --ner-max-tokens 2048 --elicit-temperature 0.7 --ner-temperature 0.3 --elicit-top-k 40 --ner-top-k 1 --elicit-request-timeout 120.0 --ner-request-timeout 60.0 --conf-threshold 0.9 --ner-conf-threshold 0.9 --concurrency 3 --timeout 90.0 --elicitation-strategy calibrate --ner-strategy calibrate --domain topic --elicit-max-tokens 8096 --ner-max-tokens 2048 --elicit-temperature 0.7 --ner-temperature 0.3 --elicit-top-k 40 --ner-top-k 1 --conf-threshold 0.75 --ner-conf-threshold 0.75 --elicit-request-timeout 120 --ner-request-timeout 60 --concurrency 3
+[cfg] thresholds: facts ≥ 0.75, NER ≥ 0.75
+[runner] output_dir: /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2
+[env] OPENAI_BASE_URL=None HTTP_PROXY=None HTTPS_PROXY=None
+[llm] elicit model: gpt-4o-mini
+[llm] ner model   : gpt-4o-mini
+[progress] done=0 working=0 pending=1 total=1 retries=0
+[path=concurrency] subjects=1 workers=1
+[progress] done=1 working=0 pending=1 total=2 retries=0
+[path=concurrency] subjects=1 workers=1
+[progress] done=2 working=0 pending=6 total=8 retries=0
+[path=concurrency] subjects=3 workers=3
+[progress] done=5 working=0 pending=3 total=8 retries=0
+[path=concurrency] subjects=3 workers=3
+[progress] done=8 working=0 pending=0 total=8 retries=0
+[idle] queue drained: done=8 working=0 pending=0 total=8
+[done] finished in 90.3s → /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2
+[out] queue_json        : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/queue.json
+[out] facts_json        : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/facts.json
+[out] facts_jsonl       : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/facts.jsonl
+[out] subjects_json     : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/subjects.json
+[out] subjects_jsonl    : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/subjects.jsonl
+[out] articles_jsonl    : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/articles.jsonl
+[out] lowconf_json      : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/facts_lowconf.json
+[out] lowconf_jsonl     : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/facts_lowconf.jsonl
+[out] ner_jsonl         : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/ner_decisions.jsonl
+[out] ner_lowconf_json  : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/ner_lowconf.json
+[out] ner_lowconf_jsonl : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/ner_lowconf.jsonl
+[out] run_meta_json     : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/run_meta.json
+[out] errors_log        : /Users/muhammedsaeed/Downloads/TU Dresden/LLMpedia/run_batch_conf_75_ner_75/dax40-index/run2/errors.log

@@ -1,0 +1,1 @@
+{"current_entity": "Aniceint city of babylon", "child_candidate": "ancient city", "hop": 0, "is_ne": false, "is_variant": false, "is_partitive": false, "confidence": 0.9, "ner_conf_threshold": 0.75, "passed_threshold": true, "ner_model": "gpt-4o-mini", "ner_strategy": "calibrate", "domain": "topic", "root_subject": "Aniceint city of babylon", "source": "fallback_heuristic"}

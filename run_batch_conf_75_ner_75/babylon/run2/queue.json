@@ -1,0 +1,247 @@
+[
+  {
+    "subject": "Aniceint city of babylon",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:57:30"
+  },
+  {
+    "subject": "1894 BC",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:05"
+  },
+  {
+    "subject": "Babylonian Empire",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:05"
+  },
+  {
+    "subject": "Hanging Gardens",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:05"
+  },
+  {
+    "subject": "Iraq",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:05"
+  },
+  {
+    "subject": "Ishtar Gate",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:05"
+  },
+  {
+    "subject": "Nebuchadnezzar II",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:05"
+  },
+  {
+    "subject": "1893 BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:20"
+  },
+  {
+    "subject": "1895 BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:20"
+  },
+  {
+    "subject": "539 BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "575 BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:43"
+  },
+  {
+    "subject": "605 BC to 562 BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "6th century BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:24"
+  },
+  {
+    "subject": "Achaemenid Empire",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "Akkadian",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "Ancient Empire",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "City Wall of Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:43"
+  },
+  {
+    "subject": "Code of Hammurabi",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "Hammurabi",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "Hanging Gardens of Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "Iran",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  },
+  {
+    "subject": "Jordan",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  },
+  {
+    "subject": "Judah",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "King of Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "Mesopotamia",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:23"
+  },
+  {
+    "subject": "Mesopotamian civilization",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  },
+  {
+    "subject": "Military campaigns",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "Strabo",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:24"
+  },
+  {
+    "subject": "Syria",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  },
+  {
+    "subject": "Turkey",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  },
+  {
+    "subject": "Wonder of the Ancient World",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:24"
+  },
+  {
+    "subject": "goddess Ishtar",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:43"
+  },
+  {
+    "subject": "the Middle East",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  },
+  {
+    "subject": "the ancient city of Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:46"
+  }
+]

@@ -1,0 +1,310 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:34"
+  },
+  {
+    "subject": "Bernadette Rostenkowski-Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Neil deGrasse Tyson",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Stephen Hawking",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:09:57"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:24"
+  },
+  {
+    "subject": "Bernadette Rostenkowski",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:12"
+  },
+  {
+    "subject": "Caltech",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:18"
+  },
+  {
+    "subject": "Golden Globe Award",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:28"
+  },
+  {
+    "subject": "Penny (The Big Bang Theory)",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:17"
+  },
+  {
+    "subject": "Primetime Emmy Awards",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:24"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:18"
+  },
+  {
+    "subject": "Roseanne",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:21"
+  },
+  {
+    "subject": "Sara Gilbert",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:21"
+  },
+  {
+    "subject": "Steven Molaro",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:42"
+  },
+  {
+    "subject": "The Big Bang Theory characters",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:24"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:23"
+  },
+  {
+    "subject": "Angus T. Jones",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Ashton Kutcher",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Charlie Sheen",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Conchata Ferrell",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Emily Sweeney",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:44"
+  },
+  {
+    "subject": "Jon Cryer",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:10:44"
+  },
+  {
+    "subject": "Lee Aronsohn",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Marin Hinkle",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:14"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:09"
+  },
+  {
+    "subject": "Blossom (TV series)",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:36"
+  },
+  {
+    "subject": "Laura Spencer",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:09"
+  },
+  {
+    "subject": "Lucy",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:09"
+  },
+  {
+    "subject": "Mila Kunis",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:30"
+  },
+  {
+    "subject": "That '70s Show",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:30"
+  },
+  {
+    "subject": "Topher Grace",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:11:54"
+  }
+]

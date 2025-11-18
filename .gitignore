@@ -1,2 +1,13 @@
 # Ignore all .env files everywhere
 **/*.env
+
+# Ignore any directory named or starting with "runs" (e.g., runs, runs1, runs-prod)
+**/runs*/
+
+# Ignore any directory named or starting with "old" (e.g., old, old_backups, old_files)
+**/old*/
+**/Termination*/
+
+# (Optional) keep .gitkeep files in ignored directories if needed
+!**/runs*/.gitkeep
+!**/old*/.gitkeep

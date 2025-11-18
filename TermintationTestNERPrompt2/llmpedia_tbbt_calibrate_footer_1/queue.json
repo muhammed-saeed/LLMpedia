@@ -1,0 +1,401 @@
+[
+  {
+    "subject": "The Big Bang Theory (TV series)",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:26:48"
+  },
+  {
+    "subject": "Bill Prady",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Chuck Lorre",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Howard Wolowitz",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Jim Parsons",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Johnny Galecki",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Kaley Cuoco",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Kunal Nayyar",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Leonard Hofstadter",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Mayim Bialik",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Melissa Rauch",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Penny",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Rajesh Koothrappali",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Sheldon Cooper",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Simon Helberg",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Young Sheldon",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:10"
+  },
+  {
+    "subject": "Amy Farrah Fowler",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:29"
+  },
+  {
+    "subject": "Bernadette Rostenkowski",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:28"
+  },
+  {
+    "subject": "Bernadette Rostenkowski-Wolowitz",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:27"
+  },
+  {
+    "subject": "Blossom",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:09"
+  },
+  {
+    "subject": "Caltech",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:29"
+  },
+  {
+    "subject": "Chuck Lorre Productions",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:32"
+  },
+  {
+    "subject": "Emily Sweeney",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:45"
+  },
+  {
+    "subject": "Golden Globe Awards",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:49"
+  },
+  {
+    "subject": "Hollywood Walk of Fame",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:49"
+  },
+  {
+    "subject": "Primetime Emmy Award winners",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:49"
+  },
+  {
+    "subject": "Primetime Emmy Awards",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:29"
+  },
+  {
+    "subject": "The Bronze",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:16"
+  },
+  {
+    "subject": "Two and a Half Men",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:27:32"
+  },
+  {
+    "subject": "Big Bang Theory characters",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:32"
+  },
+  {
+    "subject": "Lee Aronsohn",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:35"
+  },
+  {
+    "subject": "Penny (The Big Bang Theory)",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:12"
+  },
+  {
+    "subject": "Primetime Emmy Award for Outstanding Supporting Actress in a Comedy Series",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:13"
+  },
+  {
+    "subject": "Television series created by Chuck Lorre",
+    "hop": 3,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:35"
+  },
+  {
+    "subject": "American sitcom characters",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:36"
+  },
+  {
+    "subject": "Kevin Sussman",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:02"
+  },
+  {
+    "subject": "Mom",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:03"
+  },
+  {
+    "subject": "Mom (TV series)",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:03"
+  },
+  {
+    "subject": "Sara Gilbert",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:02"
+  },
+  {
+    "subject": "Television characters introduced in 2007",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:28:36"
+  },
+  {
+    "subject": "Television series featuring scientists",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:03"
+  },
+  {
+    "subject": "Television shows set in Pasadena, California",
+    "hop": 4,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:03"
+  },
+  {
+    "subject": "California Institute of Technology",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:25"
+  },
+  {
+    "subject": "Christine Baranski",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:22"
+  },
+  {
+    "subject": "Numb3rs",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:36"
+  },
+  {
+    "subject": "Television shows about scientists",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:25"
+  },
+  {
+    "subject": "The Big Bang Theory guest stars",
+    "hop": 5,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:23"
+  },
+  {
+    "subject": "Bill Nye",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Brian Greene",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Leonard Nimoy",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Neil deGrasse Tyson",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Richard Feynman",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Robert Millikan",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Stephen Hawking",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Wil Wheaton",
+    "hop": 6,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-15 15:29:59"
+  },
+  {
+    "subject": "Big Bang Theory guest stars",
+    "hop": 7,
+    "status": "working",
+    "retries": 0,
+    "created_at": "2025-11-15 15:30:21"
+  },
+  {
+    "subject": "Star Trek",
+    "hop": 7,
+    "status": "working",
+    "retries": 0,
+    "created_at": "2025-11-15 15:30:20"
+  }
+]

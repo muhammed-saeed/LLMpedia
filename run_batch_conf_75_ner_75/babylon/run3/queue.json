@@ -1,0 +1,219 @@
+[
+  {
+    "subject": "Aniceint city of babylon",
+    "hop": 0,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:57:39"
+  },
+  {
+    "subject": "1894 BC",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "Babylonian Empire",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "Code of Hammurabi",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "Hanging Gardens",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "Iraq",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "King Hammurabi",
+    "hop": 1,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:02"
+  },
+  {
+    "subject": "1792 BC to 1750 BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:55"
+  },
+  {
+    "subject": "18th century BC",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Ancient Empire",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Ancient Near East",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:30"
+  },
+  {
+    "subject": "Ancient texts",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Babylonia",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:57"
+  },
+  {
+    "subject": "Babylonian king",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:55"
+  },
+  {
+    "subject": "Babylonian society",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Euphrates",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:57"
+  },
+  {
+    "subject": "Hammurabi",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Hanging Gardens of Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:57"
+  },
+  {
+    "subject": "Mesopotamia",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Middle East",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:57"
+  },
+  {
+    "subject": "Old Babylonian period",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:30"
+  },
+  {
+    "subject": "Persian Empire",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "Seven Wonders of the Ancient World",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "Terraced gardens",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:47"
+  },
+  {
+    "subject": "Tigris",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:57"
+  },
+  {
+    "subject": "ancient Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "circa 1754 BCE",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:26"
+  },
+  {
+    "subject": "legal principles in Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:55"
+  },
+  {
+    "subject": "public works in Babylon",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:55"
+  },
+  {
+    "subject": "the Amorite dynasty",
+    "hop": 2,
+    "status": "done",
+    "retries": 0,
+    "created_at": "2025-11-12 22:58:30"
+  }
+]

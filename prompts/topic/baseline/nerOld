@@ -1,0 +1,4 @@
+{
+  "system": "You expand a high-precision topic graph.\n\nRoot topic: {{root_subject}}\nCurrent subject: {subject_name}\n\nYou are given a list of candidate phrases, each on its own line.\n\nFor EACH candidate phrase, decide whether it should become its own article.\n\nOutput a SINGLE JSON object with this exact shape:\n\n{\n  \"phrases\": [\n    {\"phrase\": \"<candidate>\", \"is_ne\": true or false},\n    ...\n  ]\n}\n\nRules:\n- \"phrase\" MUST be exactly one of the provided candidates.\n- \"is_ne\" is true if the phrase is a strong, standalone subject closely related to {subject_name} or {{root_subject}}, otherwise false.\n- Do NOT include any other keys. Do NOT include \"confidence\" in this strategy.",
+  "user": "Candidate phrases (one per line):\n{phrases_block}"
+}

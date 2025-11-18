@@ -1,0 +1,824 @@
+{
+  "accepted": [
+    {
+      "subject": "Bill Prady",
+      "predicate": "co-created",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Bill Prady",
+      "predicate": "is a",
+      "object": "screenwriter",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Bill Prady",
+      "predicate": "is a",
+      "object": "television producer",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Bill Prady",
+      "predicate": "produced",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Bill Prady",
+      "predicate": "wrote for",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "CBS",
+      "predicate": "broadcasts",
+      "object": "The Big Bang Theory reruns",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "CBS",
+      "predicate": "first aired",
+      "object": "2007",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "CBS",
+      "predicate": "has won",
+      "object": "multiple Emmy Awards",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "CBS",
+      "predicate": "is a",
+      "object": "television network",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "CBS",
+      "predicate": "is headquartered in",
+      "object": "New York City",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "CBS",
+      "predicate": "is known for",
+      "object": "its sitcoms",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "CBS",
+      "predicate": "is owned by",
+      "object": "Paramount Global",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "CBS",
+      "predicate": "produced",
+      "object": "The Big Bang Theory",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Chuck Lorre",
+      "predicate": "co-created",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Chuck Lorre",
+      "predicate": "is a",
+      "object": "television writer",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Chuck Lorre",
+      "predicate": "is known for",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Chuck Lorre",
+      "predicate": "produced",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Chuck Lorre",
+      "predicate": "wrote",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Jim Parsons",
+      "predicate": "isA",
+      "object": "actor",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Jim Parsons",
+      "predicate": "portrayed",
+      "object": "Sheldon Cooper",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Jim Parsons",
+      "predicate": "was born on",
+      "object": "March 24, 1973",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Jim Parsons",
+      "predicate": "was nominated for",
+      "object": "Golden Globe Award for Best Actor in a Television Series – Musical or Comedy",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Jim Parsons",
+      "predicate": "won",
+      "object": "Primetime Emmy Award for Outstanding Lead Actor in a Comedy Series",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Johnny Galecki",
+      "predicate": "appeared in",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Johnny Galecki",
+      "predicate": "is a",
+      "object": "actor",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Johnny Galecki",
+      "predicate": "portrayed",
+      "object": "Leonard Hofstadter",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Johnny Galecki",
+      "predicate": "won",
+      "object": "Critics' Choice Television Award for Best Supporting Actor in a Comedy Series",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "appearedIn",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "instanceOf",
+      "object": "actor",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "isKnownFor",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "nominatedForAward",
+      "object": "Primetime Emmy Award",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "portrayed",
+      "object": "Penny",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "wonAward",
+      "object": "Critics' Choice Television Award for Best Supporting Actress in a Comedy Series",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "workedWith",
+      "object": "Jim Parsons",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Kaley Cuoco",
+      "predicate": "workedWith",
+      "object": "Johnny Galecki",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "appearsIn",
+      "object": "The Big Bang Theory",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "bestFriend",
+      "object": "Howard Wolowitz",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.75
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "hasChild",
+      "object": "Leonard Hofstadter Jr.",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "instanceOf",
+      "object": "Character",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "livesWith",
+      "object": "Sheldon Cooper",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "occupation",
+      "object": "Experimental Physicist",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "portrayedBy",
+      "object": "Johnny Galecki",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Leonard Hofstadter",
+      "predicate": "relationship",
+      "object": "Penny",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Penny",
+      "predicate": "family",
+      "object": "Bob and Susan",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Penny",
+      "predicate": "firstAppearance",
+      "object": "Season 1, Episode 1",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Penny",
+      "predicate": "hometown",
+      "object": "Omaha, Nebraska",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Penny",
+      "predicate": "instanceOf",
+      "object": "character",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Penny",
+      "predicate": "lastAppearance",
+      "object": "Season 12, Episode 24",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Penny",
+      "predicate": "occupation",
+      "object": "waitress",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Penny",
+      "predicate": "portrayedBy",
+      "object": "Kaley Cuoco",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Penny",
+      "predicate": "relationshipWith",
+      "object": "Leonard Hofstadter",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "associated_with",
+      "object": "The Big Bang Theory",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "awarded_for",
+      "object": "excellence in television programming",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "instanceOf",
+      "object": "award",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "nominated_for",
+      "object": "Outstanding Comedy Series",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "won_by",
+      "object": "Jim Parsons",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "won_by",
+      "object": "Kaley Cuoco",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Primetime Emmy Award",
+      "predicate": "won_by",
+      "object": "The Big Bang Theory",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Sheldon Cooper",
+      "predicate": "is a character in",
+      "object": "The Big Bang Theory",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Sheldon Cooper",
+      "predicate": "is portrayed by",
+      "object": "Jim Parsons",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Sitcom",
+      "predicate": "characterizedBy",
+      "object": "humorous storylines",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Sitcom",
+      "predicate": "instanceOf",
+      "object": "Television genre",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "Sitcom",
+      "predicate": "oftenFeatures",
+      "object": "recurring characters",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Sitcom",
+      "predicate": "oftenIncludes",
+      "object": "laugh tracks",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.75
+    },
+    {
+      "subject": "Sitcom",
+      "predicate": "popularExamples",
+      "object": "The Big Bang Theory",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Sitcom",
+      "predicate": "typicallySetIn",
+      "object": "a single location",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "Television series",
+      "predicate": "hasAverageRating",
+      "object": "8.1",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Television series",
+      "predicate": "hasCreator",
+      "object": "Bill Prady",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Television series",
+      "predicate": "hasCreator",
+      "object": "Chuck Lorre",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Television series",
+      "predicate": "hasGenre",
+      "object": "Sitcom",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "Television series",
+      "predicate": "hasNumberOfSeasons",
+      "object": "12",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "Television series",
+      "predicate": "hasOriginalNetwork",
+      "object": "CBS",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "Television series",
+      "predicate": "instanceOf",
+      "object": "The Big Bang Theory",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "ended on",
+      "object": "May 16, 2019",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "features",
+      "object": "Johnny Galecki",
+      "hop": 1,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "features the character",
+      "object": "Sheldon Cooper",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "first aired on",
+      "object": "September 24, 2007",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "has won",
+      "object": "10 Primetime Emmy Awards",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "is a",
+      "object": "television series",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "is set in",
+      "object": "Pasadena, California",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.8
+    },
+    {
+      "subject": "The Big Bang Theory",
+      "predicate": "was created by",
+      "object": "Chuck Lorre",
+      "hop": 2,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "createdBy",
+      "object": "Bill Prady",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "createdBy",
+      "object": "Chuck Lorre",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "firstAired",
+      "object": "September 24, 2007",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "instanceOf",
+      "object": "Television series",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 1.0
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "lastAired",
+      "object": "May 16, 2019",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.9
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "numberOfEpisodes",
+      "object": "279",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "numberOfSeasons",
+      "object": "12",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.95
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "starring",
+      "object": "Jim Parsons",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "starring",
+      "object": "Johnny Galecki",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    },
+    {
+      "subject": "The big Bang Theory TV SEries",
+      "predicate": "starring",
+      "object": "Kaley Cuoco",
+      "hop": 0,
+      "model": "gpt-4o-mini",
+      "strategy": "calibrate",
+      "confidence": 0.85
+    }
+  ],
+  "sink": []
+}

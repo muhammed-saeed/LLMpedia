@@ -1,0 +1,70 @@
+{
+  "timestamp_utc": "2025-11-15T15:12:17Z",
+  "seed": "The Big Bang Theory (TV series)",
+  "domain": "topic",
+  "elicitation_strategy": "calibrate",
+  "ner_strategy": "calibrate",
+  "max_depth": 0,
+  "max_subjects": 0,
+  "concurrency": {
+    "batch_size": 1,
+    "concurrency": 10
+  },
+  "models": {
+    "elicitation": {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "use_responses_api": false,
+      "temperature": 0.4,
+      "top_p": 1.0,
+      "top_k": null,
+      "max_tokens": 4096,
+      "timeout_s": null
+    },
+    "ner": {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "use_responses_api": false,
+      "temperature": 0.3,
+      "top_p": 1.0,
+      "top_k": null,
+      "max_tokens": 2048,
+      "timeout_s": null
+    }
+  },
+  "args_raw": {
+    "seed": "The Big Bang Theory (TV series)",
+    "output_dir": "TermintationTestNERPrompt2/llmpedia_tbbt_calibrate_3",
+    "domain": "topic",
+    "elicitation_strategy": "calibrate",
+    "ner_strategy": "calibrate",
+    "max_depth": 0,
+    "max_subjects": 0,
+    "article_min_sections": 3,
+    "article_max_sections": 6,
+    "article_avg_words": 450,
+    "batch_size": 1,
+    "concurrency": 10,
+    "elicit_model_key": "gpt4o-mini",
+    "ner_model_key": "gpt4o-mini",
+    "elicit_temperature": 0.4,
+    "ner_temperature": 0.3,
+    "elicit_top_p": null,
+    "ner_top_p": null,
+    "elicit_top_k": null,
+    "ner_top_k": null,
+    "elicit_max_tokens": 4096,
+    "ner_max_tokens": 2048,
+    "timeout": 90.0,
+    "ner_conf_threshold": 0.85,
+    "elicit_conf_threshold": 0.8,
+    "footer_mode": false,
+    "footer_location": "user",
+    "reasoning_effort": null,
+    "text_verbosity": null,
+    "debug": false,
+    "progress_metrics": true,
+    "resume": true,
+    "reset_working": false
+  }
+}

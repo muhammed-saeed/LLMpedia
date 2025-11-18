@@ -1,0 +1,39 @@
+{"subject": "DAX40 Index", "predicate": "instanceOf", "object": "stock market index", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "DAX40 Index", "predicate": "is based in", "object": "Germany", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "DAX40 Index", "predicate": "includes companies from", "object": "various sectors", "hop": 0, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Germany", "predicate": "instanceOf", "object": "Country", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Germany", "predicate": "hasCurrency", "object": "Euro", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Germany", "predicate": "belongsToRegion", "object": "Europe", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Germany", "predicate": "hasStockExchange", "object": "Frankfurt Stock Exchange", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Germany", "predicate": "isHomeTo", "object": "DAX40 Index", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Germany", "predicate": "hasGDP", "object": "4.2 trillion USD", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Germany", "predicate": "hasPopulation", "object": "83 million", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Germany", "predicate": "isKnownFor", "object": "Automobile Industry", "hop": 1, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Automobile Industry", "predicate": "is a", "object": "class of economic activity", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Automobile Industry", "predicate": "contributes to", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "DAX40 Index", "predicate": "includes", "object": "Volkswagen AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "DAX40 Index", "predicate": "includes", "object": "BMW AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Country", "predicate": "is a", "object": "nation", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Country", "predicate": "is associated with the DAX40 Index", "object": "Germany", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Germany", "predicate": "is the primary country of the DAX40 Index", "object": "Germany", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Germany", "predicate": "is a member of the European Union", "object": "European Union", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Germany", "predicate": "has a highly developed economy", "object": "developed economy", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "4.2 trillion USD", "predicate": "is a", "object": "monetary value", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "4.2 trillion USD", "predicate": "is the approximate market capitalization", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "4.2 trillion USD", "predicate": "represents the total value of", "object": "companies listed in the DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "4.2 trillion USD", "predicate": "is a component of", "object": "global stock market capitalization", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Frankfurt Stock Exchange", "predicate": "instanceOf", "object": "stock exchange", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Frankfurt Stock Exchange", "predicate": "hosts", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Frankfurt Stock Exchange", "predicate": "located in", "object": "Frankfurt, Germany", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Frankfurt Stock Exchange", "predicate": "operated by", "object": "Deutsche Börse AG", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Euro", "predicate": "is a currency used in the DAX40 Index", "object": "Euro", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Euro", "predicate": "is the official currency of the Eurozone", "object": "Eurozone", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Euro", "predicate": "was introduced in", "object": "1999", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Euro", "predicate": "is abbreviated as", "object": "EUR", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Euro", "predicate": "is used by member states in the DAX40 Index", "object": "Germany", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
+{"subject": "Europe", "predicate": "instanceOf", "object": "continent", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 1.0}
+{"subject": "Europe", "predicate": "hasEconomicRegion", "object": "European Union", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Europe", "predicate": "isHomeTo", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.85}
+{"subject": "Europe", "predicate": "contains", "object": "Germany", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.95}
+{"subject": "Germany", "predicate": "isPartOf", "object": "DAX40 Index", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.9}
+{"subject": "Europe", "predicate": "hasPopulation", "object": "748 million", "hop": 2, "model": "gpt-4o-mini", "strategy": "calibrate", "confidence": 0.8}
