@@ -1,4 +1,206 @@
-# db_models.py
+# # db_models.py
+# from __future__ import annotations
+
+# import sqlite3
+# import unicodedata
+# import re
+# from typing import Iterable, Tuple, Literal
+
+# from settings import QUEUE_DDL, FACTS_DDL
+
+# _WS = re.compile(r"\s+")
+
+
+# def normalize_subject(s: str) -> str:
+#     """
+#     Simple normalization helper for subjects:
+#     - NFKC
+#     - strip
+#     - collapse whitespace
+#     - lowercase
+#     """
+#     if not isinstance(s, str):
+#         return ""
+#     s = unicodedata.normalize("NFKC", s)
+#     s = _WS.sub(" ", s.strip())
+#     return s.lower()
+
+
+# def _open_sqlite(path: str) -> sqlite3.Connection:
+#     """
+#     Open a SQLite database with sane defaults for performance.
+#     """
+#     conn = sqlite3.connect(path, check_same_thread=False)
+#     conn.execute("PRAGMA journal_mode=WAL;")
+#     conn.execute("PRAGMA synchronous=NORMAL;");
+#     conn.execute("PRAGMA temp_store=MEMORY;")
+#     conn.execute("PRAGMA busy_timeout=5000;")
+#     try:
+#         conn.execute("PRAGMA mmap_size=30000000000;")
+#     except sqlite3.OperationalError:
+#         pass
+#     conn.commit()
+#     return conn
+
+
+# def _ensure_queue_indexes(conn: sqlite3.Connection):
+#     """
+#     Ensure queue indexes exist.
+
+#     Assumes QUEUE_DDL created a table 'queue' with at least:
+#       subject, subject_norm, subject_canon, hop, status, retries, created_at
+#     """
+#     cur = conn.cursor()
+#     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS uq_queue_subject_norm  ON queue(subject_norm)")
+#     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS uq_queue_subject_canon ON queue(subject_canon)")
+#     cur.execute("CREATE INDEX IF NOT EXISTS ix_queue_status_hop ON queue(status, hop)")
+#     conn.commit()
+
+
+# def _ensure_facts_indexes(conn: sqlite3.Connection):
+#     """
+#     Ensure facts indexes exist for triples_accepted & triples_sink.
+#     """
+#     cur = conn.cursor()
+#     cur.execute(
+#         "CREATE UNIQUE INDEX IF NOT EXISTS uq_triples "
+#         "ON triples_accepted(subject, predicate, object, hop)"
+#     )
+#     conn.commit()
+
+
+# def open_queue_db(path: str) -> sqlite3.Connection:
+#     """
+#     Open and initialize the queue database:
+#     - apply QUEUE_DDL (from settings)
+#     - ensure indexes
+#     """
+#     conn = _open_sqlite(path)
+#     conn.executescript(QUEUE_DDL)
+#     _ensure_queue_indexes(conn)
+#     return conn
+
+
+# def open_facts_db(path: str) -> sqlite3.Connection:
+#     """
+#     Open and initialize the facts database:
+#     - apply FACTS_DDL (from settings)
+#     - ensure indexes
+#     """
+#     conn = _open_sqlite(path)
+#     conn.executescript(FACTS_DDL)
+#     _ensure_facts_indexes(conn)
+#     return conn
+
+
+# EnqResult = Tuple[str, int, Literal["inserted", "hop_reduced", "ignored"]]
+
+
+# def reset_working_to_pending(conn: sqlite3.Connection) -> int:
+#     """
+#     Reset any 'working' queue rows back to 'pending'.
+#     Returns the number of rows updated.
+#     """
+#     cur = conn.cursor()
+#     cur.execute("UPDATE queue SET status='pending' WHERE status='working'")
+#     conn.commit()
+#     return cur.rowcount
+
+
+# def queue_has_rows(conn: sqlite3.Connection) -> bool:
+#     """
+#     Return True if the queue has at least one row.
+#     """
+#     cur = conn.cursor()
+#     cur.execute("SELECT 1 FROM queue LIMIT 1")
+#     return cur.fetchone() is not None
+
+
+# def count_queue(conn: sqlite3.Connection):
+#     """
+#     Return (done, working, pending, total) counts for the queue.
+#     """
+#     cur = conn.cursor()
+#     cur.execute("SELECT COUNT(1) FROM queue WHERE status='pending'"); pending = cur.fetchone()[0]
+#     cur.execute("SELECT COUNT(1) FROM queue WHERE status='working'"); working = cur.fetchone()[0]
+#     cur.execute("SELECT COUNT(1) FROM queue WHERE status='done'");    done    = cur.fetchone()[0]
+#     return done, working, pending, done + working + pending
+
+
+# # -------- triple writers (for facts pipeline) --------
+
+# def _sanitize_row(row):
+#     s, p, o, h, m, st, c = row
+
+#     def as_str(x):
+#         if x is None:
+#             return ""
+#         return x if isinstance(x, str) else str(x)
+
+#     s, p, o, m, st = as_str(s), as_str(p), as_str(o), as_str(m), as_str(st)
+
+#     try:
+#         h = int(h)
+#     except Exception:
+#         h = 0
+
+#     try:
+#         c = float(c) if c is not None else None
+#     except Exception:
+#         c = None
+
+#     return (s, p, o, h, m, st, c)
+
+
+# def write_triples_accepted(
+#     db: sqlite3.Connection,
+#     rows: Iterable[Tuple[str, str, str, int, str, str, float | None]],
+# ):
+#     """
+#     Insert accepted triples into triples_accepted with INSERT OR IGNORE.
+#     Row shape: (subject, predicate, object, hop, model_name, strategy, confidence)
+#     """
+#     rows = [_sanitize_row(r) for r in rows if r]
+#     if not rows:
+#         return
+
+#     cur = db.cursor()
+#     cur.executemany(
+#         """INSERT OR IGNORE INTO triples_accepted
+#            (subject, predicate, object, hop, model_name, strategy, confidence)
+#            VALUES (?, ?, ?, ?, ?, ?, ?)""",
+#         rows,
+#     )
+#     db.commit()
+
+
+# def write_triples_sink(
+#     db: sqlite3.Connection,
+#     rows: Iterable[Tuple[str, str, str, int, str, str, float | None, str]],
+# ):
+#     """
+#     Insert rejected triples into triples_sink.
+#     Row shape: (subject, predicate, object, hop, model_name, strategy, confidence, reason)
+#     """
+#     if not rows:
+#         return
+
+#     clean_rows = []
+#     for r in rows:
+#         s, p, o, h, m, st, c, reason = r
+#         s, p, o, h, m, st, c = _sanitize_row((s, p, o, h, m, st, c))
+#         reason = "" if reason is None else (reason if isinstance(reason, str) else str(reason))
+#         clean_rows.append((s, p, o, h, m, st, c, reason))
+
+#     cur = db.cursor()
+#     cur.executemany(
+#         """INSERT INTO triples_sink
+#            (subject, predicate, object, hop, model_name, strategy, confidence, reason)
+#            VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+#         clean_rows,
+#     )
+#     db.commit()
+
 from __future__ import annotations
 
 import sqlite3
@@ -32,12 +234,13 @@ def _open_sqlite(path: str) -> sqlite3.Connection:
     """
     conn = sqlite3.connect(path, check_same_thread=False)
     conn.execute("PRAGMA journal_mode=WAL;")
-    conn.execute("PRAGMA synchronous=NORMAL;");
+    conn.execute("PRAGMA synchronous=NORMAL;")
     conn.execute("PRAGMA temp_store=MEMORY;")
     conn.execute("PRAGMA busy_timeout=5000;")
     try:
         conn.execute("PRAGMA mmap_size=30000000000;")
     except sqlite3.OperationalError:
+        # mmap_size not supported on some platforms; ignore
         pass
     conn.commit()
     return conn
@@ -49,6 +252,9 @@ def _ensure_queue_indexes(conn: sqlite3.Connection):
 
     Assumes QUEUE_DDL created a table 'queue' with at least:
       subject, subject_norm, subject_canon, hop, status, retries, created_at
+
+    NOTE: If you are using a CHECK constraint on 'status', ensure it includes
+    'pending', 'working', 'done', and 'failed' to match the pipeline code.
     """
     cur = conn.cursor()
     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS uq_queue_subject_norm  ON queue(subject_norm)")
@@ -118,16 +324,29 @@ def queue_has_rows(conn: sqlite3.Connection) -> bool:
 
 def count_queue(conn: sqlite3.Connection):
     """
-    Return (done, working, pending, total) counts for the queue.
+    Return (done, working, pending, failed, total) counts for the queue.
+
+    NOTE: This matches the statuses used in llmpedia_fix.py:
+      - 'pending'
+      - 'working'
+      - 'done'
+      - 'failed'
     """
     cur = conn.cursor()
-    cur.execute("SELECT COUNT(1) FROM queue WHERE status='pending'"); pending = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(1) FROM queue WHERE status='working'"); working = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(1) FROM queue WHERE status='done'");    done    = cur.fetchone()[0]
-    return done, working, pending, done + working + pending
+    cur.execute("SELECT COUNT(1) FROM queue WHERE status='pending'")
+    pending = cur.fetchone()[0]
+    cur.execute("SELECT COUNT(1) FROM queue WHERE status='working'")
+    working = cur.fetchone()[0]
+    cur.execute("SELECT COUNT(1) FROM queue WHERE status='done'")
+    done = cur.fetchone()[0]
+    cur.execute("SELECT COUNT(1) FROM queue WHERE status='failed'")
+    failed = cur.fetchone()[0]
+    total = done + working + pending + failed
+    return done, working, pending, failed, total
 
 
 # -------- triple writers (for facts pipeline) --------
+
 
 def _sanitize_row(row):
     s, p, o, h, m, st, c = row
