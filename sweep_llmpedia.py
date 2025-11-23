@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # ---------- Configurable experiment grid ----------
 
 # How many subprocesses to run at the same time
-MAX_CONCURRENT = 6  # tune based on your quota + machine
+MAX_CONCURRENT = 8  # tune based on your quota + machine
 
 # Controversial / rich topics where personas will show clear differences
 # Rich topics (less US-centric, different eras/regions)
@@ -60,6 +60,7 @@ ELICIT_MODELS_CHAT: List[str] = [
 # Responses-API / reasoning models: we will vary reasoning effort & verbosity
 ELICIT_MODELS_REASONING: List[str] = [
     "gpt-5-mini",
+    "gpt-5-nano",
     # "gpt-5",
 ]
 
@@ -87,6 +88,7 @@ SELF_RAG_MODE = "batch"  # Self-RAG runs as online calls inside batch mode
 MAX_DEPTH = 0             # 0 = unlimited depth (until queue drains)
 MAX_SUBJECTS = 1000
 BATCH_SIZE = 50
+SELF_RAG_BATCH = 50
 BATCH_POLL_INTERVAL = 30
 MAX_RETRIES = 3
 
@@ -207,6 +209,7 @@ def make_base_cmd(
         "--max-depth", str(MAX_DEPTH),
         "--max-subjects", str(MAX_SUBJECTS),
         "--batch-size", str(BATCH_SIZE),
+        "--self-rag-batch",  str(SELF_RAG_BATCH),
         "--batch-poll-interval", str(BATCH_POLL_INTERVAL),
         "--max-retries", str(MAX_RETRIES),
         # Max tokens settings
@@ -289,7 +292,7 @@ def sweep_experiments(
                                 cmd += [
                                     "--self-rag", "true",
                                     "--self-rag-mode", SELF_RAG_MODE,
-                                    "--self-rag-batch-size", "0",  # 0 = all subjects in wave
+                                    "--self-rag-batch-size", "10",  # 0 = all subjects in wave
                                 ]
                             else:
                                 cmd += ["--self-rag", "false"]
@@ -357,7 +360,7 @@ def sweep_experiments(
                                 cmd += [
                                     "--self-rag", "true",
                                     "--self-rag-mode", SELF_RAG_MODE,
-                                    "--self-rag-batch-size", "0",
+                                    "--self-rag-batch-size", "10",
                                 ]
                             else:
                                 cmd += ["--self-rag", "false"]
