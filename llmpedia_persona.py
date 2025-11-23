@@ -1,9 +1,9 @@
 # llmpedia_persona.py
-
 from __future__ import annotations
-
 import argparse
 import datetime
+import traceback
+
 import json
 import os
 import re
@@ -22,6 +22,43 @@ load_dotenv()
 
 _jsonl_lock = threading.Lock()
 _seen_canon_lock = threading.Lock()
+
+
+def _handle_batch_wave_exception(
+    e: Exception,
+    wave_idx: int,
+    batch: List[Tuple[str, int]],
+    args,
+    paths,
+    seen_canon_keys: Set[str],
+    context: str,
+):
+    """
+    Called when an OpenAI SDK call fails for an entire wave.
+    It logs the error and applies mark_pending_on_error to all (subject, hop)
+    in this wave, honoring max_retries.
+    """
+    msg = (
+        f"[batch] wave {wave_idx} encountered an SDK-level error during {context}: "
+        f"{type(e).__name__}: {e!r}; marking all {len(batch)} subjects with an error retry."
+    )
+    _dbg(msg)
+    try:
+        with open(paths["errors_log"], "a", encoding="utf-8") as ef:
+            ef.write(
+                f"[{datetime.datetime.now().isoformat()}] "
+                f"[batch-wave={wave_idx}] context={context}\n{msg}\n"
+                f"{traceback.format_exc()}\n"
+            )
+    except Exception:
+        # Don't let logging failures crash the run
+        pass
+
+    for subject, hop in batch:
+        mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+    _persist_seen_canon(paths, seen_canon_keys)
+
 
 
 def _append_jsonl(path: str, obj: dict):
@@ -131,7 +168,7 @@ _FALLBACK_PERSONAS: Dict[str, Dict[str, Any]] = {
     "blocks": {
       "elicit": "You are a scientific, trustworthy editor who expands topics using precise evidence-based reasoning.",
       "ner": "You are a scientific, trustworthy editor who selects nodes using precise evidence-based relevance.",
-      "selfrag": "You are a scientific, trustworthy editor who summarizes information using precise evidence-based clarity."
+      "self_rag": "You are a scientific, trustworthy editor who summarizes information using precise evidence-based clarity."
     }
   },
 
@@ -140,7 +177,7 @@ _FALLBACK_PERSONAS: Dict[str, Dict[str, Any]] = {
     "blocks": {
       "elicit": "You are a strong left-leaning editor who expands topics highlighting justice, equity, and social impact.",
       "ner": "You are a strong left-leaning editor who selects nodes highlighting justice, equity, and social impact.",
-      "selfrag": "You are a strong left-leaning editor who summarizes information highlighting justice, equity, and social impact."
+      "self_rag": "You are a strong left-leaning editor who summarizes information highlighting justice, equity, and social impact."
     }
   },
 
@@ -149,7 +186,7 @@ _FALLBACK_PERSONAS: Dict[str, Dict[str, Any]] = {
     "blocks": {
       "elicit": "You are a strong conservative editor who expands topics emphasizing tradition, stability, and national cohesion.",
       "ner": "You are a strong conservative editor who selects nodes emphasizing tradition, stability, and national cohesion.",
-      "selfrag": "You are a strong conservative editor who summarizes information emphasizing tradition, stability, and national cohesion."
+      "self_rag": "You are a strong conservative editor who summarizes information emphasizing tradition, stability, and national cohesion."
     }
   }
 }
@@ -178,7 +215,7 @@ def _load_personas(personas_path: Optional[str]) -> Dict[str, Dict[str, Any]]:
 
 def _resolve_stage_persona_name(args, stage: str) -> str:
     """
-    Decide which persona name to use for a stage (elicit/ner/selfrag):
+    Decide which persona name to use for a stage (elicit/ner/self_rag):
       1) stage-specific flag (e.g. persona_elicit)
       2) global --persona
       3) fallback 'scientific_neutral'
@@ -249,7 +286,7 @@ def _build_paths(out_dir: str) -> dict:
         "ner_decisions_jsonl": os.path.join(out_dir, "ner_decisions.jsonl"),
         "ner_lowconf_jsonl": os.path.join(out_dir, "ner_lowconf.jsonl"),
         "elicit_lowconf_jsonl": os.path.join(out_dir, "elicit_lowconf.jsonl"),
-        "selfrag_log_jsonl": os.path.join(out_dir, "selfrag_log.jsonl"),
+        "self_rag_log_jsonl": os.path.join(out_dir, "self_rag_log.jsonl"),
         # latest wave pointer
         "batch_input_jsonl": os.path.join(batches_dir, "batch_input_latest.jsonl"),
         "batches_dir": batches_dir,
@@ -570,7 +607,7 @@ def _parse_ner_output(raw) -> List[dict]:
 # ---------------- Self-RAG helpers ----------------
 
 
-def _build_selfrag_messages(subject: str, root_subject: str, persona_block: str) -> List[dict]:
+def _build_self_rag_messages(subject: str, root_subject: str, persona_block: str) -> List[dict]:
     persona_text = (persona_block or "").strip()
     persona_part = (persona_text + "\n\n") if persona_text else ""
     sys = (
@@ -607,26 +644,75 @@ SELF_RAG_SCHEMA = {
 }
 
 
-def _build_selfrag_block(subject: str, ctx: dict) -> str:
-    summary = (ctx.get("summary") or "").strip()
-    aliases = ", ".join(ctx.get("aliases") or [])
+# def _build_self_rag_block(subject: str, ctx: dict) -> str:
+#     summary = (ctx.get("summary") or "").strip()
+#     aliases = ", ".join(ctx.get("aliases") or [])
+#     facts = ctx.get("salient_facts") or []
+#     lines = []
+#     for f in facts[:16]:
+#         p = (f.get("predicate") or "").strip()
+#         o = (f.get("object") or "").strip()
+#         c = f.get("confidence")
+#         if p and o:
+#             if isinstance(c, (int, float)):
+#                 lines.append(f"- {subject} — {p} — {o} (c={c:.2f})")
+#             else:
+#                 lines.append(f"- {subject} — {p} — {o}")
+#     return (
+#         "SELF-RAG CONTEXT (grounding; use to stay factual; do not quote verbatim):\n"
+#         f"Summary: {summary}\n"
+#         f"Aliases: {aliases or '(none)'}\n"
+#         "Salient facts:\n" + ("\n".join(lines) if lines else "(none)")
+#     )
+
+def _build_self_rag_block(subject: str, ctx: dict) -> str:
+    """
+    Build a human-readable SELF-RAG context block from the parsed JSON.
+
+    Be robust to the model returning non-string types for `predicate` or `object`,
+    e.g. lists, numbers, or nested structures. We coerce to strings safely.
+    """
+    def _to_str(x) -> str:
+        # Convert various possible types into a clean string
+        if x is None:
+            return ""
+        if isinstance(x, str):
+            return x.strip()
+        if isinstance(x, (list, tuple)):
+            # join list-like into comma-separated string
+            return ", ".join(_to_str(el) for el in x if el is not None)
+        # fallback: just string cast
+        return str(x).strip()
+
+    summary = _to_str(ctx.get("summary"))
+    aliases_list = ctx.get("aliases") or []
+    if isinstance(aliases_list, (list, tuple)):
+        aliases = ", ".join(_to_str(a) for a in aliases_list if a is not None)
+    else:
+        aliases = _to_str(aliases_list)
+
     facts = ctx.get("salient_facts") or []
     lines = []
     for f in facts[:16]:
-        p = (f.get("predicate") or "").strip()
-        o = (f.get("object") or "").strip()
+        if not isinstance(f, dict):
+            continue
+        p = _to_str(f.get("predicate"))
+        o = _to_str(f.get("object"))
         c = f.get("confidence")
+
         if p and o:
             if isinstance(c, (int, float)):
                 lines.append(f"- {subject} — {p} — {o} (c={c:.2f})")
             else:
                 lines.append(f"- {subject} — {p} — {o}")
+
     return (
         "SELF-RAG CONTEXT (grounding; use to stay factual; do not quote verbatim):\n"
         f"Summary: {summary}\n"
         f"Aliases: {aliases or '(none)'}\n"
         "Salient facts:\n" + ("\n".join(lines) if lines else "(none)")
     )
+
 
 
 # ---------------- Stage controls ----------------
@@ -721,13 +807,13 @@ def get_thread_ner_client(ner_cfg):
 # ---------------- shared helpers: Self-RAG & message building ----------------
 
 
-def _run_selfrag_for_subject(
+def _run_self_rag_for_subject(
     subject: str,
     hop: int,
     root_topic: str,
     args,
-    selfrag_cfg,
-    selfrag_llm,
+    self_rag_cfg,
+    self_rag_llm,
     paths,
     persona_block: str,
     wave_idx: Optional[int] = None,
@@ -735,15 +821,15 @@ def _run_selfrag_for_subject(
     """
     Run Self-RAG for a single subject, returning a normalized context dict or None.
     """
-    sr_msgs = _build_selfrag_messages(subject, root_topic, persona_block)
+    sr_msgs = _build_self_rag_messages(subject, root_topic, persona_block)
     ctx: Optional[dict] = None
     error: Optional[str] = None
 
     try:
         try:
-            sr_resp = selfrag_llm(sr_msgs, json_schema=SELF_RAG_SCHEMA, timeout=args.timeout)
+            sr_resp = self_rag_llm(sr_msgs, json_schema=SELF_RAG_SCHEMA, timeout=args.timeout)
         except TypeError:
-            sr_resp = selfrag_llm(sr_msgs)
+            sr_resp = self_rag_llm(sr_msgs)
 
         sr_obj: Any = None
         if isinstance(sr_resp, dict) and ("summary" in sr_resp and "salient_facts" in sr_resp):
@@ -770,7 +856,7 @@ def _run_selfrag_for_subject(
         "ts": datetime.datetime.utcnow().isoformat() + "Z",
         "subject": subject,
         "hop": hop,
-        "model": getattr(selfrag_cfg, "model", None),
+        "model": getattr(self_rag_cfg, "model", None),
         "parsed": ctx,
     }
     if wave_idx is not None:
@@ -778,7 +864,7 @@ def _run_selfrag_for_subject(
     if error is not None:
         log_rec["error"] = error
 
-    _append_jsonl(paths["selfrag_log_jsonl"], log_rec)
+    _append_jsonl(paths["self_rag_log_jsonl"], log_rec)
 
     return ctx
 
@@ -789,7 +875,7 @@ def _build_llmpedia_messages_for_subject(
     args,
     root_topic: str,
     persona_block: str,
-    selfrag_context: Optional[dict],
+    self_rag_context: Optional[dict],
 ) -> List[dict]:
     """
     Shared helper to build elicitation messages for a subject, with optional
@@ -808,9 +894,9 @@ def _build_llmpedia_messages_for_subject(
         persona_block=persona_block,   # <- use the parameter, which is args.persona_elicit_block at callsite
     )
 
-    if selfrag_context and (selfrag_context.get("summary") or selfrag_context.get("salient_facts")):
-        sr_block = _build_selfrag_block(subject, selfrag_context)
-        messages = _append_block_to_msgs(messages, sr_block, target=args.selfrag_target)
+    if self_rag_context and (self_rag_context.get("summary") or self_rag_context.get("salient_facts")):
+        sr_block = _build_self_rag_block(subject, self_rag_context)
+        messages = _append_block_to_msgs(messages, sr_block, target=args.self_rag_target)
 
     if args.footer_mode:
         if args.domain == "topic":
@@ -1163,7 +1249,7 @@ def _post_article_processing(
     _append_jsonl(paths["articles_jsonl"], article_record)
 
 
-def run_online(args, paths, el_cfg, ner_cfg, selfrag_cfg):
+def run_online(args, paths, el_cfg, ner_cfg, self_rag_cfg):
     qdb = open_queue_db(paths["queue_sqlite"])
     open_llmpedia_db(paths["articles_sqlite"])
     procq_init_cache(qdb)
@@ -1172,7 +1258,7 @@ def run_online(args, paths, el_cfg, ner_cfg, selfrag_cfg):
     seen_canon_keys = _load_seen_canon(paths)
 
     el_llm = make_llm_from_config(el_cfg)
-    selfrag_llm = make_llm_from_config(selfrag_cfg) if args.self_rag else None
+    self_rag_llm = make_llm_from_config(self_rag_cfg) if args.self_rag else None
 
     start = time.perf_counter()
     last_progress_ts = 0.0
@@ -1183,17 +1269,17 @@ def run_online(args, paths, el_cfg, ner_cfg, selfrag_cfg):
             root_topic = args.seed if args.domain == "topic" else subject
 
             # Self-RAG (online, optional)
-            selfrag_context = None
-            if args.self_rag and selfrag_llm is not None:
-                selfrag_context = _run_selfrag_for_subject(
+            self_rag_context = None
+            if args.self_rag and self_rag_llm is not None:
+                self_rag_context = _run_self_rag_for_subject(
                     subject=subject,
                     hop=hop,
                     root_topic=root_topic,
                     args=args,
-                    selfrag_cfg=selfrag_cfg,
-                    selfrag_llm=selfrag_llm,
+                    self_rag_cfg=self_rag_cfg,
+                    self_rag_llm=self_rag_llm,
                     paths=paths,
-                    persona_block=args.persona_selfrag_block,
+                    persona_block=args.persona_self_rag_block,
                     wave_idx=None,
                 )
 
@@ -1204,7 +1290,7 @@ def run_online(args, paths, el_cfg, ner_cfg, selfrag_cfg):
                 args=args,
                 root_topic=root_topic,
                 persona_block=args.persona_elicit_block,
-                selfrag_context=selfrag_context,
+                self_rag_context=self_rag_context,
             )
 
             if args.debug:
@@ -1371,7 +1457,7 @@ def run_online(args, paths, el_cfg, ner_cfg, selfrag_cfg):
 # ---------------- BATCH MODE (end-to-end) ----------------
 
 
-def run_batch(args, paths, el_cfg, ner_cfg, selfrag_cfg):
+# def run_batch(args, paths, el_cfg, ner_cfg, self_rag_cfg):
     """
     Batch mode with persona-aware elicitation, NER, and optional Self-RAG.
     Respects max_retries for batch errors and ensures no 'working' rows are left stuck.
@@ -1390,7 +1476,7 @@ def run_batch(args, paths, el_cfg, ner_cfg, selfrag_cfg):
     _seed_or_resume_queue(args, paths, qdb)
     seen_canon_keys = _load_seen_canon(paths)
 
-    selfrag_llm = make_llm_from_config(selfrag_cfg) if args.self_rag else None
+    self_rag_llm = make_llm_from_config(self_rag_cfg) if args.self_rag else None
 
     client = OpenAI()
     subjects_total = 0
@@ -1465,40 +1551,40 @@ def run_batch(args, paths, el_cfg, ner_cfg, selfrag_cfg):
         _dbg(f"[batch] wave {wave_idx} claimed {len(batch)} subjects")
 
         # ---- Self-RAG for this wave (optional, persona-aware) ----
-        selfrag_contexts: Dict[Tuple[str, int], Optional[dict]] = {}
+        self_rag_contexts: Dict[Tuple[str, int], Optional[dict]] = {}
 
-        if args.self_rag and selfrag_llm is not None:
+        if args.self_rag and self_rag_llm is not None:
 
-            def _selfrag_worker(subject: str, hop: int):
+            def _self_rag_worker(subject: str, hop: int):
                 root_topic = args.seed if args.domain == "topic" else subject
-                ctx = _run_selfrag_for_subject(
+                ctx = _run_self_rag_for_subject(
                     subject=subject,
                     hop=hop,
                     root_topic=root_topic,
                     args=args,
-                    selfrag_cfg=selfrag_cfg,
-                    selfrag_llm=selfrag_llm,
+                    self_rag_cfg=self_rag_cfg,
+                    self_rag_llm=self_rag_llm,
                     paths=paths,
-                    persona_block=args.persona_selfrag_block,
+                    persona_block=args.persona_self_rag_block,
                     wave_idx=wave_idx,
                 )
                 return (subject, hop, ctx)
 
-            if args.selfrag_batch_size and args.selfrag_batch_size > 0:
-                targets = batch[: args.selfrag_batch_size]
+            if args.self_rag_batch_size and args.self_rag_batch_size > 0:
+                targets = batch[: args.self_rag_batch_size]
             else:
                 targets = batch
 
-            max_workers = args.selfrag_concurrency if args.selfrag_concurrency > 0 else 1
+            max_workers = args.self_rag_concurrency if args.self_rag_concurrency > 0 else 1
             _dbg(
-                f"[selfrag-batch] wave={wave_idx} subjects={len(targets)} "
+                f"[self_rag-batch] wave={wave_idx} subjects={len(targets)} "
                 f"concurrency={max_workers}"
             )
             with ThreadPoolExecutor(max_workers=min(max_workers, len(targets))) as pool:
-                futs = [pool.submit(_selfrag_worker, s, h) for (s, h) in targets]
+                futs = [pool.submit(_self_rag_worker, s, h) for (s, h) in targets]
                 for fut in as_completed(futs):
                     s, h, ctx = fut.result()
-                    selfrag_contexts[(s, h)] = ctx
+                    self_rag_contexts[(s, h)] = ctx
 
         # ---- build batch_input.jsonl for this wave ----
         batches_dir = paths["batches_dir"]
@@ -1512,14 +1598,14 @@ def run_batch(args, paths, el_cfg, ner_cfg, selfrag_cfg):
         with open(wave_input_path, "w", encoding="utf-8") as f:
             for subject, hop in batch:
                 root_topic = args.seed if args.domain == "topic" else subject
-                ctx = selfrag_contexts.get((subject, hop))
+                ctx = self_rag_contexts.get((subject, hop))
                 messages = _build_llmpedia_messages_for_subject(
                     subject=subject,
                     hop=hop,
                     args=args,
                     root_topic=root_topic,
                     persona_block=args.persona_elicit_block,
-                    selfrag_context=ctx,
+                    self_rag_context=ctx,
                 )
 
                 if getattr(el_cfg, "use_responses_api", False):
@@ -1722,8 +1808,1089 @@ def run_batch(args, paths, el_cfg, ner_cfg, selfrag_cfg):
     dur = time.perf_counter() - start
     _dbg(f"[done-batch] finished in {dur:.1f}s → {os.path.dirname(paths['queue_sqlite'])}")
 
+# def run_batch(args, paths, el_cfg, ner_cfg, self_rag_cfg):
+#     """
+#     Batch mode with persona-aware elicitation, NER, and optional Self-RAG.
+#     Respects max_retries for batch errors and ensures no 'working' rows are left stuck.
+#     Handles:
+#       - OpenAI SDK-level errors (files.create, batches.create, batches.retrieve,
+#         files.content, output-file write) via _handle_batch_wave_exception.
+#       - Both Chat Completions-style models and Responses API reasoning models.
+#     """
+#     _ensure_openai_model_for_batch(el_cfg, "elicitation")
 
-# ---------------- main() ----------------
+#     if getattr(el_cfg, "use_responses_api", False):
+#         batch_endpoint = "/v1/responses"
+#     else:
+#         batch_endpoint = "/v1/chat/completions"
+
+#     qdb = open_queue_db(paths["queue_sqlite"])
+#     open_llmpedia_db(paths["articles_sqlite"])
+#     procq_init_cache(qdb)
+
+#     _seed_or_resume_queue(args, paths, qdb)
+#     seen_canon_keys = _load_seen_canon(paths)
+
+#     self_rag_llm = make_llm_from_config(self_rag_cfg) if args.self_rag else None
+
+#     client = OpenAI()
+#     subjects_total = 0
+#     wave_idx = 0
+#     start = time.perf_counter()
+
+#     while True:
+#         # ----- stopping conditions & claiming a batch -----
+#         if args.max_subjects and subjects_total >= args.max_subjects:
+#             _dbg(f"[batch] stop: max-subjects reached ({subjects_total})")
+#             break
+
+#         claim_n = args.batch_size
+#         if args.max_subjects:
+#             remaining_cap = args.max_subjects - subjects_total
+#             if remaining_cap <= 0:
+#                 break
+#             claim_n = min(claim_n, remaining_cap)
+
+#         batch = _claim_pending_batch(qdb, args.max_depth, max(1, claim_n))
+#         if not batch:
+#             # no more work at allowed hops
+#             cur = qdb.cursor()
+#             if args.max_depth == 0:
+#                 cur.execute(
+#                     "SELECT COUNT(1) FROM queue "
+#                     "WHERE status IN ('done','working','pending','failed')"
+#                 )
+#                 t = cur.fetchone()[0]
+#                 cur.execute("SELECT COUNT(1) FROM queue WHERE status='done'")
+#                 d = cur.fetchone()[0]
+#                 cur.execute("SELECT COUNT(1) FROM queue WHERE status='working'")
+#                 w = cur.fetchone()[0]
+#                 cur.execute("SELECT COUNT(1) FROM queue WHERE status='pending'")
+#                 p = cur.fetchone()[0]
+#                 cur.execute("SELECT COUNT(1) FROM queue WHERE status='failed'")
+#                 f = cur.fetchone()[0]
+#             else:
+#                 cur.execute(
+#                     "SELECT COUNT(1) FROM queue "
+#                     "WHERE status IN ('done','working','pending','failed') AND hop<=?",
+#                     (args.max_depth,),
+#                 )
+#                 t = cur.fetchone()[0]
+#                 cur.execute(
+#                     "SELECT COUNT(1) FROM queue WHERE status='done' AND hop<=?",
+#                     (args.max_depth,),
+#                 )
+#                 d = cur.fetchone()[0]
+#                 cur.execute(
+#                     "SELECT COUNT(1) FROM queue WHERE status='working' AND hop<=?",
+#                     (args.max_depth,),
+#                 )
+#                 w = cur.fetchone()[0]
+#                 cur.execute(
+#                     "SELECT COUNT(1) FROM queue WHERE status='pending' AND hop<=?",
+#                     (args.max_depth,),
+#                 )
+#                 p = cur.fetchone()[0]
+#                 cur.execute(
+#                     "SELECT COUNT(1) FROM queue WHERE status='failed' AND hop<=?",
+#                     (args.max_depth,),
+#                 )
+#                 f = cur.fetchone()[0]
+#             if t == 0:
+#                 _dbg("[batch] queue empty, done.")
+#             else:
+#                 _dbg(
+#                     f"[batch] queue drained for allowed hops: "
+#                     f"done={d} working={w} pending={p} failed={f} total={t}"
+#                 )
+#             break
+
+#         wave_idx += 1
+#         _dbg(f"[batch] wave {wave_idx} claimed {len(batch)} subjects")
+
+#         # ----- Self-RAG for this wave (optional, persona-aware, ONLINE) -----
+#         self_rag_contexts: Dict[Tuple[str, int], Optional[dict]] = {}
+
+#         if args.self_rag and self_rag_llm is not None:
+
+#             def _self_rag_worker(subject: str, hop: int):
+#                 root_topic = args.seed if args.domain == "topic" else subject
+#                 ctx = _run_self_rag_for_subject(
+#                     subject=subject,
+#                     hop=hop,
+#                     root_topic=root_topic,
+#                     args=args,
+#                     self_rag_cfg=self_rag_cfg,
+#                     self_rag_llm=self_rag_llm,
+#                     paths=paths,
+#                     persona_block=args.persona_self_rag_block,
+#                     wave_idx=wave_idx,
+#                 )
+#                 return (subject, hop, ctx)
+
+#             if args.self_rag_batch_size and args.self_rag_batch_size > 0:
+#                 targets = batch[: args.self_rag_batch_size]
+#             else:
+#                 targets = batch
+
+#             max_workers = args.self_rag_concurrency if args.self_rag_concurrency > 0 else 1
+#             _dbg(
+#                 f"[self_rag-batch] wave={wave_idx} subjects={len(targets)} "
+#                 f"concurrency={max_workers}"
+#             )
+#             with ThreadPoolExecutor(max_workers=min(max_workers, len(targets))) as pool:
+#                 futs = [pool.submit(_self_rag_worker, s, h) for (s, h) in targets]
+#                 for fut in as_completed(futs):
+#                     s, h, ctx = fut.result()
+#                     self_rag_contexts[(s, h)] = ctx
+
+#         # ----- build batch_input.jsonl for this wave -----
+#         batches_dir = paths["batches_dir"]
+#         os.makedirs(batches_dir, exist_ok=True)
+
+#         wave_input_path = os.path.join(
+#             batches_dir,
+#             f"batch_input_wave{wave_idx}.jsonl",
+#         )
+
+#         with open(wave_input_path, "w", encoding="utf-8") as f:
+#             for subject, hop in batch:
+#                 root_topic = args.seed if args.domain == "topic" else subject
+#                 ctx = self_rag_contexts.get((subject, hop))
+#                 messages = _build_llmpedia_messages_for_subject(
+#                     subject=subject,
+#                     hop=hop,
+#                     args=args,
+#                     root_topic=root_topic,
+#                     persona_block=args.persona_elicit_block,
+#                     self_rag_context=ctx,
+#                 )
+
+#                 if getattr(el_cfg, "use_responses_api", False):
+#                     # Responses API body
+#                     body = {
+#                         "model": el_cfg.model,
+#                         "input": messages,
+#                     }
+#                     max_tokens = getattr(el_cfg, "max_tokens", 2048)
+#                     if max_tokens is not None:
+#                         body["max_output_tokens"] = max_tokens
+#                     extra = getattr(el_cfg, "extra_inputs", None)
+#                     if isinstance(extra, dict):
+#                         body.update(extra)
+#                 else:
+#                     # Chat Completions body
+#                     body = {
+#                         "model": el_cfg.model,
+#                         "messages": messages,
+#                         "max_tokens": getattr(el_cfg, "max_tokens", 2048),
+#                     }
+#                     if getattr(el_cfg, "temperature", None) is not None:
+#                         body["temperature"] = el_cfg.temperature
+#                     if getattr(el_cfg, "top_p", None) is not None:
+#                         body["top_p"] = el_cfg.top_p
+
+#                 custom_id = f"elicitation::{subject}::hop={hop}"
+#                 req_obj = {
+#                     "custom_id": custom_id,
+#                     "method": "POST",
+#                     "url": batch_endpoint,
+#                     "body": body,
+#                 }
+#                 f.write(json.dumps(req_obj, ensure_ascii=False) + "\n")
+
+#         paths["batch_input_jsonl"] = wave_input_path
+
+#         # ----- upload + create batch job -----
+#         try:
+#             with open(wave_input_path, "rb") as fh:
+#                 batch_input_file = client.files.create(
+#                     file=fh,
+#                     purpose="batch",
+#                 )
+#             batch_job = client.batches.create(
+#                 input_file_id=batch_input_file.id,
+#                 endpoint=batch_endpoint,
+#                 completion_window="24h",
+#                 metadata={"description": f"LLMPedia batch wave {wave_idx} seed={args.seed}"},
+#             )
+#         except Exception as e:
+#             _handle_batch_wave_exception(
+#                 e=e,
+#                 wave_idx=wave_idx,
+#                 batch=batch,
+#                 args=args,
+#                 paths=paths,
+#                 seen_canon_keys=seen_canon_keys,
+#                 context="files.create/batches.create",
+#             )
+#             # Skip this wave, go to next
+#             continue
+
+#         _dbg(
+#             f"[batch] wave {wave_idx} created batch id={batch_job.id}, "
+#             f"input_file_id={batch_input_file.id}, endpoint={batch_endpoint}"
+#         )
+
+#         # ----- poll until completed -----
+#         poll_interval = args.batch_poll_interval
+#         try:
+#             while True:
+#                 job = client.batches.retrieve(batch_job.id)
+#                 _dbg(f"[batch] wave {wave_idx} status={job.status}")
+#                 if job.status == "completed":
+#                     break
+#                 if job.status in {"failed", "expired", "cancelled"}:
+#                     _dbg(
+#                         f"[batch] wave {wave_idx} batch {job.id} ended with status={job.status}; "
+#                         f"marking all {len(batch)} subjects with an error retry."
+#                     )
+#                     for subject, hop in batch:
+#                         mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+#                     _persist_seen_canon(paths, seen_canon_keys)
+#                     break
+#                 time.sleep(poll_interval)
+#         except Exception as e:
+#             _handle_batch_wave_exception(
+#                 e=e,
+#                 wave_idx=wave_idx,
+#                 batch=batch,
+#                 args=args,
+#                 paths=paths,
+#                 seen_canon_keys=seen_canon_keys,
+#                 context="batches.retrieve/polling",
+#             )
+#             continue
+
+#         if job.status in {"failed", "expired", "cancelled"}:
+#             continue
+
+#         if not job.output_file_id:
+#             _dbg(
+#                 f"[batch] wave {wave_idx} batch {job.id} has no output_file_id; "
+#                 f"marking all subjects with an error retry."
+#             )
+#             for subject, hop in batch:
+#                 mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+#             _persist_seen_canon(paths, seen_canon_keys)
+#             continue
+
+#         # ----- download output & process each subject -----
+#         try:
+#             out_bytes = client.files.content(job.output_file_id).content
+#         except Exception as e:
+#             _handle_batch_wave_exception(
+#                 e=e,
+#                 wave_idx=wave_idx,
+#                 batch=batch,
+#                 args=args,
+#                 paths=paths,
+#                 seen_canon_keys=seen_canon_keys,
+#                 context="files.content(download)",
+#             )
+#             continue
+
+#         out_path = os.path.join(
+#             batches_dir,
+#             f"batch_output_wave{wave_idx}_{job.id}.jsonl",
+#         )
+#         try:
+#             with open(out_path, "wb") as f:
+#                 f.write(out_bytes)
+#         except Exception as e:
+#             _handle_batch_wave_exception(
+#                 e=e,
+#                 wave_idx=wave_idx,
+#                 batch=batch,
+#                 args=args,
+#                 paths=paths,
+#                 seen_canon_keys=seen_canon_keys,
+#                 context="writing_output_file",
+#             )
+#             continue
+
+#         processed: Set[Tuple[str, int]] = set()
+
+#         with open(out_path, "r", encoding="utf-8") as f:
+#             for line in f:
+#                 line = line.strip()
+#                 if not line:
+#                     continue
+#                 try:
+#                     row = json.loads(line)
+#                 except Exception:
+#                     continue
+
+#                 custom_id = row.get("custom_id")
+#                 if not isinstance(custom_id, str) or not custom_id.startswith("elicitation::"):
+#                     continue
+
+#                 resp = row.get("response") or {}
+#                 body = resp.get("body") or {}
+
+#                 # -------- extract wikitext depending on API style --------
+#                 wikitext = ""
+
+#                 if getattr(el_cfg, "use_responses_api", False):
+#                     # Responses API (reasoning models)
+#                     output_items = body.get("output") or []
+#                     if not output_items:
+#                         continue
+
+#                     # Prefer the 'message' item; fallback to any item that has content
+#                     message_item = None
+#                     for item in output_items:
+#                         if isinstance(item, dict) and item.get("type") == "message":
+#                             message_item = item
+#                             break
+#                     if message_item is None:
+#                         for item in output_items:
+#                             if isinstance(item, dict) and item.get("content"):
+#                                 message_item = item
+#                                 break
+#                     if message_item is None:
+#                         continue
+
+#                     content = message_item.get("content") or []
+#                     text_chunks = []
+#                     for c in content:
+#                         # Responses API returns { "type": "output_text", "text": "..." }
+#                         if isinstance(c, dict) and "text" in c:
+#                             text_chunks.append(str(c["text"]))
+#                     wikitext = "".join(text_chunks).strip()
+
+#                 else:
+#                     # Chat Completions-style models
+#                     choices = body.get("choices") or []
+#                     if not choices:
+#                         continue
+#                     msg = (choices[0] or {}).get("message") or {}
+#                     wikitext = (msg.get("content") or "").strip()
+
+#                 if not wikitext:
+#                     # treat as missing; handled later via 'missing' retry logic
+#                     continue
+
+#                 # -------- decode subject + hop from custom_id --------
+#                 try:
+#                     _, rest = custom_id.split("elicitation::", 1)
+#                     subj_part, hop_part = rest.rsplit("::hop=", 1)
+#                     subject = subj_part
+#                     hop = int(hop_part)
+#                 except Exception:
+#                     subject = custom_id
+#                     hop = 0
+
+#                 if args.debug:
+#                     _dbg(f"[batch] wave {wave_idx} parsed article for [{subject}] hop={hop}")
+
+#                 # -------- post-process article + NER + queue --------
+#                 try:
+#                     _post_article_processing(
+#                         args,
+#                         paths,
+#                         el_cfg,
+#                         ner_cfg,
+#                         subject,
+#                         hop,
+#                         wikitext,
+#                         seen_canon_keys,
+#                     )
+
+#                     conn = procq_get_thread_conn(paths["queue_sqlite"])
+#                     _exec_retry(
+#                         conn,
+#                         "UPDATE queue SET status='done' WHERE subject=? AND hop=?",
+#                         (subject, hop),
+#                     )
+#                     subjects_total += 1
+#                     processed.add((subject, hop))
+#                 except Exception:
+#                     with open(paths["errors_log"], "a", encoding="utf-8") as ef:
+#                         ef.write(
+#                             f"[{datetime.datetime.now().isoformat()}] "
+#                             f"[batch-wave={wave_idx}] subject={subject} hop={hop}\n"
+#                             f"{traceback.format_exc()}\n"
+#                         )
+#                     mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+#         # any subjects in this wave that never got good output
+#         missing = [(s, h) for (s, h) in batch if (s, h) not in processed]
+#         if missing:
+#             _dbg(
+#                 f"[batch] wave {wave_idx} had {len(missing)} subjects with no successful output; "
+#                 f"applying error retry logic."
+#             )
+#             for subject, hop in missing:
+#                 mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+#         _persist_seen_canon(paths, seen_canon_keys)
+
+#     # ----- handle leftover working rows -----
+#     conn = sqlite3.connect(paths["queue_sqlite"])
+#     cur = conn.cursor()
+#     cur.execute("SELECT subject, hop FROM queue WHERE status='working'")
+#     stuck = cur.fetchall()
+#     conn.close()
+#     if stuck:
+#         _dbg(
+#             f"[batch] WARNING: {len(stuck)} rows remained 'working' at end of run; "
+#             f"applying error retry logic (max_retries={args.max_retries})."
+#         )
+#         for subject, hop in stuck:
+#             mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+#     _snapshot_queue_and_articles(paths)
+
+#     dur = time.perf_counter() - start
+#     _dbg(f"[done-batch] finished in {dur:.1f}s → {os.path.dirname(paths['queue_sqlite'])}")
+
+def run_batch(args, paths, el_cfg, ner_cfg, self_rag_cfg):
+    """
+    Batch mode with persona-aware elicitation, NER, and optional Self-RAG.
+    Respects max_retries for batch errors and ensures no 'working' rows are left stuck.
+    Handles:
+      - OpenAI SDK-level errors (files.create, batches.create, batches.retrieve,
+        files.content, output-file write) via _handle_batch_wave_exception.
+      - Both Chat Completions-style models and Responses API reasoning models.
+      - Self-RAG in two modes:
+          * args.self_rag_use_batch = True  -> Self-RAG via OpenAI Batch
+          * args.self_rag_use_batch = False -> Self-RAG via online calls
+    """
+    # Elicitation must use an OpenAI model for batch
+    _ensure_openai_model_for_batch(el_cfg, "elicitation")
+
+    # Determine main elicitation endpoint
+    if getattr(el_cfg, "use_responses_api", False):
+        batch_endpoint = "/v1/responses"
+    else:
+        batch_endpoint = "/v1/chat/completions"
+
+    # If Self-RAG uses batch, ensure its model is also OpenAI and set endpoint
+    if args.self_rag and getattr(args, "self_rag_use_batch", False):
+        _ensure_openai_model_for_batch(self_rag_cfg, "self-rag")
+
+    if getattr(self_rag_cfg, "use_responses_api", False):
+        self_rag_endpoint = "/v1/responses"
+    else:
+        self_rag_endpoint = "/v1/chat/completions"
+
+    qdb = open_queue_db(paths["queue_sqlite"])
+    open_llmpedia_db(paths["articles_sqlite"])
+    procq_init_cache(qdb)
+
+    _seed_or_resume_queue(args, paths, qdb)
+    seen_canon_keys = _load_seen_canon(paths)
+
+    # Only build an online client for Self-RAG if we are NOT using batch for it
+    self_rag_llm = None
+    if args.self_rag and not getattr(args, "self_rag_use_batch", False):
+        self_rag_llm = make_llm_from_config(self_rag_cfg)
+
+    client = OpenAI()
+    subjects_total = 0
+    wave_idx = 0
+    start = time.perf_counter()
+
+    while True:
+        # ----- stopping conditions & claiming a batch -----
+        if args.max_subjects and subjects_total >= args.max_subjects:
+            _dbg(f"[batch] stop: max-subjects reached ({subjects_total})")
+            break
+
+        claim_n = args.batch_size
+        if args.max_subjects:
+            remaining_cap = args.max_subjects - subjects_total
+            if remaining_cap <= 0:
+                break
+            claim_n = min(claim_n, remaining_cap)
+
+        batch = _claim_pending_batch(qdb, args.max_depth, max(1, claim_n))
+        if not batch:
+            # no more work at allowed hops
+            cur = qdb.cursor()
+            if args.max_depth == 0:
+                cur.execute(
+                    "SELECT COUNT(1) FROM queue "
+                    "WHERE status IN ('done','working','pending','failed')"
+                )
+                t = cur.fetchone()[0]
+                cur.execute("SELECT COUNT(1) FROM queue WHERE status='done'")
+                d = cur.fetchone()[0]
+                cur.execute("SELECT COUNT(1) FROM queue WHERE status='working'")
+                w = cur.fetchone()[0]
+                cur.execute("SELECT COUNT(1) FROM queue WHERE status='pending'")
+                p = cur.fetchone()[0]
+                cur.execute("SELECT COUNT(1) FROM queue WHERE status='failed'")
+                f = cur.fetchone()[0]
+            else:
+                cur.execute(
+                    "SELECT COUNT(1) FROM queue "
+                    "WHERE status IN ('done','working','pending','failed') AND hop<=?",
+                    (args.max_depth,),
+                )
+                t = cur.fetchone()[0]
+                cur.execute(
+                    "SELECT COUNT(1) FROM queue WHERE status='done' AND hop<=?",
+                    (args.max_depth,),
+                )
+                d = cur.fetchone()[0]
+                cur.execute(
+                    "SELECT COUNT(1) FROM queue WHERE status='working' AND hop<=?",
+                    (args.max_depth,),
+                )
+                w = cur.fetchone()[0]
+                cur.execute(
+                    "SELECT COUNT(1) FROM queue WHERE status='pending' AND hop<=?",
+                    (args.max_depth,),
+                )
+                p = cur.fetchone()[0]
+                cur.execute(
+                    "SELECT COUNT(1) FROM queue WHERE status='failed' AND hop<=?",
+                    (args.max_depth,),
+                )
+                f = cur.fetchone()[0]
+            if t == 0:
+                _dbg("[batch] queue empty, done.")
+            else:
+                _dbg(
+                    f"[batch] queue drained for allowed hops: "
+                    f"done={d} working={w} pending={p} failed={f} total={t}"
+                )
+            break
+
+        wave_idx += 1
+        _dbg(f"[batch] wave {wave_idx} claimed {len(batch)} subjects")
+        poll_interval = args.batch_poll_interval
+
+        # ----- Self-RAG for this wave (optional, persona-aware) -----
+        self_rag_contexts: Dict[Tuple[str, int], Optional[dict]] = {}
+
+        if args.self_rag:
+            # Limit how many subjects per wave get Self-RAG (0 = all)
+            if args.self_rag_batch_size and args.self_rag_batch_size > 0:
+                sr_targets = batch[: args.self_rag_batch_size]
+            else:
+                sr_targets = batch
+
+            # -----------------------------
+            # (A) Self-RAG via OpenAI Batch
+            # -----------------------------
+            if getattr(args, "self_rag_use_batch", False):
+                if sr_targets:
+                    batches_dir = paths["batches_dir"]
+                    os.makedirs(batches_dir, exist_ok=True)
+
+                    sr_input_path = os.path.join(
+                        batches_dir,
+                        f"selfrag_input_wave{wave_idx}.jsonl",
+                    )
+
+                    # Build the batch input file for Self-RAG
+                    with open(sr_input_path, "w", encoding="utf-8") as f_sr:
+                        for subject, hop in sr_targets:
+                            root_topic = args.seed if args.domain == "topic" else subject
+                            messages = _build_self_rag_messages(
+                                subject=subject,
+                                root_subject=root_topic,
+                                persona_block=args.persona_self_rag_block,
+                            )
+
+                            if getattr(self_rag_cfg, "use_responses_api", False):
+                                body = {
+                                    "model": self_rag_cfg.model,
+                                    "input": messages,
+                                }
+                                max_tokens = getattr(self_rag_cfg, "max_tokens", 1024)
+                                if max_tokens is not None:
+                                    body["max_output_tokens"] = max_tokens
+                                extra = getattr(self_rag_cfg, "extra_inputs", None)
+                                if isinstance(extra, dict):
+                                    body.update(extra)
+                            else:
+                                body = {
+                                    "model": self_rag_cfg.model,
+                                    "messages": messages,
+                                    "max_tokens": getattr(self_rag_cfg, "max_tokens", 1024),
+                                }
+                                if getattr(self_rag_cfg, "temperature", None) is not None:
+                                    body["temperature"] = self_rag_cfg.temperature
+                                if getattr(self_rag_cfg, "top_p", None) is not None:
+                                    body["top_p"] = self_rag_cfg.top_p
+                                if getattr(self_rag_cfg, "top_k", None) is not None:
+                                    body["top_k"] = self_rag_cfg.top_k
+
+                            custom_id = f"selfrag::{subject}::hop={hop}"
+                            req_obj = {
+                                "custom_id": custom_id,
+                                "method": "POST",
+                                "url": self_rag_endpoint,
+                                "body": body,
+                            }
+                            f_sr.write(json.dumps(req_obj, ensure_ascii=False) + "\n")
+
+                    try:
+                        # Create Self-RAG batch job
+                        with open(sr_input_path, "rb") as fh:
+                            sr_input_file = client.files.create(
+                                file=fh,
+                                purpose="batch",
+                            )
+                        sr_job = client.batches.create(
+                            input_file_id=sr_input_file.id,
+                            endpoint=self_rag_endpoint,
+                            completion_window="24h",
+                            metadata={
+                                "description": f"LLMPedia Self-RAG wave {wave_idx} seed={args.seed}"
+                            },
+                        )
+                        _dbg(
+                            f"[self_rag-batch] wave {wave_idx} created batch id={sr_job.id}, "
+                            f"input_file_id={sr_input_file.id}, endpoint={self_rag_endpoint}"
+                        )
+
+                        # Poll until completed (soft-fail: if it dies, we just skip Self-RAG)
+                        while True:
+                            job = client.batches.retrieve(sr_job.id)
+                            _dbg(f"[self_rag-batch] wave {wave_idx} status={job.status}")
+                            if job.status == "completed":
+                                break
+                            if job.status in {"failed", "expired", "cancelled"}:
+                                _dbg(
+                                    f"[self_rag-batch] wave {wave_idx} batch {job.id} ended with status={job.status}; "
+                                    "continuing without Self-RAG context for this wave."
+                                )
+                                job = None
+                                break
+                            time.sleep(poll_interval)
+
+                        if job and job.output_file_id:
+                            sr_out_bytes = client.files.content(job.output_file_id).content
+                            sr_out_path = os.path.join(
+                                batches_dir,
+                                f"selfrag_output_wave{wave_idx}_{job.id}.jsonl",
+                            )
+                            with open(sr_out_path, "wb") as f:
+                                f.write(sr_out_bytes)
+
+                            # Parse batch outputs into self_rag_contexts
+                            with open(sr_out_path, "r", encoding="utf-8") as f:
+                                for line in f:
+                                    line = line.strip()
+                                    if not line:
+                                        continue
+                                    try:
+                                        row = json.loads(line)
+                                    except Exception:
+                                        continue
+
+                                    cid = row.get("custom_id")
+                                    if not isinstance(cid, str) or not cid.startswith("selfrag::"):
+                                        continue
+
+                                    resp = row.get("response") or {}
+                                    body = resp.get("body") or {}
+
+                                    # Extract raw JSON text from LLM
+                                    txt = ""
+                                    if getattr(self_rag_cfg, "use_responses_api", False):
+                                        output_items = body.get("output") or []
+                                        if output_items:
+                                            item0 = output_items[0] or {}
+                                            content = item0.get("content") or []
+                                            chunks = []
+                                            for c in content:
+                                                if isinstance(c, dict) and "text" in c:
+                                                    chunks.append(str(c["text"]))
+                                            txt = "".join(chunks).strip()
+                                    else:
+                                        choices = body.get("choices") or []
+                                        if choices:
+                                            msg = (choices[0] or {}).get("message") or {}
+                                            txt = (msg.get("content") or "").strip()
+
+                                    if not txt:
+                                        continue
+
+                                    # Decode subject + hop from custom_id
+                                    try:
+                                        _, rest = cid.split("selfrag::", 1)
+                                        subj_part, hop_part = rest.rsplit("::hop=", 1)
+                                        subj = subj_part
+                                        h = int(hop_part)
+                                    except Exception:
+                                        subj = cid
+                                        h = 0
+
+                                    ctx = None
+                                    try:
+                                        sr_obj = json.loads(txt)
+                                        if isinstance(sr_obj, dict):
+                                            ctx = {
+                                                "summary": sr_obj.get("summary") or "",
+                                                "aliases": sr_obj.get("aliases") or [],
+                                                "salient_facts": sr_obj.get("salient_facts") or [],
+                                            }
+                                    except Exception:
+                                        ctx = None
+
+                                    log_rec = {
+                                        "ts": datetime.datetime.utcnow().isoformat() + "Z",
+                                        "subject": subj,
+                                        "hop": h,
+                                        "model": getattr(self_rag_cfg, "model", None),
+                                        "parsed": ctx,
+                                    }
+                                    if ctx is None:
+                                        log_rec["error"] = "parse_failed"
+                                    _append_jsonl(paths["self_rag_log_jsonl"], log_rec)
+
+                                    if ctx is not None:
+                                        self_rag_contexts[(subj, h)] = ctx
+
+                    except Exception as e:
+                        # Soft-fail: log, but do NOT mark queue as error
+                        with open(paths["errors_log"], "a", encoding="utf-8") as ef:
+                            ef.write(
+                                f"[{datetime.datetime.now().isoformat()}] "
+                                f"[self_rag-batch-wave={wave_idx}] error={repr(e)}\n"
+                                f"{traceback.format_exc()}\n"
+                            )
+                        _dbg(
+                            f"[self_rag-batch] wave {wave_idx} failed; "
+                            "proceeding without Self-RAG contexts."
+                        )
+
+            # ---------------------------------
+            # (B) Self-RAG via online threadpool
+            # ---------------------------------
+            elif self_rag_llm is not None:
+
+                def _self_rag_worker(subject: str, hop: int):
+                    root_topic = args.seed if args.domain == "topic" else subject
+                    ctx = _run_self_rag_for_subject(
+                        subject=subject,
+                        hop=hop,
+                        root_topic=root_topic,
+                        args=args,
+                        self_rag_cfg=self_rag_cfg,
+                        self_rag_llm=self_rag_llm,
+                        paths=paths,
+                        persona_block=args.persona_self_rag_block,
+                        wave_idx=wave_idx,
+                    )
+                    return (subject, hop, ctx)
+
+                max_workers = args.self_rag_concurrency if args.self_rag_concurrency > 0 else 1
+                _dbg(
+                    f"[self_rag-online] wave={wave_idx} subjects={len(sr_targets)} "
+                    f"concurrency={max_workers}"
+                )
+                with ThreadPoolExecutor(max_workers=min(max_workers, len(sr_targets))) as pool:
+                    futs = [pool.submit(_self_rag_worker, s, h) for (s, h) in sr_targets]
+                    for fut in as_completed(futs):
+                        s, h, ctx = fut.result()
+                        self_rag_contexts[(s, h)] = ctx
+
+        # ----- build batch_input.jsonl for this wave (elicitation) -----
+        batches_dir = paths["batches_dir"]
+        os.makedirs(batches_dir, exist_ok=True)
+
+        wave_input_path = os.path.join(
+            batches_dir,
+            f"batch_input_wave{wave_idx}.jsonl",
+        )
+
+        with open(wave_input_path, "w", encoding="utf-8") as f:
+            for subject, hop in batch:
+                root_topic = args.seed if args.domain == "topic" else subject
+                ctx = self_rag_contexts.get((subject, hop))
+                messages = _build_llmpedia_messages_for_subject(
+                    subject=subject,
+                    hop=hop,
+                    args=args,
+                    root_topic=root_topic,
+                    persona_block=args.persona_elicit_block,
+                    self_rag_context=ctx,
+                )
+
+                if getattr(el_cfg, "use_responses_api", False):
+                    # Responses API body
+                    body = {
+                        "model": el_cfg.model,
+                        "input": messages,
+                    }
+                    max_tokens = getattr(el_cfg, "max_tokens", 2048)
+                    if max_tokens is not None:
+                        body["max_output_tokens"] = max_tokens
+                    extra = getattr(el_cfg, "extra_inputs", None)
+                    if isinstance(extra, dict):
+                        body.update(extra)
+                else:
+                    # Chat Completions body
+                    body = {
+                        "model": el_cfg.model,
+                        "messages": messages,
+                        "max_tokens": getattr(el_cfg, "max_tokens", 2048),
+                    }
+                    if getattr(el_cfg, "temperature", None) is not None:
+                        body["temperature"] = el_cfg.temperature
+                    if getattr(el_cfg, "top_p", None) is not None:
+                        body["top_p"] = el_cfg.top_p
+
+                custom_id = f"elicitation::{subject}::hop={hop}"
+                req_obj = {
+                    "custom_id": custom_id,
+                    "method": "POST",
+                    "url": batch_endpoint,
+                    "body": body,
+                }
+                f.write(json.dumps(req_obj, ensure_ascii=False) + "\n")
+
+        paths["batch_input_jsonl"] = wave_input_path
+
+        # ----- upload + create batch job (elicitation) -----
+        try:
+            with open(wave_input_path, "rb") as fh:
+                batch_input_file = client.files.create(
+                    file=fh,
+                    purpose="batch",
+                )
+            batch_job = client.batches.create(
+                input_file_id=batch_input_file.id,
+                endpoint=batch_endpoint,
+                completion_window="24h",
+                metadata={"description": f"LLMPedia batch wave {wave_idx} seed={args.seed}"},
+            )
+        except Exception as e:
+            _handle_batch_wave_exception(
+                e=e,
+                wave_idx=wave_idx,
+                batch=batch,
+                args=args,
+                paths=paths,
+                seen_canon_keys=seen_canon_keys,
+                context="files.create/batches.create",
+            )
+            # Skip this wave, go to next
+            continue
+
+        _dbg(
+            f"[batch] wave {wave_idx} created batch id={batch_job.id}, "
+            f"input_file_id={batch_input_file.id}, endpoint={batch_endpoint}"
+        )
+
+        # ----- poll until completed (elicitation) -----
+        try:
+            while True:
+                job = client.batches.retrieve(batch_job.id)
+                _dbg(f"[batch] wave {wave_idx} status={job.status}")
+                if job.status == "completed":
+                    break
+                if job.status in {"failed", "expired", "cancelled"}:
+                    _dbg(
+                        f"[batch] wave {wave_idx} batch {job.id} ended with status={job.status}; "
+                        f"marking all {len(batch)} subjects with an error retry."
+                    )
+                    for subject, hop in batch:
+                        mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+                    _persist_seen_canon(paths, seen_canon_keys)
+                    break
+                time.sleep(poll_interval)
+        except Exception as e:
+            _handle_batch_wave_exception(
+                e=e,
+                wave_idx=wave_idx,
+                batch=batch,
+                args=args,
+                paths=paths,
+                seen_canon_keys=seen_canon_keys,
+                context="batches.retrieve/polling",
+            )
+            continue
+
+        if job.status in {"failed", "expired", "cancelled"}:
+            continue
+
+        if not job.output_file_id:
+            _dbg(
+                f"[batch] wave {wave_idx} batch {job.id} has no output_file_id; "
+                f"marking all subjects with an error retry."
+            )
+            for subject, hop in batch:
+                mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+            _persist_seen_canon(paths, seen_canon_keys)
+            continue
+
+        # ----- download output & process each subject (elicitation) -----
+        try:
+            out_bytes = client.files.content(job.output_file_id).content
+        except Exception as e:
+            _handle_batch_wave_exception(
+                e=e,
+                wave_idx=wave_idx,
+                batch=batch,
+                args=args,
+                paths=paths,
+                seen_canon_keys=seen_canon_keys,
+                context="files.content(download)",
+            )
+            continue
+
+        out_path = os.path.join(
+            batches_dir,
+            f"batch_output_wave{wave_idx}_{job.id}.jsonl",
+        )
+        try:
+            with open(out_path, "wb") as f:
+                f.write(out_bytes)
+        except Exception as e:
+            _handle_batch_wave_exception(
+                e=e,
+                wave_idx=wave_idx,
+                batch=batch,
+                args=args,
+                paths=paths,
+                seen_canon_keys=seen_canon_keys,
+                context="writing_output_file",
+            )
+            continue
+
+        processed: Set[Tuple[str, int]] = set()
+
+        with open(out_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    row = json.loads(line)
+                except Exception:
+                    continue
+
+                custom_id = row.get("custom_id")
+                if not isinstance(custom_id, str) or not custom_id.startswith("elicitation::"):
+                    continue
+
+                resp = row.get("response") or {}
+                body = resp.get("body") or {}
+
+                # -------- extract wikitext depending on API style --------
+                wikitext = ""
+
+                if getattr(el_cfg, "use_responses_api", False):
+                    # Responses API (reasoning models)
+                    output_items = body.get("output") or []
+                    if not output_items:
+                        continue
+
+                    # Prefer the 'message' item; fallback to any item that has content
+                    message_item = None
+                    for item in output_items:
+                        if isinstance(item, dict) and item.get("type") == "message":
+                            message_item = item
+                            break
+                    if message_item is None:
+                        for item in output_items:
+                            if isinstance(item, dict) and item.get("content"):
+                                message_item = item
+                                break
+                    if message_item is None:
+                        continue
+
+                    content = message_item.get("content") or []
+                    text_chunks = []
+                    for c in content:
+                        # Responses API returns { "type": "output_text", "text": "..." }
+                        if isinstance(c, dict) and "text" in c:
+                            text_chunks.append(str(c["text"]))
+                    wikitext = "".join(text_chunks).strip()
+
+                else:
+                    # Chat Completions-style models
+                    choices = body.get("choices") or []
+                    if not choices:
+                        continue
+                    msg = (choices[0] or {}).get("message") or {}
+                    wikitext = (msg.get("content") or "").strip()
+
+                if not wikitext:
+                    # treat as missing; handled later via 'missing' retry logic
+                    continue
+
+                # -------- decode subject + hop from custom_id --------
+                try:
+                    _, rest = custom_id.split("elicitation::", 1)
+                    subj_part, hop_part = rest.rsplit("::hop=", 1)
+                    subject = subj_part
+                    hop = int(hop_part)
+                except Exception:
+                    subject = custom_id
+                    hop = 0
+
+                if args.debug:
+                    _dbg(f"[batch] wave {wave_idx} parsed article for [{subject}] hop={hop}")
+
+                # -------- post-process article + NER + queue --------
+                try:
+                    _post_article_processing(
+                        args,
+                        paths,
+                        el_cfg,
+                        ner_cfg,
+                        subject,
+                        hop,
+                        wikitext,
+                        seen_canon_keys,
+                    )
+
+                    conn = procq_get_thread_conn(paths["queue_sqlite"])
+                    _exec_retry(
+                        conn,
+                        "UPDATE queue SET status='done' WHERE subject=? AND hop=?",
+                        (subject, hop),
+                    )
+                    subjects_total += 1
+                    processed.add((subject, hop))
+                except Exception:
+                    with open(paths["errors_log"], "a", encoding="utf-8") as ef:
+                        ef.write(
+                            f"[{datetime.datetime.now().isoformat()}] "
+                            f"[batch-wave={wave_idx}] subject={subject} hop={hop}\n"
+                            f"{traceback.format_exc()}\n"
+                        )
+                    mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+        # any subjects in this wave that never got good output
+        missing = [(s, h) for (s, h) in batch if (s, h) not in processed]
+        if missing:
+            _dbg(
+                f"[batch] wave {wave_idx} had {len(missing)} subjects with no successful output; "
+                f"applying error retry logic."
+            )
+            for subject, hop in missing:
+                mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+        _persist_seen_canon(paths, seen_canon_keys)
+
+    # ----- handle leftover working rows -----
+    conn = sqlite3.connect(paths["queue_sqlite"])
+    cur = conn.cursor()
+    cur.execute("SELECT subject, hop FROM queue WHERE status='working'")
+    stuck = cur.fetchall()
+    conn.close()
+    if stuck:
+        _dbg(
+            f"[batch] WARNING: {len(stuck)} rows remained 'working' at end of run; "
+            f"applying error retry logic (max_retries={args.max_retries})."
+        )
+        for subject, hop in stuck:
+            mark_pending_on_error(paths["queue_sqlite"], subject, hop, args.max_retries)
+
+    _snapshot_queue_and_articles(paths)
+
+    dur = time.perf_counter() - start
+    _dbg(f"[done-batch] finished in {dur:.1f}s → {os.path.dirname(paths['queue_sqlite'])}")
 
 
 def main():
@@ -1731,13 +2898,14 @@ def main():
         description="LLMPedia crawler: online & OpenAI batch modes with optional Self-RAG and personas."
     )
 
+    # General Mode Selection
     ap.add_argument(
         "--mode",
         choices=["online", "batch"],
         default="online",
         help="online = normal BFS; batch = full OpenAI Batch pipeline.",
     )
-    ap.add_argument("--seed", required=True, help="Seed entity name (e.g., 'Alan Turing').")
+    ap.add_argument("--seed", required=True, help="Seed entity name (e.g., 'Albert Einstein').")
     ap.add_argument("--output-dir", default=None)
 
     ap.add_argument(
@@ -1760,7 +2928,7 @@ def main():
     ap.add_argument(
         "--max-depth",
         type=int,
-        default=settings.MAX_DEPTH,
+        default=2,
         help="0 = unlimited depth (stop when queue empty)",
     )
     ap.add_argument(
@@ -1770,7 +2938,7 @@ def main():
         help="0 = unlimited subjects",
     )
 
-    # article prompt controls
+    # Article prompt controls
     ap.add_argument("--article-min-sections", type=int, default=3)
     ap.add_argument("--article-max-sections", type=int, default=6)
     ap.add_argument("--article-avg-words", type=int, default=450)
@@ -1794,38 +2962,55 @@ def main():
         help="For mode=online worker concurrency.",
     )
 
-    # models & sampling
+    # Self-RAG-specific arguments
+    ap.add_argument(
+        "--self-rag-mode",
+        choices=["batch", "online"],
+        default="batch",
+        help="Self-RAG execution mode (only meaningful when --mode=batch).",
+    )
+    ap.add_argument(
+        "--self-rag-concurrency",
+        type=int,
+        default=2,
+        help=(
+            "When --mode=batch and --self-rag-mode=online, how many Self-RAG calls "
+            "run in parallel per wave (default: 2)."
+        ),
+    )
+
+    # Models & Sampling
     ap.add_argument(
         "--elicit-model-key",
-        default=settings.ELICIT_MODEL_KEY,
+        default="gpt-4.1-mini",
         help="settings.MODELS key for article generation (elicitation).",
     )
     ap.add_argument(
         "--ner-model-key",
-        default=getattr(settings, "NER_MODEL_KEY", settings.ELICIT_MODEL_KEY),
+        default="gpt-4.1-mini",
         help="settings.MODELS key for NER.",
     )
     ap.add_argument(
-        "--selfrag-model-key",
-        default=None,
+        "--self-rag-model-key",
+        default="gpt-4.1-mini",
         help="settings.MODELS key for Self-RAG (defaults to elicit-model-key).",
     )
 
     ap.add_argument("--elicit-temperature", type=float, default=0.4)
     ap.add_argument("--ner-temperature", type=float, default=0.3)
-    ap.add_argument("--selfrag-temperature", type=float, default=0.1)
+    ap.add_argument("--self-rag-temperature", type=float, default=0.1)
 
     ap.add_argument("--elicit-top-p", type=float, default=None)
     ap.add_argument("--ner-top-p", type=float, default=None)
-    ap.add_argument("--selfrag-top-p", type=float, default=None)
+    ap.add_argument("--self-rag-top-p", type=float, default=None)
 
     ap.add_argument("--elicit-top-k", type=int, default=None)
     ap.add_argument("--ner-top-k", type=int, default=None)
-    ap.add_argument("--selfrag-top-k", type=int, default=None)
+    ap.add_argument("--self-rag-top-k", type=int, default=None)
 
     ap.add_argument("--elicit-max-tokens", type=int, default=4096)
     ap.add_argument("--ner-max-tokens", type=int, default=2048)
-    ap.add_argument("--selfrag-max-tokens", type=int, default=1024)
+    ap.add_argument("--self-rag-max-tokens", type=int, default=1024)
 
     ap.add_argument(
         "--timeout",
@@ -1834,7 +3019,7 @@ def main():
         help="Request timeout (seconds) for online calls.",
     )
 
-    # NER / elicitation thresholds
+    # NER / Elicitation thresholds
     ap.add_argument(
         "--ner-conf-threshold",
         type=float,
@@ -1851,7 +3036,7 @@ def main():
         ),
     )
 
-    # footer controls
+    # Footer controls
     ap.add_argument(
         "--footer-mode",
         type=_str2bool,
@@ -1873,29 +3058,26 @@ def main():
         help="Enable Self-RAG grounding stage (online and batch).",
     )
     ap.add_argument(
-        "--selfrag-target",
+        "--self-rag-target",
         choices=["system", "user"],
         default="user",
         help="Where to append the Self-RAG context.",
     )
     ap.add_argument(
-        "--selfrag-batch-size",
+        "--self-rag-batch-size",
         type=int,
         default=0,
-        help="In mode=batch, max number of subjects per wave that get Self-RAG (0 = all subjects in wave).",
-    )
-    ap.add_argument(
-        "--selfrag-concurrency",
-        type=int,
-        default=1,
-        help="In mode=batch, how many Self-RAG calls run in parallel per wave (ignored in mode=online).",
+        help=(
+            "In mode=batch, max number of subjects per wave that get Self-RAG "
+            "(0 = all subjects in wave)."
+        ),
     )
 
-    # reasoning overrides for Responses API – GLOBAL
+    # Reasoning overrides for Responses API – GLOBAL
     ap.add_argument("--reasoning-effort", choices=["minimal", "low", "medium", "high"], default=None)
     ap.add_argument("--text-verbosity", choices=["low", "medium", "high"], default=None)
 
-    # stage-specific reasoning overrides (for Responses API)
+    # Stage-specific reasoning overrides (for Responses API)
     ap.add_argument(
         "--elicit-reasoning-effort",
         choices=["minimal", "low", "medium", "high"],
@@ -1919,17 +3101,17 @@ def main():
 
     # Self-RAG-specific reasoning overrides
     ap.add_argument(
-        "--selfrag-reasoning-effort",
+        "--self-rag-reasoning-effort",
         choices=["minimal", "low", "medium", "high"],
         default=None,
     )
     ap.add_argument(
-        "--selfrag-text-verbosity",
+        "--self-rag-text-verbosity",
         choices=["low", "medium", "high"],
         default=None,
     )
 
-    # retry controls (finite)
+    # Retry controls (finite)
     ap.add_argument(
         "--max-retries",
         type=int,
@@ -1937,7 +3119,7 @@ def main():
         help="Max retries per subject before marking as failed (>=1). Applies to online and batch.",
     )
 
-    # persona controls
+    # Persona controls
     ap.add_argument(
         "--personas-path",
         default=None,
@@ -1961,8 +3143,8 @@ def main():
         help="Persona key for NER stage (overrides --persona if set).",
     )
     ap.add_argument(
-        "--persona-selfrag",
-        dest="persona_selfrag",
+        "--persona-self_rag",
+        dest="persona_self_rag",
         default=None,
         help="Persona key for Self-RAG stage (overrides --persona if set).",
     )
@@ -1985,21 +3167,30 @@ def main():
 
     args = ap.parse_args()
 
-    if args.max_retries <= 0:
-        _dbg(f"[warn] max-retries={args.max_retries} is invalid; using 3 instead.")
-        args.max_retries = 3
+    # Default: no batch Self-RAG; run_batch should inspect this flag.
+    args.self_rag_use_batch = False
 
+    # ---- Mode-dependent Self-RAG semantics ----
+
+    if args.mode == "online":
+        # As requested: always print, regardless of debug flag.
+        print(
+            "[self-rag] --mode=online: --self-rag-mode and --self-rag-concurrency "
+            "are ignored; Self-RAG (if enabled) runs inline per subject."
+        )
+
+    # Load personas
     personas = _load_personas(args.personas_path)
-    # resolve persona names per stage
     persona_elicit_name = _resolve_stage_persona_name(args, "elicit")
     persona_ner_name = _resolve_stage_persona_name(args, "ner")
-    persona_selfrag_name = _resolve_stage_persona_name(args, "selfrag")
+    persona_self_rag_name = _resolve_stage_persona_name(args, "self_rag")
 
-    # compute persona blocks
+    # Get persona blocks
     args.persona_elicit_block = _get_persona_block(personas, persona_elicit_name, "elicit")
     args.persona_ner_block = _get_persona_block(personas, persona_ner_name, "ner")
-    args.persona_selfrag_block = _get_persona_block(personas, persona_selfrag_name, "selfrag")
+    args.persona_self_rag_block = _get_persona_block(personas, persona_self_rag_name, "self_rag")
 
+    # Prepare output directory
     out_dir = _ensure_output_dir(args.output_dir)
     paths = _build_paths(out_dir)
     _dbg(
@@ -2007,51 +3198,88 @@ def main():
         f"max_depth={args.max_depth} max_subjects={args.max_subjects} "
         f"max_retries={args.max_retries} "
         f"persona_elicit={persona_elicit_name} persona_ner={persona_ner_name} "
-        f"persona_selfrag={persona_selfrag_name}"
+        f"persona_self_rag={persona_self_rag_name}"
     )
 
     open_queue_db(paths["queue_sqlite"])
     open_llmpedia_db(paths["articles_sqlite"])
 
+    # Build model configs
     el_cfg = settings.MODELS[args.elicit_model_key].model_copy(deep=True)
     ner_cfg = settings.MODELS[args.ner_model_key].model_copy(deep=True)
-    selfrag_key = args.selfrag_model_key or args.elicit_model_key
-    selfrag_cfg = settings.MODELS[selfrag_key].model_copy(deep=True)
+    self_rag_key = args.self_rag_model_key or args.elicit_model_key
+    self_rag_cfg = settings.MODELS[self_rag_key].model_copy(deep=True)
 
+    # ---- Self-RAG mode handling for batch mode ("all together batch") ----
+    if args.mode == "batch":
+        if not args.self_rag:
+            print("[self-rag] --mode=batch but --self-rag=false: Self-RAG is disabled.")
+        else:
+            if args.self_rag_mode == "batch":
+                # Require OpenAI provider for Self-RAG *batch*
+                sr_provider = getattr(self_rag_cfg, "provider", "openai")
+                if str(sr_provider).lower() != "openai":
+                    ap.error(
+                        "[self-rag] --self-rag-mode=batch requires an OpenAI self-rag model "
+                        f"provider; got provider={sr_provider!r}. Cannot use batch Self-RAG "
+                        "with a non-OpenAI model."
+                    )
+                # If we got here, Self-RAG can use OpenAI Batch.
+                args.self_rag_use_batch = True
+                print(
+                    "[self-rag] --mode=batch and --self-rag-mode=batch: "
+                    "Self-RAG and elicitation are both configured to use OpenAI Batch."
+                )
+            else:
+                # self_rag_mode == "online": use online Self-RAG inside batch pipeline
+                if args.self_rag_concurrency is None or args.self_rag_concurrency <= 0:
+                    args.self_rag_concurrency = 2
+                args.self_rag_use_batch = False
+                print(
+                    f"[self-rag] --mode=batch and --self-rag-mode=online: "
+                    f"Self-RAG will run online with concurrency={args.self_rag_concurrency}."
+                )
+
+    # Apply per-stage sampling configs for elicitation/NER
     _apply_stage("elicit", el_cfg, args)
     _apply_stage("ner", ner_cfg, args)
 
-    # Self-RAG config
-    if getattr(selfrag_cfg, "use_responses_api", False):
-        if selfrag_cfg.extra_inputs is None:
-            selfrag_cfg.extra_inputs = {}
-        selfrag_cfg.extra_inputs.setdefault("reasoning", {})
-        selfrag_cfg.extra_inputs.setdefault("text", {})
+    # Self-RAG config (sampling / reasoning)
+    if getattr(self_rag_cfg, "use_responses_api", False):
+        if self_rag_cfg.extra_inputs is None:
+            self_rag_cfg.extra_inputs = {}
+        self_rag_cfg.extra_inputs.setdefault("reasoning", {})
+        self_rag_cfg.extra_inputs.setdefault("text", {})
 
-        if args.selfrag_reasoning_effort is not None:
-            selfrag_cfg.extra_inputs["reasoning"]["effort"] = args.selfrag_reasoning_effort
+        if args.self_rag_reasoning_effort is not None:
+            self_rag_cfg.extra_inputs["reasoning"]["effort"] = args.self_rag_reasoning_effort
         elif args.reasoning_effort is not None:
-            selfrag_cfg.extra_inputs["reasoning"]["effort"] = args.reasoning_effort
+            self_rag_cfg.extra_inputs["reasoning"]["effort"] = args.reasoning_effort
 
-        if args.selfrag_text_verbosity is not None:
-            selfrag_cfg.extra_inputs["text"]["verbosity"] = args.selfrag_text_verbosity
+        if args.self_rag_text_verbosity is not None:
+            self_rag_cfg.extra_inputs["text"]["verbosity"] = args.self_rag_text_verbosity
         elif args.text_verbosity is not None:
-            selfrag_cfg.extra_inputs["text"]["verbosity"] = args.text_verbosity
+            self_rag_cfg.extra_inputs["text"]["verbosity"] = args.text_verbosity
     else:
-        selfrag_cfg.temperature = args.selfrag_temperature
-        if args.selfrag_top_p is not None:
-            selfrag_cfg.top_p = args.selfrag_top_p
-        if args.selfrag_top_k is not None:
-            selfrag_cfg.top_k = args.selfrag_top_k
+        self_rag_cfg.temperature = args.self_rag_temperature
+        if args.self_rag_top_p is not None:
+            self_rag_cfg.top_p = args.self_rag_top_p
+        if args.self_rag_top_k is not None:
+            self_rag_cfg.top_k = args.self_rag_top_k
 
-    selfrag_cfg.max_tokens = args.selfrag_max_tokens
+    self_rag_cfg.max_tokens = args.self_rag_max_tokens
 
     start = time.perf_counter()
 
     if args.mode == "online":
-        run_online(args, paths, el_cfg, ner_cfg, selfrag_cfg)
+        # Self-RAG (if enabled) runs inline per subject; self_rag_mode & self_rag_concurrency ignored.
+        run_online(args, paths, el_cfg, ner_cfg, self_rag_cfg)
     elif args.mode == "batch":
-        run_batch(args, paths, el_cfg, ner_cfg, selfrag_cfg)
+        # Inside run_batch, you should use:
+        #   - args.self_rag (bool)
+        #   - args.self_rag_use_batch (True => Self-RAG via OpenAI Batch; False => online Self-RAG)
+        #   - args.self_rag_concurrency (for online Self-RAG)
+        run_batch(args, paths, el_cfg, ner_cfg, self_rag_cfg)
     else:
         raise ValueError(f"Unknown mode: {args.mode}")
 
@@ -2065,13 +3293,15 @@ def main():
         "elicitation_strategy": args.elicitation_strategy,
         "ner_strategy": args.ner_strategy,
         "self_rag_enabled": bool(args.self_rag),
+        "self_rag_mode": args.self_rag_mode,
+        "self_rag_use_batch": bool(args.self_rag_use_batch),
         "max_depth": args.max_depth,
         "max_subjects": args.max_subjects,
         "batch_size": args.batch_size,
         "personas": {
             "elicit": persona_elicit_name,
             "ner": persona_ner_name,
-            "selfrag": persona_selfrag_name,
+            "self_rag": persona_self_rag_name,
         },
         "models": {
             "elicitation": {
@@ -2092,15 +3322,15 @@ def main():
                 "top_k": getattr(ner_cfg, "top_k", None),
                 "max_tokens": getattr(ner_cfg, "max_tokens", None),
             },
-            "selfrag": {
-                "provider": getattr(selfrag_cfg, "provider", "openai"),
-                "model": getattr(selfrag_cfg, "model", None),
-                "use_responses_api": getattr(selfrag_cfg, "use_responses_api", False),
-                "temperature": getattr(selfrag_cfg, "temperature", None),
-                "top_p": getattr(selfrag_cfg, "top_p", None),
-                "top_k": getattr(selfrag_cfg, "top_k", None),
-                "max_tokens": getattr(selfrag_cfg, "max_tokens", None),
-                "extra_inputs": getattr(selfrag_cfg, "extra_inputs", None),
+            "self_rag": {
+                "provider": getattr(self_rag_cfg, "provider", "openai"),
+                "model": getattr(self_rag_cfg, "model", None),
+                "use_responses_api": getattr(self_rag_cfg, "use_responses_api", False),
+                "temperature": getattr(self_rag_cfg, "temperature", None),
+                "top_p": getattr(self_rag_cfg, "top_p", None),
+                "top_k": getattr(self_rag_cfg, "top_k", None),
+                "max_tokens": getattr(self_rag_cfg, "max_tokens", None),
+                "extra_inputs": getattr(self_rag_cfg, "extra_inputs", None),
             }
             if args.self_rag
             else None,
@@ -2120,7 +3350,7 @@ def main():
         "ner_decisions_jsonl",
         "ner_lowconf_jsonl",
         "elicit_lowconf_jsonl",
-        "selfrag_log_jsonl",
+        "self_rag_log_jsonl",
         "run_meta_json",
         "errors_log",
         "seen_state_json",
@@ -2131,8 +3361,15 @@ def main():
 
 
 if __name__ == "__main__":
+    # try:
+    #     main()
+    # except KeyboardInterrupt:
+    #     print("\n[interrupt] bye")
+
     try:
         main()
     except KeyboardInterrupt:
-        print("\n[interrupt] bye")
-
+        print("\n[interrupt] bye (KeyboardInterrupt caught at top level)")
+        traceback.print_exc()  # show where it came from
+        # If you don't want it to propagate, remove the next line:
+        # raise
