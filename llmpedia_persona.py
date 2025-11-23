@@ -2222,13 +2222,13 @@ def main():
     ap.add_argument(
         "--ner-conf-threshold",
         type=float,
-        default=0.0,
+        default=0.7,
         help="If >0 and NER returns confidence scores, only enqueue entities with confidence >= threshold.",
     )
     ap.add_argument(
         "--elicit-conf-threshold",
         type=float,
-        default=0.0,
+        default=.75,
         help=(
             "If >0, interpret confidences encoded in wikilinks ([[Entity (0.93)]]) "
             "and filter below threshold."
