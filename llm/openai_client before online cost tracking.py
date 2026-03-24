@@ -1,4 +1,400 @@
+# # llm/openai_client.py
+# from __future__ import annotations
 
+# from typing import Any, Dict, List, Optional, Callable, TypeVar
+# import json
+# import time
+# import random
+
+# import httpx
+# from openai import OpenAI
+# from openai import (
+#     BadRequestError,
+#     APITimeoutError,
+#     APIConnectionError,
+#     RateLimitError,
+#     APIError,
+# )
+
+# # ---------- helpers borrowed from DeepSeek client ----------
+
+# def _schema_hint(schema: Dict[str, Any]) -> str:
+#     return (
+#         "Return ONLY one valid JSON object that matches this JSON Schema exactly. "
+#         "No prose, no markdown, no code fences.\nSCHEMA:\n"
+#         + json.dumps(schema, ensure_ascii=False)
+#     )
+
+# def _strip_fences(t: str) -> str:
+#     s = (t or "").strip()
+#     if s.startswith("```"):
+#         nl = s.find("\n")
+#         if nl != -1:
+#             s = s[nl + 1 :].strip()
+#         if s.endswith("```"):
+#             s = s[:-3].strip()
+#     return s
+
+# def _best_json(text: str) -> Dict[str, Any]:
+#     if not text:
+#         return {}
+#     # direct
+#     try:
+#         return json.loads(text)
+#     except Exception:
+#         pass
+#     # strip fences
+#     t = _strip_fences(text)
+#     try:
+#         return json.loads(t)
+#     except Exception:
+#         pass
+#     # first balanced object
+#     s = t.find("{")
+#     if s != -1:
+#         depth = 0
+#         for i, ch in enumerate(t[s:], s):
+#             if ch == "{":
+#                 depth += 1
+#             elif ch == "}":
+#                 depth -= 1
+#                 if depth == 0:
+#                     try:
+#                         return json.loads(t[s : i + 1])
+#                     except Exception:
+#                         break
+#     return {}
+
+# def _lock_down_additional_props(schema: Any) -> Any:
+#     """
+#     Recursively enforce additionalProperties:false on all object nodes.
+#     This prevents OpenAI's 'additionalProperties is required and must be false' error.
+#     """
+#     if isinstance(schema, dict):
+#         t = schema.get("type")
+#         if t == "object":
+#             schema.setdefault("additionalProperties", False)
+#             props = schema.get("properties")
+#             if isinstance(props, dict):
+#                 for k in list(props.keys()):
+#                     props[k] = _lock_down_additional_props(props[k])
+#         elif t == "array":
+#             if "items" in schema:
+#                 schema["items"] = _lock_down_additional_props(schema["items"])
+#     return schema
+
+# def _inject_schema_hint_into_messages(
+#     messages: List[Dict[str, str]],
+#     json_schema: Dict[str, Any],
+# ) -> List[Dict[str, str]]:
+#     """
+#     DeepSeek-style: put the schema contract into the system message so that even
+#     if response_format isn't honored, the model is still told to output strict JSON.
+#     """
+#     msgs = list(messages)
+#     hint = _schema_hint(json_schema)
+#     if msgs and (msgs[0].get("role") == "system"):
+#         msgs[0] = {"role": "system", "content": (msgs[0].get("content", "") + "\n\n" + hint)}
+#     else:
+#         msgs.insert(0, {"role": "system", "content": hint})
+#     return msgs
+
+# def _extract_text_from_chat(resp) -> str:
+#     try:
+#         return (resp.choices[0].message.content or "").strip()
+#     except Exception:
+#         return ""
+
+# def _extract_text_from_responses_api(resp) -> str:
+#     out = getattr(resp, "output_text", None)
+#     if out:
+#         return out.strip()
+#     try:
+#         parts: List[str] = []
+#         for block in getattr(resp, "output", []) or []:
+#             for c in getattr(block, "content", []) or []:
+#                 txt = getattr(c, "text", "")
+#                 if txt:
+#                     parts.append(txt)
+#         return "".join(parts).strip()
+#     except Exception:
+#         return ""
+
+# def _parse_with_salvage(text: str, want_schema: bool) -> Dict[str, Any]:
+#     if not want_schema:
+#         return {"text": text}
+#     try:
+#         return json.loads(text)
+#     except Exception:
+#         pass
+#     obj = _best_json(text)
+#     if obj:
+#         return obj
+#     return {"_raw": text}
+
+# # ---------- timeout + retry helpers ----------
+
+# def _mk_timeout(timeout_s: float) -> httpx.Timeout:
+#     """
+#     IMPORTANT: This fixes your error. You were hitting connect timeout.
+#     httpx defaults connect timeout to ~5s unless overridden.
+#     """
+#     t = float(timeout_s)
+#     return httpx.Timeout(t, connect=t, read=t, write=t, pool=t)
+
+# T = TypeVar("T")
+
+# def _sleep_backoff(attempt: int, base: float = 1.0, cap: float = 30.0) -> None:
+#     # exponential + jitter
+#     delay = min(cap, base * (2 ** (attempt - 1))) + random.random()
+#     time.sleep(delay)
+
+# def _is_retryable_exc(e: Exception) -> bool:
+#     return isinstance(
+#         e,
+#         (
+#             APITimeoutError,
+#             APIConnectionError,
+#             RateLimitError,
+#             APIError,
+#             httpx.TimeoutException,
+#             httpx.NetworkError,
+#         ),
+#     )
+
+# # ---------- client ----------
+
+# class OpenAIClient:
+#     """
+#     Unified OpenAI client that can call either:
+#       • Chat Completions API
+#       • Responses API (gpt-5 family)
+
+#     Hardening:
+#       - Inject schema hint into system message
+#       - Lock additionalProperties:false recursively
+#       - Salvage JSON if strict parsing fails
+#       - Retry without response_format if provider rejects schema
+#       - NEW: real connect/read/write/pool timeouts + retries/backoff
+#       - NEW: supports __call__(..., timeout=...)
+#     """
+
+#     def __init__(
+#         self,
+#         model: str,
+#         api_key: str,
+#         base_url: Optional[str] = None,
+#         max_tokens: Optional[int] = 1024,
+#         temperature: Optional[float] = 0.0,
+#         top_p: Optional[float] = 1.0,
+#         use_responses_api: bool = False,
+#         extra_inputs: Optional[Dict[str, Any]] = None,
+#         request_timeout: Optional[float] = None,   # NEW
+#         max_attempts: int = 4,                     # NEW
+#         **_: Any,                                  # NEW: ignore unexpected kwargs from factory
+#     ):
+#         self.model = model
+#         self.max_tokens = max_tokens
+#         self.temperature = temperature
+#         self.top_p = top_p
+#         self.use_responses_api = bool(use_responses_api or (model or "").startswith("gpt-5"))
+#         self.extra_inputs = extra_inputs or {}
+
+#         self._default_timeout_s = float(request_timeout or 90.0)
+#         self._max_attempts = max(1, int(max_attempts or 1))
+
+#         client_kwargs: Dict[str, Any] = {
+#             "api_key": api_key,
+#             "timeout": _mk_timeout(self._default_timeout_s),  # GLOBAL default
+#             "max_retries": 0,  # we control retries ourselves
+#         }
+#         if base_url:
+#             client_kwargs["base_url"] = base_url
+
+#         self.client = OpenAI(**client_kwargs)
+
+#     def __call__(
+#         self,
+#         messages: List[Dict[str, str]],
+#         json_schema: Optional[Dict[str, Any]] = None,
+#         timeout: Optional[float] = None,  # NEW
+#     ):
+#         if self.use_responses_api:
+#             return self._call_responses(messages, json_schema, timeout=timeout)
+#         return self._call_chat(messages, json_schema, timeout=timeout)
+
+#     # ---------------- internal retry wrapper ----------------
+
+#     def _do_with_retries(self, fn: Callable[[], T]) -> T:
+#         last_exc: Optional[Exception] = None
+#         for attempt in range(1, self._max_attempts + 1):
+#             try:
+#                 return fn()
+#             except BadRequestError:
+#                 # schema / request is invalid -> do not retry
+#                 raise
+#             except Exception as e:
+#                 last_exc = e
+#                 if not _is_retryable_exc(e) or attempt >= self._max_attempts:
+#                     raise
+#                 _sleep_backoff(attempt, base=1.0, cap=30.0)
+#         # unreachable, but keeps mypy happy
+#         raise last_exc if last_exc else RuntimeError("request failed")
+
+#     # ---------------- Chat Completions ----------------
+
+#     def _call_chat(
+#         self,
+#         messages: List[Dict[str, str]],
+#         json_schema: Optional[Dict[str, Any]],
+#         timeout: Optional[float] = None,
+#     ):
+#         msgs = list(messages)
+#         have_schema = json_schema is not None
+#         safe_schema = None
+
+#         req_timeout = _mk_timeout(timeout or self._default_timeout_s)
+
+#         kwargs: Dict[str, Any] = dict(
+#             model=self.model,
+#             messages=msgs,
+#             max_tokens=self.max_tokens,
+#         )
+#         if self.temperature is not None:
+#             kwargs["temperature"] = self.temperature
+#         if self.top_p is not None:
+#             kwargs["top_p"] = self.top_p
+
+#         if have_schema:
+#             safe_schema = _lock_down_additional_props(json.loads(json.dumps(json_schema)))
+#             msgs = _inject_schema_hint_into_messages(msgs, safe_schema)
+#             kwargs["messages"] = msgs
+#             kwargs["response_format"] = {
+#                 "type": "json_schema",
+#                 "json_schema": {"name": "schema", "schema": safe_schema, "strict": True},
+#             }
+
+#         def _call():
+#             return self.client.chat.completions.create(**kwargs, timeout=req_timeout)
+
+#         # Try with response_format first (if schema)
+#         try:
+#             resp = self._do_with_retries(_call)
+#             text = _extract_text_from_chat(resp)
+#             if not have_schema:
+#                 return {"text": text}
+#             return _parse_with_salvage(text, want_schema=True)
+
+#         except BadRequestError:
+#             # If provider rejects response_format schema, retry without response_format
+#             if have_schema:
+#                 kwargs.pop("response_format", None)
+
+#                 def _call2():
+#                     return self.client.chat.completions.create(**kwargs, timeout=req_timeout)
+
+#                 resp = self._do_with_retries(_call2)
+#                 text = _extract_text_from_chat(resp)
+#                 return _parse_with_salvage(text, want_schema=True)
+#             raise
+
+#         except Exception:
+#             # last resort: if schema, retry without response_format once
+#             if have_schema:
+#                 kwargs.pop("response_format", None)
+
+#                 def _call3():
+#                     return self.client.chat.completions.create(**kwargs, timeout=req_timeout)
+
+#                 resp = self._do_with_retries(_call3)
+#                 text = _extract_text_from_chat(resp)
+#                 return _parse_with_salvage(text, want_schema=True)
+#             raise
+
+#     # ---------------- Responses API (gpt-5*) ----------------
+
+#     def _call_responses(
+#         self,
+#         messages: List[Dict[str, str]],
+#         json_schema: Optional[Dict[str, Any]],
+#         timeout: Optional[float] = None,
+#     ):
+#         have_schema = json_schema is not None
+#         msgs = list(messages)
+
+#         req_timeout = _mk_timeout(timeout or self._default_timeout_s)
+
+#         safe_schema = None
+#         if have_schema:
+#             safe_schema = _lock_down_additional_props(json.loads(json.dumps(json_schema)))
+#             msgs = _inject_schema_hint_into_messages(msgs, safe_schema)
+
+#         reasoning = self.extra_inputs.get("reasoning")
+#         text_opts = self.extra_inputs.get("text")
+
+#         base_kwargs: Dict[str, Any] = {
+#             "model": self.model,
+#             "input": msgs,
+#             "max_output_tokens": self.max_tokens,
+#         }
+#         if reasoning:
+#             base_kwargs["reasoning"] = reasoning
+#         if text_opts:
+#             base_kwargs["text"] = text_opts
+
+#         with_schema_kwargs = dict(base_kwargs)
+#         if have_schema:
+#             with_schema_kwargs["response_format"] = {
+#                 "type": "json_schema",
+#                 "json_schema": {"name": "schema", "schema": safe_schema, "strict": True},
+#             }
+#         else:
+#             with_schema_kwargs["response_format"] = {"type": "text"}
+
+#         def _call():
+#             return self.client.responses.create(**with_schema_kwargs, timeout=req_timeout)
+
+#         try:
+#             resp = self._do_with_retries(_call)
+#             text = _extract_text_from_responses_api(resp)
+#             if not have_schema:
+#                 return {"text": text}
+#             return _parse_with_salvage(text, want_schema=True)
+
+#         except BadRequestError:
+#             # Retry without response_format but keep hint
+#             def _call2():
+#                 return self.client.responses.create(**base_kwargs, timeout=req_timeout)
+
+#             resp = self._do_with_retries(_call2)
+#             text = _extract_text_from_responses_api(resp)
+#             if not have_schema:
+#                 return {"text": text}
+#             return _parse_with_salvage(text, want_schema=True)
+
+#         except TypeError:
+#             # Older SDKs → missing response_format support; retry bare
+#             def _call3():
+#                 return self.client.responses.create(**base_kwargs, timeout=req_timeout)
+
+#             resp = self._do_with_retries(_call3)
+#             text = _extract_text_from_responses_api(resp)
+#             if not have_schema:
+#                 return {"text": text}
+#             return _parse_with_salvage(text, want_schema=True)
+
+#         except Exception:
+#             # Final fallback
+#             def _call4():
+#                 return self.client.responses.create(**base_kwargs, timeout=req_timeout)
+
+#             resp = self._do_with_retries(_call4)
+#             text = _extract_text_from_responses_api(resp)
+#             if not have_schema:
+#                 return {"text": text}
+#             return _parse_with_salvage(text, want_schema=True)
+
+# __all__ = ["OpenAIClient"]
 
 # llm/openai_client.py
 from __future__ import annotations
@@ -125,46 +521,6 @@ def _parse_with_salvage(text: str, want_schema: bool) -> Dict[str, Any]:
         return obj
     return {"_raw": text}
 
-def _extract_usage(resp) -> dict:
-    """Extract usage from an OpenAI response object as a plain dict."""
-    u = getattr(resp, "usage", None)
-    if u is None:
-        return None
-    if hasattr(u, "model_dump"):
-        return u.model_dump()
-    if isinstance(u, dict):
-        return u
-    if hasattr(u, "__dict__"):
-        d = {}
-        for k, v in u.__dict__.items():
-            if k.startswith("_"):
-                continue
-            if hasattr(v, "model_dump"):
-                d[k] = v.model_dump()
-            elif hasattr(v, "__dict__") and not isinstance(v, (str, int, float, bool, type(None))):
-                d[k] = {kk: vv for kk, vv in v.__dict__.items() if not kk.startswith("_")}
-            else:
-                d[k] = v
-        return d if d else None
-    return None
-
-def _attach_meta(result: dict, resp) -> dict:
-    """Attach _usage and _model from the raw API response to the result dict."""
-    if not isinstance(result, dict):
-        return result
-    usage = _extract_usage(resp)
-    if usage is not None:
-        result["_usage"] = usage
-    model = getattr(resp, "model", None)
-    if model:
-        result["_model"] = model
-    resp_id = getattr(resp, "id", None)
-    if resp_id:
-        result["_id"] = resp_id
-    return result
-
-
-
 # ---------- timeout + retry helpers ----------
 
 def _mk_timeout(timeout_s: float) -> httpx.Timeout:
@@ -213,7 +569,7 @@ class TokenBucketRateLimiter:
 
     def __init__(
         self,
-        max_requests_per_minute: float = 70.0,
+        max_requests_per_minute: float = 30.0,
         safety_margin: float = 0.85,
     ):
         effective_rpm = max_requests_per_minute * safety_margin
@@ -493,8 +849,8 @@ class OpenAIClient:
             resp = self._do_with_retries(_call)
             text = _extract_text_from_chat(resp)
             if not have_schema:
-                return _attach_meta({"text": text}, resp)
-            return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return {"text": text}
+            return _parse_with_salvage(text, want_schema=True)
 
         except BadRequestError:
             if have_schema:
@@ -503,7 +859,7 @@ class OpenAIClient:
                     return self.client.chat.completions.create(**kwargs, timeout=req_timeout)
                 resp = self._do_with_retries(_call2)
                 text = _extract_text_from_chat(resp)
-                return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return _parse_with_salvage(text, want_schema=True)
             raise
 
         except Exception:
@@ -513,7 +869,7 @@ class OpenAIClient:
                     return self.client.chat.completions.create(**kwargs, timeout=req_timeout)
                 resp = self._do_with_retries(_call3)
                 text = _extract_text_from_chat(resp)
-                return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return _parse_with_salvage(text, want_schema=True)
             raise
 
     # ---------------- Responses API (gpt-5*) ----------------
@@ -563,8 +919,8 @@ class OpenAIClient:
             resp = self._do_with_retries(_call)
             text = _extract_text_from_responses_api(resp)
             if not have_schema:
-                return _attach_meta({"text": text}, resp)
-            return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return {"text": text}
+            return _parse_with_salvage(text, want_schema=True)
 
         except BadRequestError:
             def _call2():
@@ -572,8 +928,8 @@ class OpenAIClient:
             resp = self._do_with_retries(_call2)
             text = _extract_text_from_responses_api(resp)
             if not have_schema:
-                return _attach_meta({"text": text}, resp)
-            return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return {"text": text}
+            return _parse_with_salvage(text, want_schema=True)
 
         except TypeError:
             def _call3():
@@ -581,8 +937,8 @@ class OpenAIClient:
             resp = self._do_with_retries(_call3)
             text = _extract_text_from_responses_api(resp)
             if not have_schema:
-                return _attach_meta({"text": text}, resp)
-            return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return {"text": text}
+            return _parse_with_salvage(text, want_schema=True)
 
         except Exception:
             def _call4():
@@ -590,7 +946,7 @@ class OpenAIClient:
             resp = self._do_with_retries(_call4)
             text = _extract_text_from_responses_api(resp)
             if not have_schema:
-                return _attach_meta({"text": text}, resp)
-            return _attach_meta(_parse_with_salvage(text, want_schema=True), resp)
+                return {"text": text}
+            return _parse_with_salvage(text, want_schema=True)
 
 __all__ = ["OpenAIClient"]
