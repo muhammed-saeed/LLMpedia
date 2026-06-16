@@ -1,25 +1,33 @@
-```markdown
 # LLMpedia
 
+**A Transparent Framework to Materialize an LLM's Encyclopedic Knowledge at Scale**
 
-**Autonomous Encyclopedia Generator and Evaluation Framework for Large Language Models**
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![OpenAI](https://img.shields.io/badge/OpenAI-Batch%20API%20Ready-green.svg)](https://platform.openai.com/docs/guides/batch)
 
 LLMpedia materializes the parametric knowledge of large language models into
-browsable, encyclopedia-style articles, then evaluates that knowledge claim-by-claim.
-Starting from a single seed topic, it recursively elicits interconnected articles
-directly from a model's parametric memory — using entity extraction, semantic
-deduplication, and parallel processing — and provides a factuality-evaluation suite
-and static site generator to analyze, verify, and publish the results.
+browsable, encyclopedia-style articles, then evaluates that knowledge
+claim-by-claim. Starting from a single seed topic, it recursively elicits
+interconnected articles directly from a model's parametric memory — using
+entity extraction, semantic deduplication, and parallel processing — and
+provides a factuality-evaluation suite and static site generator to analyze,
+verify, and publish the results.
 
-The goal is not to build a reference encyclopedia, but to study what LLMs know on
-their own terms: the breadth and depth of their internal knowledge, how it varies
-across models and editorial framings, and how much of it can be externally verified.
+The goal is not to build a reference encyclopedia, but to study what LLMs know
+on their own terms: the breadth and depth of their internal knowledge, how it
+varies across models and editorial framings, and how much of it can be
+externally verified. Factuality is audited on a stratified sample rather than
+on every article, because per-claim verification cost scales with the number
+of claims; the public audit currently covers ~2,010 subjects (~20,092 atomic
+claims) drawn across BFS depths and the beyond-Wikipedia frontier.
+
 ```
 Seed: "Vannevar Bush"
          │
          ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        LLMPedia Pipeline                            │
+│                          LLMpedia Pipeline                          │
 │                                                                     │
 │  Self-RAG → Outline → Article Generation → NER → Similarity → Queue │
 │                                                                     │
@@ -38,6 +46,7 @@ Seed: "Vannevar Bush"
     • Per-entity pipeline analytics
     • Wikipedia/Wikidata images with attribution
     • Searchable static website
+    • Claim-level factuality verdicts on the audit sample
 ```
 
 ## Table of Contents
@@ -73,7 +82,7 @@ Seed: "Vannevar Bush"
 | **Graceful Shutdown** | Ctrl+C safely flushes all buffers and persists queue state before exit |
 | **Resume Support** | Continue interrupted runs without data loss using JSON-backed queues |
 | **Funnel Analysis** | Per-entity pipeline attrition tracking across all processing stages |
-| **Evaluation Suite** | Factuality checking, stylistic analysis, and cross-model/persona comparisons |
+| **Evaluation Suite** | Claim-level factuality checking on an audit sample, stylistic analysis, and cross-model/persona comparisons |
 | **Image Index** | Automated Wikipedia/Wikidata image download with license attribution |
 | **Static Site** | Searchable encyclopedia website with genealogy trees, images, and funnel statistics |
 
@@ -83,7 +92,7 @@ Seed: "Vannevar Bush"
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                              LLMPedia Architecture                              │
+│                              LLMpedia Architecture                              │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                 │
 │    ┌──────────────┐     ┌────────────────────────────────────────────────────┐ │
@@ -203,7 +212,7 @@ python llmpedia.py \
 │  │ Input:  Subject name + Domain context                                  │    │
 │  │ Action: Retrieval-Augmented Generation to gather background context    │    │
 │  │ Output: Context dictionary with retrieved information                  │    │
-│  │ 🎯 PURPOSE: Reduces hallucination by grounding in real facts          │    │
+│  │ PURPOSE: Reduces hallucination by grounding in real facts             │    │
 │  └────────────────────────────────────────────────────────────────────────┘    │
 │                                       │                                         │
 │                                       ▼                                         │
@@ -232,7 +241,7 @@ python llmpedia.py \
 │  │   • Plural/singular variant detection                                  │    │
 │  │   • Batch-level deduplication                                          │    │
 │  │ Output: Deduplicated candidates (e.g., 45 phrases)                     │    │
-│  │ 💰 COST SAVINGS: 70–90% reduction in NER API calls                    │    │
+│  │ COST SAVINGS: 70–90% reduction in NER API calls                       │    │
 │  └────────────────────────────────────────────────────────────────────────┘    │
 │                                       │                                         │
 │                                       ▼                                         │
@@ -326,7 +335,7 @@ python llmpedia.py \
 
 | Argument | Type | Default | Description |
 |----------|------|---------|-------------|
-| `--seed` | string | **required** | Starting topic for knowledge graph expansion |
+| `--seed` | string | **required** | Starting topic for encyclopedia expansion |
 | `--mode` | choice | `online` | Execution mode: `online` or `batch` |
 | `--domain` | choice | `general` | Prompt domain: `topic` (rooted) or `general` (standalone) |
 | `--output-dir` | path | auto-generated | Directory for all output files |
@@ -335,7 +344,7 @@ python llmpedia.py \
 
 ### Model Configuration (Cascading)
 
-LLMPedia uses a cascading configuration system:
+LLMpedia uses a cascading configuration system:
 
 ```
 --model-key (global default)
@@ -389,7 +398,7 @@ Recommended worker distribution (should not exceed `--concurrency`):
 
 ## Evaluation
 
-LLMPedia includes comprehensive evaluation tools for analyzing generated content quality, factuality, and stylistic variations across models and personas.
+LLMpedia includes comprehensive evaluation tools for analyzing generated content quality, factuality, and stylistic variations across models and personas. Factuality is computed on a sampled audit set (`--sample-n` / `--sample-max`), not on every article in the corpus.
 
 ### Track 1: Topic-Focused
 
@@ -417,12 +426,12 @@ topic_runs/
 # All 27 runs at once (3 models × 3 topics × 3 personas)
 python evaluation/run_track1_topic.py \
     --analyze-only \
-    --root-dir /home/samu170h/LLMPedia/openLLMPedia/topic_runs
+    --root-dir /home/samu170h/LLMpedia/openLLMpedia/topic_runs
 
 # Single topic (finds sibling personas automatically)
 python evaluation/run_track1_topic.py \
     --analyze-only \
-    --run-dir /home/samu170h/LLMPedia/openLLMPedia/topic_runs/gpt-5-mini/ancient_babylon/conservative
+    --run-dir /home/samu170h/LLMpedia/openLLMpedia/topic_runs/gpt-5-mini/ancient_babylon/conservative
 ```
 
 Output → `topic_runs/analysis/` (12 CSV files)
@@ -432,7 +441,7 @@ Output → `topic_runs/analysis/` (12 CSV files)
 ```bash
 # Single run (small test — ~$0.05)
 python evaluation/run_track1_topic.py \
-    --run-dir /home/samu170h/LLMPedia/openLLMPedia/topic_runs/gpt-5-mini/ancient_babylon/conservative \
+    --run-dir /home/samu170h/LLMpedia/openLLMpedia/topic_runs/gpt-5-mini/ancient_babylon/conservative \
     --fact-model-key gpt-4.1-nano \
     --evidence wikipedia,web \
     --compute-similarity --compute-stylistic \
@@ -441,7 +450,7 @@ python evaluation/run_track1_topic.py \
 
 # All 27 runs, 50 articles each (~$5-10)
 python evaluation/run_track1_topic.py \
-    --root-dir /home/samu170h/LLMPedia/openLLMPedia/topic_runs \
+    --root-dir /home/samu170h/LLMpedia/openLLMpedia/topic_runs \
     --fact-model-key gpt-4.1-nano \
     --evidence wikipedia,web \
     --compute-similarity --compute-stylistic \
@@ -450,7 +459,7 @@ python evaluation/run_track1_topic.py \
 
 # Full evaluation, all articles, with BERTScore
 python evaluation/run_track1_topic.py \
-    --root-dir /home/samu170h/LLMPedia/openLLMPedia/topic_runs \
+    --root-dir /home/samu170h/LLMpedia/openLLMpedia/topic_runs \
     --fact-model-key gpt-4.1-nano \
     --evidence wikipedia,web \
     --compute-similarity --compute-bertscore --compute-stylistic \
@@ -488,30 +497,30 @@ Cross-model comparison for general-domain runs (100K+ articles) using neutral pe
 
 **Input directories:**
 ```
-/home/samu170h/LLMPedia/openLLMPedia/llama3.3-70b_100K/     (articles.jsonl + run_meta.json)
-/home/samu170h/LLMPedia/openLLMPedia/deepseekV3.2_100K/     (articles.jsonl + run_meta.json)
-/home/samu170h/LLMPedia/openLLMPedia/gpt_5_mini_1M/         (articles.jsonl + run_meta.json)
+/home/samu170h/LLMpedia/openLLMpedia/llama3.3-70b_100K/     (articles.jsonl + run_meta.json)
+/home/samu170h/LLMpedia/openLLMpedia/deepseekV3.2_100K/     (articles.jsonl + run_meta.json)
+/home/samu170h/LLMpedia/openLLMpedia/gpt_5_mini_1M/         (articles.jsonl + run_meta.json)
 ```
 
 #### Structural Only (FREE, instant)
 
 ```bash
 python evaluation/run_track2_crossmodel.py \
-    --llama-dir /home/samu170h/LLMPedia/openLLMPedia/llama3.3-70b_100K \
-    --deepseek-dir /home/samu170h/LLMPedia/openLLMPedia/deepseekV3.2_100K \
-    --gpt-dir /home/samu170h/LLMPedia/openLLMPedia/gpt_5_mini_1M \
+    --llama-dir /home/samu170h/LLMpedia/openLLMpedia/llama3.3-70b_100K \
+    --deepseek-dir /home/samu170h/LLMpedia/openLLMpedia/deepseekV3.2_100K \
+    --gpt-dir /home/samu170h/LLMpedia/openLLMpedia/gpt_5_mini_1M \
     --max-subjects 100000 \
     --sample-n 1000 --sample-min 100 \
-    --output-dir /home/samu170h/LLMPedia/openLLMPedia/cross_model_results
+    --output-dir /home/samu170h/LLMpedia/openLLMpedia/cross_model_results
 ```
 
 #### With Similarity + Factuality (costs API money)
 
 ```bash
 python evaluation/run_track2_crossmodel.py \
-    --llama-dir /home/samu170h/LLMPedia/openLLMPedia/llama3.3-70b_100K \
-    --deepseek-dir /home/samu170h/LLMPedia/openLLMPedia/deepseekV3.2_100K \
-    --gpt-dir /home/samu170h/LLMPedia/openLLMPedia/gpt_5_mini_1M \
+    --llama-dir /home/samu170h/LLMpedia/openLLMpedia/llama3.3-70b_100K \
+    --deepseek-dir /home/samu170h/LLMpedia/openLLMpedia/deepseekV3.2_100K \
+    --gpt-dir /home/samu170h/LLMpedia/openLLMpedia/gpt_5_mini_1M \
     --max-subjects 100000 \
     --sample-n 500 --sample-min 100 \
     --compute-similarity --compute-factuality \
@@ -519,7 +528,7 @@ python evaluation/run_track2_crossmodel.py \
     --evidence-sources wikipedia,web \
     --max-claims 10 --max-retries 2 \
     --concurrency 50 \
-    --output-dir /home/samu170h/LLMPedia/openLLMPedia/cross_model_results
+    --output-dir /home/samu170h/LLMpedia/openLLMpedia/cross_model_results
 ```
 
 #### Clean and Re-run
@@ -750,7 +759,7 @@ python llmpedia.py ... --resume --reset-working
 #### Missing Funnel Data for Site Builder
 
 ```
-❌ ERROR: Funnel data not found at:
+ERROR: Funnel data not found at:
    /path/to/run_dir/funnel_analysis/funnel_per_entity.csv
 ```
 
@@ -800,22 +809,13 @@ watch -n 5 'jq -c "{d: [.[] | select(.status==\"done\")] | length, \
 
 ## Citation
 
-If you use LLMPedia in your research, please cite:
-
-```bibtex
-@software{llmpedia2024,
-  title = {LLMPedia: Autonomous Knowledge Graph Generator},
-  author = {Your Name},
-  year = {2024},
-  url = {https://github.com/yourorg/llmpedia}
-}
+the paper is now under review
 ```
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE) for details. All generated articles and artifacts are released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 ## Acknowledgments
 
 - OpenAI for GPT models and Batch API
-```
