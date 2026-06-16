@@ -1,14 +1,19 @@
 ```markdown
 # LLMPedia
 
-**Autonomous Knowledge Graph Generator using Large Language Models**
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![OpenAI](https://img.shields.io/badge/OpenAI-Batch%20API%20Ready-green.svg)](https://platform.openai.com/docs/guides/batch)
+**Autonomous Encyclopedia Generator and Evaluation Framework for Large Language Models**
 
-LLMPedia automatically generates interconnected encyclopedia-style articles by recursively expanding from a seed topic. It uses intelligent entity extraction, semantic deduplication, and parallel processing to build comprehensive knowledge bases — then provides evaluation tools and a static site generator to analyze and publish the results.
+LLMpedia materializes the parametric knowledge of large language models into
+browsable, encyclopedia-style articles, then evaluates that knowledge claim-by-claim.
+Starting from a single seed topic, it recursively elicits interconnected articles
+directly from a model's parametric memory — using entity extraction, semantic
+deduplication, and parallel processing — and provides a factuality-evaluation suite
+and static site generator to analyze, verify, and publish the results.
 
+The goal is not to build a reference encyclopedia, but to study what LLMs know on
+their own terms: the breadth and depth of their internal knowledge, how it varies
+across models and editorial framings, and how much of it can be externally verified.
 ```
 Seed: "Vannevar Bush"
          │
