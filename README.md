@@ -1,5 +1,5 @@
 ```markdown
-# LLMPedia
+# LLMpedia
 
 
 **Autonomous Encyclopedia Generator and Evaluation Framework for Large Language Models**
